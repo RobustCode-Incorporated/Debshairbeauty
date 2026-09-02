@@ -11,8 +11,8 @@ any other client's.
 
 ## Routes
 
-- `/` — redirects to `/debs#boutique` (the site now launches directly on the
-  full site's boutique section instead of a "coming soon" announcement).
+- `/` — redirects to `/debs` (the site now launches directly on the full
+  site instead of a "coming soon" announcement).
 - `/debs` — the full site: hero, service categories, boutique, gallery,
   team, hours.
 - `/debs/prestations` — full 59-item service catalogue, grouped by
