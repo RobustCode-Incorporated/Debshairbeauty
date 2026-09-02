@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import SlideOver from "@/components/SlideOver";
 import type { DebsProduct } from "@/lib/debs-products";
 
@@ -13,6 +14,12 @@ type Props = {
 };
 
 export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product }: Props) {
+  const t = useTranslations("Purchase");
+  const tCommon = useTranslations("Common");
+  const tProductCategories = useTranslations("ProductCategories");
+  const tProducts = useTranslations("Products");
+  const locale = useLocale();
+
   const [form, setForm] = useState({ firstName: "", lastName: "", phone: "", quantity: 1, notes: "" });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -28,7 +35,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
     setSuccess(null);
 
     if (!INTL_PHONE_RE.test(form.phone.trim())) {
-      setError("Le numéro doit commencer par le code pays, ex : +32471234567");
+      setError(tCommon("invalidPhone"));
       return;
     }
 
@@ -38,42 +45,42 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
       const response = await fetch("/api/debs/products/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, productId: product.id }),
+        body: JSON.stringify({ ...form, productId: product.id, locale }),
       });
       const data: { url?: string; error?: string } = await response.json();
-      if (!response.ok) throw new Error(data.error ?? "Impossible de créer la session de paiement.");
+      if (!response.ok) throw new Error(data.error ?? tCommon("checkoutFailed"));
 
       if (data.url) {
-        setSuccess("Redirection vers le paiement sécurisé…");
+        setSuccess(tCommon("redirectingMessage"));
         window.location.assign(data.url);
       } else {
-        throw new Error("Réponse invalide du serveur de paiement.");
+        throw new Error(tCommon("invalidServerResponse"));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Une erreur est survenue.");
+      setError(err instanceof Error ? err.message : tCommon("genericError"));
       setIsSubmitting(false);
     }
   };
 
   return (
-    <SlideOver isOpen={isOpen} onClose={onClose} title="Acheter un produit" theme="light">
+    <SlideOver isOpen={isOpen} onClose={onClose} title={t("title")} theme="light">
       <form onSubmit={submit} className="space-y-5">
         <div className="border border-amber-200 bg-amber-50 px-4 py-3">
-          <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold mb-1">{product.category}</p>
-          <p className="text-stone-900 font-bold">{product.name}</p>
-          {product.variant && <p className="text-sm text-stone-600">{product.variant}</p>}
+          <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold mb-1">{tProductCategories(product.category)}</p>
+          <p className="text-stone-900 font-bold">{tProducts(`${product.id}.name`)}</p>
+          {product.variant && <p className="text-sm text-stone-600">{tProducts(`${product.id}.variant`)}</p>}
           <p className="text-sm text-stone-600 mt-1">
-            <strong className="text-stone-900">{product.priceEuros}€</strong> — payé en ligne, à récupérer au salon.
+            <strong className="text-stone-900">{product.priceEuros}€</strong> {t("priceNote")}
           </p>
         </div>
 
-        {[['firstName', 'Prénom'], ['lastName', 'Nom']].map(([field, label]) => (
+        {([['firstName', tCommon('firstNameLabel')], ['lastName', tCommon('lastNameLabel')]] as const).map(([field, label]) => (
           <label key={field} className="block text-sm text-stone-700">
             {label}
             <input
               required
               type="text"
-              value={form[field as 'firstName' | 'lastName']}
+              value={form[field]}
               onChange={(event) => setForm({ ...form, [field]: event.target.value })}
               className="mt-2 w-full border border-stone-300 bg-white px-3 py-3 text-stone-900 outline-none focus:border-amber-600"
             />
@@ -81,7 +88,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
         ))}
 
         <label className="block text-sm text-stone-700">
-          Téléphone
+          {tCommon("phoneLabel")}
           <input
             required
             type="tel"
@@ -90,11 +97,11 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
             onChange={(event) => setForm({ ...form, phone: event.target.value })}
             className="mt-2 w-full border border-stone-300 bg-white px-3 py-3 text-stone-900 outline-none focus:border-amber-600"
           />
-          <span className="text-xs text-stone-400 mt-1 block">Commencez par le code pays, ex&nbsp;: +32471234567</span>
+          <span className="text-xs text-stone-400 mt-1 block">{tCommon("phoneHint")}</span>
         </label>
 
         <label className="block text-sm text-stone-700">
-          Quantité
+          {t("quantityLabel")}
           <input
             required
             type="number"
@@ -107,7 +114,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
         </label>
 
         <label className="block text-sm text-stone-700">
-          Notes (facultatif)
+          {tCommon("notesLabel")}
           <textarea
             rows={2}
             value={form.notes}
@@ -120,7 +127,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
         {success && <p className="text-sm text-emerald-700">{success}</p>}
 
         <button disabled={isSubmitting} type="submit" className="w-full bg-stone-900 px-4 py-4 font-bold uppercase tracking-wider text-white hover:bg-amber-700 transition-colors disabled:opacity-60">
-          {isSubmitting ? 'Redirection…' : `Payer ${total}€ et acheter`}
+          {isSubmitting ? tCommon('redirecting') : t('submitCta', { total })}
         </button>
       </form>
     </SlideOver>

@@ -1,0 +1,258 @@
+{
+  "Metadata": {
+    "title": "Debs Hair & Beauty",
+    "description": "Kapsalon en schoonheidssalon in Brussel — online reserveren en winkel."
+  },
+  "CheckoutApi": {
+    "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",
+    "unknownService": "Onbekende dienst.",
+    "missingRequiredFieldsPurchase": "Voornaam, naam, telefoon en product zijn verplicht.",
+    "maxQuantity": "Maximale hoeveelheid: 10.",
+    "unknownProduct": "Onbekend product.",
+    "placeholderProduct": "Dit product is een tijdelijk voorbeeld, nog niet te koop.",
+    "stripeNotConfigured": "Betaling per kaart is nog niet geconfigureerd. Voeg DEBS_STRIPE_SECRET_KEY toe.",
+    "stripeNotConfiguredShort": "Stripe is niet geconfigureerd voor Debs Hair Beauty.",
+    "missingSessionId": "session_id ontbreekt.",
+    "paymentNotConfirmed": "Betaling niet bevestigd voor deze sessie.",
+    "bookingProductName": "Debs Hair Beauty — {name}",
+    "bookingDepositProductName": "Debs Hair Beauty — Voorschot {category}",
+    "bookingServiceDescription": "Prijs van de dienst \"{name}\" ({category}), online betaald bij reservering.",
+    "bookingDepositDescription": "Reserveringsvoorschot, in mindering gebracht op de dienst. Eventueel saldo wordt ter plaatse betaald.",
+    "productDescription": "Af te halen in de salon. Geen levering."
+  },
+  "Nav": {
+    "home": "Home",
+    "prestations": "Diensten",
+    "boutique": "Winkel",
+    "gallery": "Galerij",
+    "team": "Team",
+    "hours": "Openingsuren",
+    "book": "Reserveren",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "language": "Taal"
+  },
+  "Common": {
+    "firstNameLabel": "Voornaam",
+    "lastNameLabel": "Naam",
+    "phoneLabel": "Telefoon",
+    "phoneHint": "Begin met de landcode, bv. +32471234567",
+    "notesLabel": "Opmerkingen (optioneel)",
+    "redirecting": "Doorverwijzen…",
+    "redirectingMessage": "Doorverwijzen naar beveiligde betaling…",
+    "genericError": "Er is een fout opgetreden.",
+    "invalidPhone": "Het nummer moet beginnen met de landcode, bv. +32471234567",
+    "checkoutFailed": "Kon geen betaalsessie aanmaken.",
+    "invalidServerResponse": "Ongeldig antwoord van de betaalserver.",
+    "backToSite": "Terug naar de site",
+    "loading": "Laden…",
+    "whatsappCta": "Verdergaan op WhatsApp",
+    "notConfirmedTitle": "Betaling niet bevestigd",
+    "loadingPayment": "Betaling wordt bevestigd…"
+  },
+  "Home": {
+    "cancelledNotice": "Betaling geannuleerd. Er werd geen bedrag afgeschreven.",
+    "hero": {
+      "locationBadge": "Béguinage-Dixmude, Brussel",
+      "tagline": "Een gezellige, cocooning sfeer in het hart van Brussel.",
+      "reviews": "4.0 · 48 reviews",
+      "bookCta": "Maak een afspraak",
+      "seeServicesCta": "Bekijk de diensten"
+    },
+    "infoBar": {
+      "addressLabel": "Adres",
+      "hoursLabel": "Openingsuren",
+      "hoursValue": "Di–Za, zie details hieronder",
+      "paymentLabel": "Betaling",
+      "paymentValue": "Cash &amp; bankkaart"
+    },
+    "boutique": {
+      "eyebrow": "Winkel",
+      "title": "Onze producten",
+      "subtitle": "Pruiken, haarextensions en schoonheidsproducten — online betaald, af te halen in de salon.",
+      "exampleBadge": "Voorbeeld",
+      "comingSoon": "Binnenkort beschikbaar",
+      "buy": "Kopen",
+      "seeCatalogCta": "Op zoek naar een dienst? Bekijk de volledige catalogus"
+    },
+    "gallery": {
+      "eyebrow": "Interieur",
+      "title": "De salon",
+      "imageAlt": "Interieur van de Debs Hair Beauty salon"
+    },
+    "team": {
+      "eyebrow": "Het team",
+      "name": "Déborah",
+      "imageAlt": "Ontvangstruimte van de Debs Hair Beauty salon",
+      "reviews": "4.1 · 18 reviews",
+      "bio": "Kapster, schoonheidsspecialiste en visagiste, Déborah ontvangt elke klant voor een persoonlijk verzorgingsmoment, in een kader gemaakt voor ontspanning.",
+      "bookWithHerCta": "Reserveer bij Déborah"
+    },
+    "hours": {
+      "eyebrow": "Openingsuren",
+      "title": "Wanneer je ons vindt",
+      "closed": "Gesloten",
+      "days": {
+        "monday": "Maandag",
+        "tuesday": "Dinsdag",
+        "wednesday": "Woensdag",
+        "thursday": "Donderdag",
+        "friday": "Vrijdag",
+        "saturday": "Zaterdag",
+        "sunday": "Zondag"
+      }
+    },
+    "location": {
+      "eyebrow": "Adres",
+      "title": "Vind ons",
+      "metroHint": "Op 2 minuten wandelen van metrostation Yser.",
+      "directionsCta": "Route"
+    },
+    "footer": {
+      "brand": "Debs Hair Beauty",
+      "neighborhood": "Béguinage-Dixmude",
+      "metroHint": "(Op 2 min wandelen van metro Yser)",
+      "bookingHeading": "Reservering",
+      "bookCta": "Maak een afspraak",
+      "bookingHint": "Bevestiging afgerond via WhatsApp.",
+      "followHeading": "Volg ons",
+      "devBy": "Site ontwikkeld door"
+    }
+  },
+  "Prestations": {
+    "eyebrow": "Volledige catalogus",
+    "title": "Al onze diensten",
+    "subtitle": "Kies een dienst om het tijdslot direct te boeken en online met kaart te betalen.",
+    "startingFromPrefix": "vanaf ",
+    "backToHome": "← Terug naar home"
+  },
+  "Booking": {
+    "title": "Maak een afspraak",
+    "serviceStartingFromPrefix": "Vanaf ",
+    "servicePriceNote": "— online betaald bij reservering.",
+    "categoryPriceNote": "Kies een dienst, een datum en een uur. Een voorschot van {price}€ (startprijs van de dienst) wordt met kaart betaald ter bevestiging; het eventuele saldo wordt ter plaatse betaald na de dienst.",
+    "serviceLabel": "Dienst",
+    "dateLabel": "Datum",
+    "timeLabel": "Uur",
+    "openingHint": "Open van dinsdag tot zaterdag, 10:00–20:30 afhankelijk van de dag.",
+    "notesPlaceholder": "Gewenste stijl, referentie, tijdsbeperkingen...",
+    "submitCta": "Betaal {price}€ en reserveer",
+    "errors": {
+      "invalidDateTime": "Ongeldige datum of uur.",
+      "futureSlotRequired": "Kies alsjeblieft een tijdslot in de toekomst.",
+      "closedDay": "De salon is gesloten op zondag en maandag. Kies een dag tussen dinsdag en zaterdag."
+    }
+  },
+  "Purchase": {
+    "title": "Koop een product",
+    "priceNote": "— online betaald, af te halen in de salon.",
+    "quantityLabel": "Aantal",
+    "submitCta": "Betaal {total}€ en koop"
+  },
+  "ReservationConfirmee": {
+    "noSession": "Geen betaalsessie gevonden.",
+    "confirmFailed": "Kon de reservering niet bevestigen.",
+    "successTitle": "Reservering bevestigd",
+    "successMessage": "Bedankt {firstName}! Je voorschot voor <strong>{category}</strong> op <strong>{date}</strong> om <strong>{time}</strong> is betaald.",
+    "balanceNote": "Het eventuele saldo wordt ter plaatse betaald, na de dienst."
+  },
+  "CommandeConfirmee": {
+    "noSession": "Geen betaalsessie gevonden.",
+    "confirmFailed": "Kon de bestelling niet bevestigen.",
+    "successTitle": "Bestelling bevestigd",
+    "successMessage": "Bedankt {firstName}! Je betaling voor <strong>{quantity}× {productName}{variant}</strong> is verwerkt.",
+    "pickupNote": "Direct af te halen in de salon."
+  },
+  "ServiceCategories": {
+    "Cheveux": "Haar",
+    "Ongles": "Nagels",
+    "Épilation": "Ontharing",
+    "Visage": "Gezicht",
+    "Massage": "Massage",
+    "Maquillage": "Make-up"
+  },
+  "CatalogCategories": {
+    "Coiffure Afro": "Afrokapsels",
+    "Pack Mariage": "Bruidspakket",
+    "Beauté du regard": "Oogverzorging",
+    "Maquillage": "Make-up",
+    "Coiffure Européen": "Europees kapsel",
+    "Massage": "Massage",
+    "Beauté des mains": "Handverzorging",
+    "Beauté des pieds": "Voetverzorging",
+    "Blanchiment dentaire": "Tandenbleken",
+    "Épilation": "Ontharing"
+  },
+  "CatalogItems": {
+    "coiffure-afro--pose-perruque-lace": "Lace pruik plaatsen",
+    "coiffure-afro--pose-perruque-closure": "Closure pruik plaatsen",
+    "coiffure-afro--tissage-avec-closure": "Weave met closure",
+    "coiffure-afro--ponytail": "Paardenstaart",
+    "coiffure-afro--rasta": "Rasta",
+    "coiffure-afro--locks": "Locks",
+    "coiffure-afro--twists": "Twists",
+    "coiffure-afro--tresses-enfant": "Vlechten kinderen",
+    "coiffure-afro--nattes-collees": "Cornrows",
+    "pack-mariage--essai-maquillage": "Make-uptest",
+    "pack-mariage--pose-perruque-jour-j": "Pruik plaatsen (trouwdag)",
+    "pack-mariage--maquillage-jour-j": "Trouwdag make-up",
+    "pack-mariage--retouche-soiree": "Avondretouche",
+    "pack-mariage--pose-perruque-et-chignon": "Pruik en chignon plaatsen",
+    "pack-mariage--tissage-chignon": "Weave chignon",
+    "beaute-du-regard--microblading": "Microblading",
+    "beaute-du-regard--microshading": "Microshading",
+    "beaute-du-regard--retouche": "Retouche",
+    "beaute-du-regard--combo-brow": "Combo brow",
+    "beaute-du-regard--henna-brow-sourcils": "Henna brow wenkbrauwen",
+    "beaute-du-regard--browlift": "Browlift",
+    "beaute-du-regard--rehaussement-des-sourcils": "Wenkbrauwlaminatie",
+    "beaute-du-regard--rehaussement-des-cils": "Wimperlift",
+    "beaute-du-regard--extensions-des-cils": "Wimperextensions",
+    "beaute-du-regard--volume-russe": "Russisch volume wimpers",
+    "beaute-du-regard--pose-cils-simple": "Klassieke wimperextensions",
+    "beaute-du-regard--epilation-a-la-cire-des-sourcils": "Wenkbrauwen harsen",
+    "maquillage--maquillage-de-jour": "Dagmake-up",
+    "maquillage--maquillage-de-soiree": "Avondmake-up",
+    "maquillage--maquillage-simple": "Eenvoudige make-up",
+    "coiffure-europeen--brushing": "Föhnen",
+    "coiffure-europeen--coupe-a-sec": "Droog knippen",
+    "coiffure-europeen--coupe-transformation": "Transformatie knipbeurt",
+    "coiffure-europeen--shampoing": "Wassen",
+    "coiffure-europeen--shampoing-coupe-brushing": "Wassen, knippen & föhnen",
+    "coiffure-europeen--soin-botox": "Botox-behandeling",
+    "coiffure-europeen--lissage-bresilien": "Braziliaanse straightening",
+    "coiffure-europeen--lissage-keratine": "Keratine straightening",
+    "coiffure-europeen--coloration-racine": "Uitgroei kleuren",
+    "coiffure-europeen--coloration-tete-complete": "Volledige kleuring",
+    "coiffure-europeen--transformation-balayage-ombre": "Balayage / ombré transformatie",
+    "coiffure-europeen--extensions-de-cheveux": "Haarextensions",
+    "massage--massage-relaxant-30-min": "Ontspanningsmassage 30 min",
+    "massage--massage-aux-huiles-chaudes-1h": "Warme olie massage 1u",
+    "massage--massage-aux-pierres-chaudes-1h": "Hot stone massage 1u",
+    "massage--massage-pour-enfants-30-min": "Kindermassage 30 min",
+    "massage--massage-en-duo-1h": "Duo massage 1u",
+    "beaute-des-mains--manucure-simple": "Eenvoudige manicure",
+    "beaute-des-mains--pose-de-vernis-semi-permanent": "Semi-permanente lak",
+    "beaute-des-mains--pose-d-ongles-en-gel": "Gelnagels",
+    "beaute-des-pieds--pedicure-spa": "Spa-pedicure",
+    "beaute-des-pieds--pedicure-esthetique": "Esthetische pedicure",
+    "blanchiment-dentaire--blanchiment-dentaire": "Tandenbleken",
+    "epilation--epilation-du-maillot": "Bikinilijn ontharen",
+    "epilation--epilation-du-dos-entier": "Volledige rug ontharen",
+    "epilation--epilation-du-visage": "Gezicht ontharen"
+  },
+  "ProductCategories": {
+    "Perruques": "Pruiken",
+    "Mèches": "Haarextensions",
+    "Produits de beauté": "Schoonheidsproducten"
+  },
+  "Products": {
+    "perruque-lace-18-naturelle": { "name": "Lace front pruik", "variant": "18 inch — Natuurlijk" },
+    "perruque-closure-16-bouclee": { "name": "Closure pruik", "variant": "16 inch — Krullend" },
+    "meche-lisse-20": { "name": "Steile extensions", "variant": "20 inch" },
+    "meche-lisse-24": { "name": "Steile extensions", "variant": "24 inch" },
+    "meche-bouclee-18": { "name": "Krullende extensions", "variant": "18 inch" },
+    "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
+    "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
+  }
+}

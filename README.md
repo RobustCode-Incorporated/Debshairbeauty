@@ -11,6 +11,10 @@ any other client's.
 
 ## Routes
 
+All page routes are locale-aware (see [Internationalization](#internationalization)
+below). French is the default locale and keeps unprefixed URLs; other locales
+are prefixed (`/en/...`, `/nl/...`, `/es/...`).
+
 - `/` — redirects to `/debs` (the site now launches directly on the full
   site instead of a "coming soon" announcement).
 - `/debs` — the full site: hero, service categories, boutique, gallery,
@@ -21,9 +25,46 @@ any other client's.
 - `/debs/reservation-confirmee`, `/debs/commande-confirmee` — Stripe
   success-page fallbacks for bookings and boutique orders respectively.
 
+## Internationalization
+
+The site is available in **4 languages**: French (`fr`, default), English
+(`en`), Dutch (`nl`) and Spanish (`es`), powered by
+[`next-intl`](https://next-intl.dev).
+
+- `src/i18n/routing.ts` — supported locales and default locale
+  (`localePrefix: "as-needed"`, so French stays at `/debs` while the others
+  live at `/en/debs`, `/nl/debs`, `/es/debs`).
+- `src/i18n/navigation.ts` — locale-aware `Link`/`redirect`/`useRouter`/
+  `usePathname`, used everywhere instead of the plain `next/link` and
+  `next/navigation` equivalents so links and redirects keep (or switch) the
+  current locale.
+- `src/i18n/request.ts` — loads the matching `messages/<locale>.json`
+  dictionary per request.
+- `src/proxy.ts` — locale detection/routing (this file replaced
+  `middleware.ts` in Next.js 16; same request/response signature).
+- `messages/{fr,en,nl,es}.json` — one dictionary per locale. All 4 files
+  must have identical keys. This includes the translated labels for the
+  service catalogue (`CatalogItems`, `CatalogCategories`), booking
+  categories (`ServiceCategories`) and boutique products (`Products`,
+  `ProductCategories`) — looked up by the stable French-derived `id` from
+  `src/lib/debs-catalog.ts`, `debs-services.ts` and `debs-products.ts`,
+  which are otherwise unchanged (those ids are also used for Stripe pricing
+  and must stay stable).
+- A language switcher lives in `DebsNav` (desktop dropdown + mobile row);
+  switching locale keeps the current page.
+- The booking/purchase checkout API routes (`/api/debs/checkout`,
+  `/api/debs/products/checkout`) receive the current `locale` from the
+  client, use it to build the Stripe Checkout page in the right language,
+  localize their JSON error messages, and redirect back to the correctly
+  localized success/cancel page.
+
+To add a new UI string: add the key to all 4 `messages/*.json` files (same
+path in each), then read it with `useTranslations`/`getTranslations`.
+
 ## Stack
 
 - Next.js 16 (App Router), React 19, Tailwind CSS 4, Framer Motion.
+- `next-intl` for the French/English/Dutch/Spanish i18n described above.
 - Stripe Checkout for both bookings (deposit) and boutique orders
   (immediate full payment, pickup at the salon — no shipping, no PayPal
   yet).

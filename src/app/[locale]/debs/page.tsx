@@ -5,9 +5,10 @@ import {
   Calendar, Star, MapPin, Clock, Gem, Sparkles,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Playfair_Display } from "next/font/google";
 import { useEffect, useState } from "react";
+import { Link } from "@/i18n/navigation";
 import DebsNav from "@/components/debs/DebsNav";
 import DebsBookingSlideOver, { DebsBookingTarget } from "@/components/debs/DebsBookingSlideOver";
 import DebsProductPurchaseSlideOver from "@/components/debs/DebsProductPurchaseSlideOver";
@@ -17,14 +18,14 @@ const playfair = Playfair_Display({ subsets: ["latin"] });
 
 const gallery = ["/download (1).webp", "/download (4).webp", "/download (5).webp", "/download (10).webp"];
 
-const hours = [
-  { day: "Lundi", value: "Fermé" },
-  { day: "Mardi", value: "10:00 – 18:00" },
-  { day: "Mercredi", value: "10:00 – 19:00" },
-  { day: "Jeudi", value: "10:00 – 19:00" },
-  { day: "Vendredi", value: "10:00 – 19:30" },
-  { day: "Samedi", value: "10:00 – 20:30" },
-  { day: "Dimanche", value: "Fermé" },
+const HOURS: Array<{ dayKey: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday"; value: string | null }> = [
+  { dayKey: "monday", value: null },
+  { dayKey: "tuesday", value: "10:00 – 18:00" },
+  { dayKey: "wednesday", value: "10:00 – 19:00" },
+  { dayKey: "thursday", value: "10:00 – 19:00" },
+  { dayKey: "friday", value: "10:00 – 19:30" },
+  { dayKey: "saturday", value: "10:00 – 20:30" },
+  { dayKey: "sunday", value: null },
 ];
 
 const ADDRESS = "150A Rue de Laeken, 1000 Bruxelles";
@@ -33,6 +34,10 @@ const PHONE_DISPLAY = "+32 472 34 19 68";
 const PHONE_TEL = "+32472341968";
 
 export default function DebsSalonPage() {
+  const t = useTranslations("Home");
+  const tProductCategories = useTranslations("ProductCategories");
+  const tProducts = useTranslations("Products");
+
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingTarget, setBookingTarget] = useState<DebsBookingTarget>({ kind: "category", categoryId: "Cheveux" });
   const [showCancelledNotice, setShowCancelledNotice] = useState(false);
@@ -65,7 +70,7 @@ export default function DebsSalonPage() {
 
       {showCancelledNotice && (
         <div className="fixed top-4 inset-x-4 z-[60] mx-auto max-w-md flex items-center justify-between gap-3 bg-stone-900 text-white text-sm px-4 py-3 shadow-xl">
-          <span>Paiement annulé. Aucun montant n&apos;a été débité.</span>
+          <span>{t("cancelledNotice")}</span>
           <button type="button" onClick={() => setShowCancelledNotice(false)} className="text-stone-400 hover:text-white transition-colors shrink-0">✕</button>
         </div>
       )}
@@ -75,7 +80,7 @@ export default function DebsSalonPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/Debs sal.webp"
-            alt="Intérieur du salon Debs Hair Beauty"
+            alt={t("gallery.imageAlt")}
             fill
             className="object-cover object-center"
             priority
@@ -91,7 +96,7 @@ export default function DebsSalonPage() {
             className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 bg-black/30 backdrop-blur-md mb-8"
           >
             <MapPin className="w-4 h-4 text-amber-300" />
-            <span className="text-sm font-medium tracking-widest uppercase text-white">Béguinage-Dixmude, Bruxelles</span>
+            <span className="text-sm font-medium tracking-widest uppercase text-white">{t("hero.locationBadge")}</span>
           </motion.div>
 
           <motion.div
@@ -106,14 +111,14 @@ export default function DebsSalonPage() {
               Hair &amp; Beauty
             </p>
             <p className="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto mb-4">
-              Une ambiance conviviale et cocooning, au cœur de Bruxelles.
+              {t("hero.tagline")}
             </p>
             <div className="flex items-center justify-center gap-1.5 mb-10">
               {[0, 1, 2, 3].map((i) => (
                 <Star key={i} className="w-4 h-4 text-amber-300 fill-amber-300" />
               ))}
               <Star className="w-4 h-4 text-amber-300" />
-              <span className="text-sm text-white/80 ml-2">4.0 · 48 avis</span>
+              <span className="text-sm text-white/80 ml-2">{t("hero.reviews")}</span>
             </div>
           </motion.div>
 
@@ -125,11 +130,11 @@ export default function DebsSalonPage() {
           >
             <button type="button" onClick={() => openBookingFor("Cheveux")} className="px-8 py-4 bg-white text-stone-900 font-bold uppercase tracking-wider rounded-sm transition-all hover:bg-amber-50 flex items-center justify-center gap-2">
               <Calendar className="w-5 h-5" />
-              Prendre rendez-vous
+              {t("hero.bookCta")}
             </button>
             <Link href="/debs/prestations" className="px-8 py-4 bg-transparent text-white font-bold uppercase tracking-wider border border-white/40 rounded-sm transition-all hover:border-white hover:bg-white/10 flex items-center justify-center gap-2">
               <Sparkles className="w-5 h-5" />
-              Voir les prestations
+              {t("hero.seeServicesCta")}
             </Link>
           </motion.div>
         </div>
@@ -141,22 +146,22 @@ export default function DebsSalonPage() {
           <div className="flex items-center gap-3 px-8 py-6">
             <MapPin className="w-5 h-5 text-amber-600 shrink-0" />
             <div>
-              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">Adresse</p>
+              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">{t("infoBar.addressLabel")}</p>
               <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-stone-700 hover:text-amber-700 transition-colors">{ADDRESS}</a>
             </div>
           </div>
           <div className="flex items-center gap-3 px-8 py-6">
             <Clock className="w-5 h-5 text-amber-600 shrink-0" />
             <div>
-              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">Horaires</p>
-              <p className="text-sm text-stone-700">Mar–Sam, voir détail plus bas</p>
+              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">{t("infoBar.hoursLabel")}</p>
+              <p className="text-sm text-stone-700">{t("infoBar.hoursValue")}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 px-8 py-6">
             <Gem className="w-5 h-5 text-amber-600 shrink-0" />
             <div>
-              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">Paiement</p>
-              <p className="text-sm text-stone-700">Espèces &amp; carte bancaire</p>
+              <p className="text-xs uppercase tracking-widest text-stone-400 font-semibold">{t("infoBar.paymentLabel")}</p>
+              <p className="text-sm text-stone-700">{t("infoBar.paymentValue")}</p>
             </div>
           </div>
         </div>
@@ -166,12 +171,12 @@ export default function DebsSalonPage() {
       <section id="boutique" className="py-24 px-4 bg-[#fbf9f6]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">Boutique</span>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("boutique.eyebrow")}</span>
             <h2 className={`${playfair.className} text-4xl md:text-5xl text-stone-900 mb-4`}>
-              Nos produits
+              {t("boutique.title")}
             </h2>
             <p className="text-stone-500 text-lg max-w-2xl mx-auto">
-              Perruques, mèches et produits de beauté — payés en ligne, à récupérer directement au salon.
+              {t("boutique.subtitle")}
             </p>
           </div>
 
@@ -180,7 +185,7 @@ export default function DebsSalonPage() {
             if (items.length === 0) return null;
             return (
               <div key={category} className="mb-16 last:mb-0">
-                <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400 mb-6">{category}</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400 mb-6">{tProductCategories(category)}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {items.map((product, index) => (
                     <motion.div
@@ -194,29 +199,29 @@ export default function DebsSalonPage() {
                       <div className="relative h-44 w-full overflow-hidden">
                         <Image
                           src={product.image}
-                          alt={product.name}
+                          alt={tProducts(`${product.id}.name`)}
                           fill
                           className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                         />
                         {product.placeholder && (
                           <span className="absolute top-3 left-3 bg-stone-900/80 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1">
-                            Exemple
+                            {t("boutique.exampleBadge")}
                           </span>
                         )}
                       </div>
 
                       <div className="p-6 flex flex-col flex-1">
-                        <p className="text-stone-900 font-bold mb-1">{product.name}</p>
-                        {product.variant && <p className="text-sm text-stone-500 mb-2">{product.variant}</p>}
+                        <p className="text-stone-900 font-bold mb-1">{tProducts(`${product.id}.name`)}</p>
+                        {product.variant && <p className="text-sm text-stone-500 mb-2">{tProducts(`${product.id}.variant`)}</p>}
                         <p className="text-2xl font-black text-stone-900 mb-4 mt-auto">{product.priceEuros}€</p>
                         <button
                           type="button"
                           disabled={product.placeholder}
                           onClick={() => openPurchaseFor(product)}
-                          title={product.placeholder ? "Bientôt disponible" : undefined}
+                          title={product.placeholder ? t("boutique.comingSoon") : undefined}
                           className="w-full py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors disabled:bg-stone-200 disabled:text-stone-400 disabled:cursor-not-allowed disabled:hover:bg-stone-200"
                         >
-                          {product.placeholder ? "Bientôt disponible" : "Acheter"}
+                          {product.placeholder ? t("boutique.comingSoon") : t("boutique.buy")}
                         </button>
                       </div>
                     </motion.div>
@@ -228,7 +233,7 @@ export default function DebsSalonPage() {
 
           <div className="text-center mt-4">
             <Link href="/debs/prestations" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-800 font-bold uppercase text-sm tracking-wider hover:border-amber-600 hover:text-amber-700 transition-colors">
-              Vous cherchez une prestation ? Voir le catalogue complet
+              {t("boutique.seeCatalogCta")}
             </Link>
           </div>
         </div>
@@ -238,9 +243,9 @@ export default function DebsSalonPage() {
       <section id="galerie" className="py-20 px-4 bg-white border-t border-stone-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">L&apos;intérieur</span>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("gallery.eyebrow")}</span>
             <h2 className={`${playfair.className} text-4xl md:text-5xl text-stone-900`}>
-              Le salon
+              {t("gallery.title")}
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -248,7 +253,7 @@ export default function DebsSalonPage() {
               <div key={src} className="relative aspect-[3/4] overflow-hidden group">
                 <Image
                   src={src}
-                  alt="Intérieur du salon Debs Hair Beauty"
+                  alt={t("gallery.imageAlt")}
                   fill
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
@@ -267,29 +272,29 @@ export default function DebsSalonPage() {
             viewport={{ once: true }}
             className="relative aspect-[4/3] w-full"
           >
-            <Image src="/download (7).webp" alt="Espace d'accueil du salon Debs Hair Beauty" fill className="object-cover object-center" />
+            <Image src="/download (7).webp" alt={t("team.imageAlt")} fill className="object-cover object-center" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">L&apos;équipe</span>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("team.eyebrow")}</span>
             <h2 className={`${playfair.className} text-4xl md:text-5xl text-stone-900 mb-4`}>
-              Déborah
+              {t("team.name")}
             </h2>
             <div className="flex items-center gap-1.5 mb-6">
               {[0, 1, 2, 3].map((i) => (
                 <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
               ))}
               <Star className="w-4 h-4 text-amber-500" />
-              <span className="text-sm text-stone-500 ml-2">4.1 · 18 avis</span>
+              <span className="text-sm text-stone-500 ml-2">{t("team.reviews")}</span>
             </div>
             <p className="text-stone-600 leading-relaxed mb-4">
-              Coiffeuse, esthéticienne et maquilleuse, Déborah reçoit chaque cliente pour un moment de soin personnalisé, dans un cadre pensé pour la détente.
+              {t("team.bio")}
             </p>
             <button type="button" onClick={() => openBookingFor("Cheveux")} className="px-6 py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors">
-              Réserver avec Déborah
+              {t("team.bookWithHerCta")}
             </button>
           </motion.div>
         </div>
@@ -299,25 +304,25 @@ export default function DebsSalonPage() {
       <section id="horaires" className="py-24 px-4 bg-white border-t border-stone-200">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">Horaires</span>
-            <h2 className={`${playfair.className} text-3xl text-stone-900 mb-6`}>Quand nous trouver</h2>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("hours.eyebrow")}</span>
+            <h2 className={`${playfair.className} text-3xl text-stone-900 mb-6`}>{t("hours.title")}</h2>
             <ul className="divide-y divide-stone-200 border-t border-b border-stone-200">
-              {hours.map((row) => (
-                <li key={row.day} className="flex items-center justify-between py-3 text-sm">
-                  <span className="text-stone-600">{row.day}</span>
-                  <span className={row.value === "Fermé" ? "text-stone-400" : "font-semibold text-stone-900"}>{row.value}</span>
+              {HOURS.map((row) => (
+                <li key={row.dayKey} className="flex items-center justify-between py-3 text-sm">
+                  <span className="text-stone-600">{t(`hours.days.${row.dayKey}`)}</span>
+                  <span className={row.value === null ? "text-stone-400" : "font-semibold text-stone-900"}>{row.value ?? t("hours.closed")}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">Adresse</span>
-            <h2 className={`${playfair.className} text-3xl text-stone-900 mb-6`}>Nous trouver</h2>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("location.eyebrow")}</span>
+            <h2 className={`${playfair.className} text-3xl text-stone-900 mb-6`}>{t("location.title")}</h2>
             <p className="text-stone-600 leading-relaxed mb-2">{ADDRESS}</p>
-            <p className="text-stone-500 text-sm mb-6">À 2 minutes à pied de la station de métro Yser.</p>
+            <p className="text-stone-500 text-sm mb-6">{t("location.metroHint")}</p>
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-800 font-bold uppercase text-sm tracking-wider hover:border-amber-600 hover:text-amber-700 transition-colors">
               <MapPin className="w-4 h-4" />
-              Itinéraire
+              {t("location.directionsCta")}
             </a>
           </div>
         </div>
@@ -342,32 +347,32 @@ export default function DebsSalonPage() {
       <footer className="relative border-t border-stone-200 bg-white text-stone-600">
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 md:grid-cols-3">
           <div className="space-y-3">
-            <h3 className={`${playfair.className} text-lg italic text-stone-900`}>Debs Hair Beauty</h3>
+            <h3 className={`${playfair.className} text-lg italic text-stone-900`}>{t("footer.brand")}</h3>
             <p className="text-sm leading-relaxed text-stone-600">
               {ADDRESS}<br />
-              Béguinage-Dixmude
+              {t("footer.neighborhood")}
             </p>
             <p className="text-sm text-stone-600">
               📞 <a href={`tel:${PHONE_TEL}`} className="font-medium text-stone-900 transition hover:text-amber-700">{PHONE_DISPLAY}</a>
             </p>
-            <p className="text-xs text-stone-400">(À 2 min à pied du métro Yser)</p>
+            <p className="text-xs text-stone-400">{t("footer.metroHint")}</p>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400">Réservation</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400">{t("footer.bookingHeading")}</h3>
             <button type="button" onClick={() => openBookingFor("Cheveux")} className="inline-flex items-center gap-2 text-sm text-stone-700 hover:text-amber-700 transition-colors">
               <Calendar className="w-4 h-4" />
-              Prendre rendez-vous
+              {t("footer.bookCta")}
             </button>
-            <p className="text-xs text-stone-400">Confirmation finalisée par WhatsApp.</p>
+            <p className="text-xs text-stone-400">{t("footer.bookingHint")}</p>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400">Suivez-nous</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400">{t("footer.followHeading")}</h3>
             <a href="https://www.instagram.com/debs_hair_beauty/" target="_blank" rel="noopener noreferrer" className="block text-sm text-stone-700 transition hover:text-amber-700">Instagram</a>
             <a href="https://www.tiktok.com/@debshairbeautysalon" target="_blank" rel="noopener noreferrer" className="block text-sm text-stone-700 transition hover:text-amber-700">TikTok</a>
             <p className="text-sm leading-relaxed text-stone-600 pt-2">
-              Site développé par <a href="https://www.robust-code.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-stone-900 transition hover:text-amber-700">ROBUST CODE S.A.R.L</a>
+              {t("footer.devBy")} <a href="https://www.robust-code.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-stone-900 transition hover:text-amber-700">ROBUST CODE S.A.R.L</a>
             </p>
           </div>
         </div>

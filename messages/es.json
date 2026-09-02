@@ -1,0 +1,258 @@
+{
+  "Metadata": {
+    "title": "Debs Hair & Beauty",
+    "description": "Salón de peluquería y belleza en Bruselas — reserva en línea y tienda."
+  },
+  "CheckoutApi": {
+    "missingRequiredFieldsBooking": "Nombre, apellido, teléfono, servicio, fecha y hora son obligatorios.",
+    "unknownService": "Servicio desconocido.",
+    "missingRequiredFieldsPurchase": "Nombre, apellido, teléfono y producto son obligatorios.",
+    "maxQuantity": "Cantidad máxima: 10.",
+    "unknownProduct": "Producto desconocido.",
+    "placeholderProduct": "Este producto es un ejemplo provisional, aún no está a la venta.",
+    "stripeNotConfigured": "El pago con tarjeta aún no está configurado. Añade DEBS_STRIPE_SECRET_KEY.",
+    "stripeNotConfiguredShort": "Stripe no está configurado para Debs Hair Beauty.",
+    "missingSessionId": "Falta session_id.",
+    "paymentNotConfirmed": "Pago no confirmado para esta sesión.",
+    "bookingProductName": "Debs Hair Beauty — {name}",
+    "bookingDepositProductName": "Debs Hair Beauty — Depósito {category}",
+    "bookingServiceDescription": "Precio del servicio \"{name}\" ({category}), pagado en línea al reservar.",
+    "bookingDepositDescription": "Depósito de reserva, a cuenta del servicio. El saldo restante, si lo hay, se paga en el salón.",
+    "productDescription": "Para recoger en el salón. Sin envío."
+  },
+  "Nav": {
+    "home": "Inicio",
+    "prestations": "Servicios",
+    "boutique": "Tienda",
+    "gallery": "Galería",
+    "team": "Equipo",
+    "hours": "Horario",
+    "book": "Reservar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Idioma"
+  },
+  "Common": {
+    "firstNameLabel": "Nombre",
+    "lastNameLabel": "Apellido",
+    "phoneLabel": "Teléfono",
+    "phoneHint": "Empieza con el prefijo del país, ej.: +32471234567",
+    "notesLabel": "Notas (opcional)",
+    "redirecting": "Redirigiendo…",
+    "redirectingMessage": "Redirigiendo al pago seguro…",
+    "genericError": "Se ha producido un error.",
+    "invalidPhone": "El número debe empezar con el prefijo del país, ej.: +32471234567",
+    "checkoutFailed": "No se pudo crear la sesión de pago.",
+    "invalidServerResponse": "Respuesta inválida del servidor de pago.",
+    "backToSite": "Volver al sitio",
+    "loading": "Cargando…",
+    "whatsappCta": "Continuar en WhatsApp",
+    "notConfirmedTitle": "Pago no confirmado",
+    "loadingPayment": "Confirmando el pago…"
+  },
+  "Home": {
+    "cancelledNotice": "Pago cancelado. No se ha cobrado ningún importe.",
+    "hero": {
+      "locationBadge": "Béguinage-Dixmude, Bruselas",
+      "tagline": "Un ambiente acogedor y cálido, en el corazón de Bruselas.",
+      "reviews": "4.0 · 48 reseñas",
+      "bookCta": "Reservar una cita",
+      "seeServicesCta": "Ver los servicios"
+    },
+    "infoBar": {
+      "addressLabel": "Dirección",
+      "hoursLabel": "Horario",
+      "hoursValue": "Mar–Sáb, ver detalle más abajo",
+      "paymentLabel": "Pago",
+      "paymentValue": "Efectivo &amp; tarjeta"
+    },
+    "boutique": {
+      "eyebrow": "Tienda",
+      "title": "Nuestros productos",
+      "subtitle": "Pelucas, extensiones y productos de belleza — pagados en línea, para recoger directamente en el salón.",
+      "exampleBadge": "Ejemplo",
+      "comingSoon": "Próximamente",
+      "buy": "Comprar",
+      "seeCatalogCta": "¿Buscas un servicio? Ver el catálogo completo"
+    },
+    "gallery": {
+      "eyebrow": "El interior",
+      "title": "El salón",
+      "imageAlt": "Interior del salón Debs Hair Beauty"
+    },
+    "team": {
+      "eyebrow": "El equipo",
+      "name": "Déborah",
+      "imageAlt": "Zona de recepción del salón Debs Hair Beauty",
+      "reviews": "4.1 · 18 reseñas",
+      "bio": "Peluquera, esteticista y maquilladora, Déborah recibe a cada clienta para un momento de cuidado personalizado, en un ambiente pensado para la relajación.",
+      "bookWithHerCta": "Reservar con Déborah"
+    },
+    "hours": {
+      "eyebrow": "Horario",
+      "title": "Cuándo encontrarnos",
+      "closed": "Cerrado",
+      "days": {
+        "monday": "Lunes",
+        "tuesday": "Martes",
+        "wednesday": "Miércoles",
+        "thursday": "Jueves",
+        "friday": "Viernes",
+        "saturday": "Sábado",
+        "sunday": "Domingo"
+      }
+    },
+    "location": {
+      "eyebrow": "Dirección",
+      "title": "Encuéntranos",
+      "metroHint": "A 2 minutos a pie de la estación de metro Yser.",
+      "directionsCta": "Cómo llegar"
+    },
+    "footer": {
+      "brand": "Debs Hair Beauty",
+      "neighborhood": "Béguinage-Dixmude",
+      "metroHint": "(A 2 min a pie del metro Yser)",
+      "bookingHeading": "Reserva",
+      "bookCta": "Reservar una cita",
+      "bookingHint": "Confirmación finalizada por WhatsApp.",
+      "followHeading": "Síguenos",
+      "devBy": "Sitio desarrollado por"
+    }
+  },
+  "Prestations": {
+    "eyebrow": "Catálogo completo",
+    "title": "Todos nuestros servicios",
+    "subtitle": "Elige un servicio para reservar directamente el horario y pagar en línea con tarjeta.",
+    "startingFromPrefix": "desde ",
+    "backToHome": "← Volver al inicio"
+  },
+  "Booking": {
+    "title": "Reservar una cita",
+    "serviceStartingFromPrefix": "Desde ",
+    "servicePriceNote": "— pagado en línea al reservar.",
+    "categoryPriceNote": "Elige un servicio, una fecha y una hora. Se paga con tarjeta un depósito de {price}€ (precio inicial del servicio) para confirmar; el saldo restante se paga en el salón después del servicio.",
+    "serviceLabel": "Servicio",
+    "dateLabel": "Fecha",
+    "timeLabel": "Hora",
+    "openingHint": "Abierto de martes a sábado, 10:00–20:30 según el día.",
+    "notesPlaceholder": "Estilo deseado, referencia, restricciones de horario...",
+    "submitCta": "Pagar {price}€ y reservar",
+    "errors": {
+      "invalidDateTime": "Fecha u hora inválida.",
+      "futureSlotRequired": "Por favor, elige un horario futuro.",
+      "closedDay": "El salón está cerrado los domingos y lunes. Por favor, elige un día entre martes y sábado."
+    }
+  },
+  "Purchase": {
+    "title": "Comprar un producto",
+    "priceNote": "— pagado en línea, para recoger en el salón.",
+    "quantityLabel": "Cantidad",
+    "submitCta": "Pagar {total}€ y comprar"
+  },
+  "ReservationConfirmee": {
+    "noSession": "No se encontró ninguna sesión de pago.",
+    "confirmFailed": "No se pudo confirmar la reserva.",
+    "successTitle": "Reserva confirmada",
+    "successMessage": "¡Gracias {firstName}! Tu depósito para <strong>{category}</strong> el <strong>{date}</strong> a las <strong>{time}</strong> ha sido pagado.",
+    "balanceNote": "El saldo restante, si lo hay, se paga en el salón después del servicio."
+  },
+  "CommandeConfirmee": {
+    "noSession": "No se encontró ninguna sesión de pago.",
+    "confirmFailed": "No se pudo confirmar el pedido.",
+    "successTitle": "Pedido confirmado",
+    "successMessage": "¡Gracias {firstName}! Tu pago de <strong>{quantity}× {productName}{variant}</strong> ha sido procesado.",
+    "pickupNote": "Para recoger directamente en el salón."
+  },
+  "ServiceCategories": {
+    "Cheveux": "Cabello",
+    "Ongles": "Uñas",
+    "Épilation": "Depilación",
+    "Visage": "Rostro",
+    "Massage": "Masaje",
+    "Maquillage": "Maquillaje"
+  },
+  "CatalogCategories": {
+    "Coiffure Afro": "Peluquería Afro",
+    "Pack Mariage": "Pack Boda",
+    "Beauté du regard": "Belleza de la mirada",
+    "Maquillage": "Maquillaje",
+    "Coiffure Européen": "Peluquería Europea",
+    "Massage": "Masaje",
+    "Beauté des mains": "Belleza de manos",
+    "Beauté des pieds": "Belleza de pies",
+    "Blanchiment dentaire": "Blanqueamiento dental",
+    "Épilation": "Depilación"
+  },
+  "CatalogItems": {
+    "coiffure-afro--pose-perruque-lace": "Colocación de peluca lace",
+    "coiffure-afro--pose-perruque-closure": "Colocación de peluca closure",
+    "coiffure-afro--tissage-avec-closure": "Tejido con closure",
+    "coiffure-afro--ponytail": "Coleta (ponytail)",
+    "coiffure-afro--rasta": "Rasta",
+    "coiffure-afro--locks": "Locks",
+    "coiffure-afro--twists": "Twists",
+    "coiffure-afro--tresses-enfant": "Trenzas para niños",
+    "coiffure-afro--nattes-collees": "Trenzas pegadas (cornrows)",
+    "pack-mariage--essai-maquillage": "Prueba de maquillaje",
+    "pack-mariage--pose-perruque-jour-j": "Colocación de peluca (día de la boda)",
+    "pack-mariage--maquillage-jour-j": "Maquillaje día de la boda",
+    "pack-mariage--retouche-soiree": "Retoque de noche",
+    "pack-mariage--pose-perruque-et-chignon": "Colocación de peluca y moño",
+    "pack-mariage--tissage-chignon": "Tejido moño (chignon)",
+    "beaute-du-regard--microblading": "Microblading",
+    "beaute-du-regard--microshading": "Microshading",
+    "beaute-du-regard--retouche": "Retoque",
+    "beaute-du-regard--combo-brow": "Combo brow (cejas combinadas)",
+    "beaute-du-regard--henna-brow-sourcils": "Cejas con henna",
+    "beaute-du-regard--browlift": "Elevación de cejas (browlift)",
+    "beaute-du-regard--rehaussement-des-sourcils": "Laminado de cejas",
+    "beaute-du-regard--rehaussement-des-cils": "Lifting de pestañas",
+    "beaute-du-regard--extensions-des-cils": "Extensiones de pestañas",
+    "beaute-du-regard--volume-russe": "Pestañas volumen ruso",
+    "beaute-du-regard--pose-cils-simple": "Extensiones de pestañas clásicas",
+    "beaute-du-regard--epilation-a-la-cire-des-sourcils": "Depilación de cejas con cera",
+    "maquillage--maquillage-de-jour": "Maquillaje de día",
+    "maquillage--maquillage-de-soiree": "Maquillaje de noche",
+    "maquillage--maquillage-simple": "Maquillaje sencillo",
+    "coiffure-europeen--brushing": "Secado y peinado",
+    "coiffure-europeen--coupe-a-sec": "Corte en seco",
+    "coiffure-europeen--coupe-transformation": "Corte transformación",
+    "coiffure-europeen--shampoing": "Lavado",
+    "coiffure-europeen--shampoing-coupe-brushing": "Lavado, corte y peinado",
+    "coiffure-europeen--soin-botox": "Tratamiento Botox capilar",
+    "coiffure-europeen--lissage-bresilien": "Alisado brasileño",
+    "coiffure-europeen--lissage-keratine": "Alisado de keratina",
+    "coiffure-europeen--coloration-racine": "Retoque de color en raíz",
+    "coiffure-europeen--coloration-tete-complete": "Coloración completa",
+    "coiffure-europeen--transformation-balayage-ombre": "Transformación balayage / ombré",
+    "coiffure-europeen--extensions-de-cheveux": "Extensiones de cabello",
+    "massage--massage-relaxant-30-min": "Masaje relajante 30 min",
+    "massage--massage-aux-huiles-chaudes-1h": "Masaje con aceites calientes 1h",
+    "massage--massage-aux-pierres-chaudes-1h": "Masaje con piedras calientes 1h",
+    "massage--massage-pour-enfants-30-min": "Masaje infantil 30 min",
+    "massage--massage-en-duo-1h": "Masaje en pareja 1h",
+    "beaute-des-mains--manucure-simple": "Manicura sencilla",
+    "beaute-des-mains--pose-de-vernis-semi-permanent": "Esmaltado semipermanente",
+    "beaute-des-mains--pose-d-ongles-en-gel": "Uñas de gel",
+    "beaute-des-pieds--pedicure-spa": "Pedicura spa",
+    "beaute-des-pieds--pedicure-esthetique": "Pedicura estética",
+    "blanchiment-dentaire--blanchiment-dentaire": "Blanqueamiento dental",
+    "epilation--epilation-du-maillot": "Depilación de ingles",
+    "epilation--epilation-du-dos-entier": "Depilación de espalda completa",
+    "epilation--epilation-du-visage": "Depilación facial"
+  },
+  "ProductCategories": {
+    "Perruques": "Pelucas",
+    "Mèches": "Extensiones",
+    "Produits de beauté": "Productos de belleza"
+  },
+  "Products": {
+    "perruque-lace-18-naturelle": { "name": "Peluca lace front", "variant": "18 pulgadas — Natural" },
+    "perruque-closure-16-bouclee": { "name": "Peluca closure", "variant": "16 pulgadas — Rizada" },
+    "meche-lisse-20": { "name": "Extensiones lisas", "variant": "20 pulgadas" },
+    "meche-lisse-24": { "name": "Extensiones lisas", "variant": "24 pulgadas" },
+    "meche-bouclee-18": { "name": "Extensiones rizadas", "variant": "18 pulgadas" },
+    "soin-huile-cheveux": { "name": "Aceite capilar nutritivo", "variant": "" },
+    "creme-visage-hydratante": { "name": "Crema facial hidratante", "variant": "" }
+  }
+}

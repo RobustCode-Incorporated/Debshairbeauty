@@ -1,10 +1,11 @@
 "use client";
 
 import { CheckCircle2, XCircle, Loader2, MessageCircle } from "lucide-react";
-import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Playfair_Display } from "next/font/google";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import DebsNav from "@/components/debs/DebsNav";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
@@ -19,10 +20,13 @@ type ConfirmResult = {
 };
 
 function ConfirmationContent() {
+  const t = useTranslations("CommandeConfirmee");
+  const tCommon = useTranslations("Common");
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [status, setStatus] = useState<"loading" | "success" | "error">(() => (sessionId ? "loading" : "error"));
-  const [error, setError] = useState<string | null>(() => (sessionId ? null : "Aucune session de paiement trouvée."));
+  const [error, setError] = useState<string | null>(() => (sessionId ? null : t("noSession")));
   const [result, setResult] = useState<ConfirmResult | null>(null);
 
   useEffect(() => {
@@ -32,13 +36,13 @@ function ConfirmationContent() {
 
     (async () => {
       try {
-        const response = await fetch(`/api/debs/products/checkout/confirm?session_id=${encodeURIComponent(sessionId)}`);
+        const response = await fetch(`/api/debs/products/checkout/confirm?session_id=${encodeURIComponent(sessionId)}&locale=${encodeURIComponent(locale)}`);
         const data = await response.json();
         if (cancelled) return;
 
         if (!response.ok) {
           setStatus("error");
-          setError(data.error ?? "Impossible de confirmer la commande.");
+          setError(data.error ?? t("confirmFailed"));
           return;
         }
 
@@ -47,7 +51,7 @@ function ConfirmationContent() {
       } catch {
         if (!cancelled) {
           setStatus("error");
-          setError("Une erreur est survenue.");
+          setError(tCommon("genericError"));
         }
       }
     })();
@@ -55,13 +59,13 @@ function ConfirmationContent() {
     return () => {
       cancelled = true;
     };
-  }, [sessionId]);
+  }, [sessionId, locale, t, tCommon]);
 
   if (status === "loading") {
     return (
       <div className="flex flex-col items-center text-center">
         <Loader2 className="w-10 h-10 text-amber-600 animate-spin mb-6" />
-        <p className="text-stone-500">Confirmation du paiement en cours…</p>
+        <p className="text-stone-500">{tCommon("loadingPayment")}</p>
       </div>
     );
   }
@@ -70,23 +74,33 @@ function ConfirmationContent() {
     return (
       <div className="flex flex-col items-center text-center max-w-md">
         <XCircle className="w-12 h-12 text-red-500 mb-6" />
-        <h1 className={`${playfair.className} text-3xl text-stone-900 mb-3`}>Paiement non confirmé</h1>
+        <h1 className={`${playfair.className} text-3xl text-stone-900 mb-3`}>{tCommon("notConfirmedTitle")}</h1>
         <p className="text-stone-500 mb-8">{error}</p>
         <Link href="/debs" className="px-6 py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors">
-          Retour au site
+          {tCommon("backToSite")}
         </Link>
       </div>
     );
   }
 
+  if (!result) return null;
+
+  const variantSuffix = result.variant ? ` (${result.variant})` : "";
+
   return (
     <div className="flex flex-col items-center text-center max-w-md">
       <CheckCircle2 className="w-12 h-12 text-emerald-600 mb-6" />
-      <h1 className={`${playfair.className} text-3xl text-stone-900 mb-3`}>Commande confirmée</h1>
+      <h1 className={`${playfair.className} text-3xl text-stone-900 mb-3`}>{t("successTitle")}</h1>
       <p className="text-stone-500 mb-1">
-        Merci {result?.firstName} ! Ton paiement pour <strong className="text-stone-700">{result?.quantity}× {result?.productName}{result?.variant ? ` (${result.variant})` : ''}</strong> a bien été réglé.
+        {t.rich("successMessage", {
+          firstName: result.firstName,
+          quantity: result.quantity,
+          productName: result.productName,
+          variant: variantSuffix,
+          strong: (chunks) => <strong className="text-stone-700">{chunks}</strong>,
+        })}
       </p>
-      <p className="text-stone-400 text-sm mb-8">À récupérer directement au salon.</p>
+      <p className="text-stone-400 text-sm mb-8">{t("pickupNote")}</p>
       {result?.whatsappUrl && (
         <a
           href={result.whatsappUrl}
@@ -95,26 +109,29 @@ function ConfirmationContent() {
           className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors mb-4"
         >
           <MessageCircle className="w-4 h-4" />
-          Continuer sur WhatsApp
+          {tCommon("whatsappCta")}
         </a>
       )}
       <Link href="/debs" className="text-sm text-stone-500 hover:text-amber-700 transition-colors">
-        Retour au site
+        {tCommon("backToSite")}
       </Link>
     </div>
   );
 }
 
 export default function DebsCommandeConfirmeePage() {
+  const tCommon = useTranslations("Common");
+  const router = useRouter();
+
   return (
     <main className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans">
-      <DebsNav onBookClick={() => { window.location.href = "/debs"; }} />
+      <DebsNav onBookClick={() => router.push("/debs")} />
       <div className="flex items-center justify-center px-4 py-20">
         <Suspense
           fallback={
             <div className="flex flex-col items-center text-center">
               <Loader2 className="w-10 h-10 text-amber-600 animate-spin mb-6" />
-              <p className="text-stone-500">Chargement…</p>
+              <p className="text-stone-500">{tCommon("loading")}</p>
             </div>
           }
         >

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getTranslations } from 'next-intl/server';
 import { getDebsStripe } from '@/lib/debs-stripe';
 import { getDebsProduct } from '@/lib/debs-products';
+import { localizedPath, resolveLocale } from '@/lib/locale-url';
 
 type CheckoutBody = {
   firstName: unknown;
@@ -9,6 +11,7 @@ type CheckoutBody = {
   productId: unknown;
   quantity?: unknown;
   notes?: unknown;
+  locale?: unknown;
 };
 
 const INTL_PHONE_RE = /^\+\d{7,15}$/;
@@ -18,8 +21,15 @@ function asNonEmptyString(value: unknown): string | null {
 }
 
 export async function POST(request: NextRequest) {
+  let locale = 'fr';
   try {
     const body = (await request.json()) as CheckoutBody;
+    locale = resolveLocale(body.locale);
+    const [t, tCommon, tProducts] = await Promise.all([
+      getTranslations({ locale, namespace: 'CheckoutApi' }),
+      getTranslations({ locale, namespace: 'Common' }),
+      getTranslations({ locale, namespace: 'Products' }),
+    ]);
 
     const firstName = asNonEmptyString(body.firstName);
     const lastName = asNonEmptyString(body.lastName);
@@ -30,27 +40,27 @@ export async function POST(request: NextRequest) {
 
     if (!firstName || !lastName || !phone || !productId) {
       return NextResponse.json(
-        { error: 'Prénom, nom, téléphone et produit sont obligatoires.' },
+        { error: t('missingRequiredFieldsPurchase') },
         { status: 400 },
       );
     }
     if (!INTL_PHONE_RE.test(phone)) {
       return NextResponse.json(
-        { error: 'Le numéro doit commencer par le code pays, ex : +32471234567' },
+        { error: tCommon('invalidPhone') },
         { status: 400 },
       );
     }
     if (quantity > 10) {
-      return NextResponse.json({ error: 'Quantité maximale : 10.' }, { status: 400 });
+      return NextResponse.json({ error: t('maxQuantity') }, { status: 400 });
     }
 
     const product = getDebsProduct(productId);
     if (!product) {
-      return NextResponse.json({ error: 'Produit inconnu.' }, { status: 400 });
+      return NextResponse.json({ error: t('unknownProduct') }, { status: 400 });
     }
     if (product.placeholder) {
       return NextResponse.json(
-        { error: 'Ce produit est un exemple provisoire, pas encore en vente.' },
+        { error: t('placeholderProduct') },
         { status: 409 },
       );
     }
@@ -58,24 +68,27 @@ export async function POST(request: NextRequest) {
     const stripe = getDebsStripe();
     if (!stripe) {
       return NextResponse.json(
-        { error: "Le paiement par carte n'est pas encore configuré. Ajoute DEBS_STRIPE_SECRET_KEY." },
+        { error: t('stripeNotConfigured') },
         { status: 503 },
       );
     }
 
     const unitAmountCents = Math.round(product.priceEuros * 100);
+    const productName = tProducts(`${product.id}.name`);
+    const productVariant = product.variant ? tProducts(`${product.id}.variant`) : '';
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
+      locale: locale as 'fr' | 'en' | 'nl' | 'es',
       line_items: [
         {
           price_data: {
             currency: 'eur',
             unit_amount: unitAmountCents,
             product_data: {
-              name: `Debs Hair Beauty — ${product.name}${product.variant ? ` (${product.variant})` : ''}`,
-              description: 'À récupérer au salon. Pas de livraison.',
+              name: `Debs Hair Beauty — ${productName}${productVariant ? ` (${productVariant})` : ''}`,
+              description: t('productDescription'),
             },
           },
           quantity,
@@ -92,17 +105,18 @@ export async function POST(request: NextRequest) {
         quantity: String(quantity),
         notes,
       },
-      success_url: `${request.nextUrl.origin}/debs/commande-confirmee?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.nextUrl.origin}/debs?order=annulee`,
+      success_url: `${request.nextUrl.origin}${localizedPath('/debs/commande-confirmee', locale)}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${request.nextUrl.origin}${localizedPath('/debs', locale)}?order=annulee`,
     });
 
     if (!session.url) {
-      return NextResponse.json({ error: 'Impossible de créer la session de paiement.' }, { status: 502 });
+      return NextResponse.json({ error: tCommon('checkoutFailed') }, { status: 502 });
     }
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error('Debs product checkout session creation failed:', error);
-    return NextResponse.json({ error: 'Impossible de créer la session de paiement.' }, { status: 500 });
+    const tCommon = await getTranslations({ locale, namespace: 'Common' });
+    return NextResponse.json({ error: tCommon('checkoutFailed') }, { status: 500 });
   }
 }
