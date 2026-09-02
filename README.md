@@ -11,18 +11,15 @@ any other client's.
 
 ## Routes
 
-- `/` — "coming soon" announcement (current state of the live domain).
+- `/` — redirects to `/debs#boutique` (the site now launches directly on the
+  full site's boutique section instead of a "coming soon" announcement).
 - `/debs` — the full site: hero, service categories, boutique, gallery,
-  team, hours. Reachable directly for preview/testing while `/` still shows
-  the announcement.
+  team, hours.
 - `/debs/prestations` — full 59-item service catalogue, grouped by
   category; each service opens the booking flow pre-filled with its exact
   price.
 - `/debs/reservation-confirmee`, `/debs/commande-confirmee` — Stripe
   success-page fallbacks for bookings and boutique orders respectively.
-
-To launch the full site at the domain root: replace `src/app/page.tsx`'s
-content with a redirect to `/debs` (or move `/debs`'s content up to `/`).
 
 ## Stack
 
