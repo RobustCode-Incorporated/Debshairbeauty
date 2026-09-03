@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { DEBS_SITE_URL } from "@/lib/locale-url";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -17,8 +18,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
-    title: t("title"),
+    metadataBase: new URL(DEBS_SITE_URL),
+    title: { default: t("title"), template: `%s — ${t("title")}` },
     description: t("description"),
+    // No layout-level `alternates` here on purpose: canonical/hreflang must
+    // match the *current* pathname, so each page sets its own (see
+    // SEO-STRATEGY-DEBS.md, step 2) rather than inheriting a generic "/"
+    // that would conflict with next-intl's own per-path hreflang Link
+    // headers (already correct, sent automatically by the proxy).
+    openGraph: {
+      siteName: t("title"),
+      locale,
+      type: "website",
+      images: ["/download (1).webp"],
+    },
   };
 }
 

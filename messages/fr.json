@@ -1,7 +1,15 @@
 {
   "Metadata": {
     "title": "Debs Hair & Beauty",
-    "description": "Salon de coiffure et beauté à Bruxelles — réservation en ligne et boutique."
+    "description": "Salon de coiffure et beauté à Bruxelles — réservation en ligne et boutique.",
+    "debs": {
+      "title": "Salon de coiffure & institut de beauté à Bruxelles",
+      "description": "Coiffure afro et européenne, mèches, perruques, soins du visage, ongles, massages... Réservez en ligne et payez par carte, 150A Rue de Laeken, Bruxelles."
+    },
+    "prestations": {
+      "title": "Toutes nos prestations",
+      "description": "Le catalogue complet des prestations Debs Hair Beauty avec les prix : coiffure, beauté du regard, maquillage, massage, manucure, pédicure... Réservation et paiement en ligne."
+    }
   },
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Prénom, nom, téléphone, prestation, date et heure sont obligatoires.",

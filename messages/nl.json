@@ -1,7 +1,15 @@
 {
   "Metadata": {
     "title": "Debs Hair & Beauty",
-    "description": "Kapsalon en schoonheidssalon in Brussel — online reserveren en winkel."
+    "description": "Kapsalon en schoonheidssalon in Brussel — online reserveren en winkel.",
+    "debs": {
+      "title": "Kapsalon & Schoonheidsinstituut in Brussel",
+      "description": "Afrikaans en Europees kapsel, weaves, pruiken, gezichtsverzorging, nagels, massages... Boek online en betaal met kaart, 150A Rue de Laeken, Brussel."
+    },
+    "prestations": {
+      "title": "Al Onze Behandelingen",
+      "description": "De volledige behandelingscatalogus van Debs Hair Beauty met prijzen: kapsel, wenkbrauwen & wimpers, make-up, massage, manicure, pedicure... Online boeken en betalen."
+    }
   },
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",

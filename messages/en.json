@@ -1,7 +1,15 @@
 {
   "Metadata": {
     "title": "Debs Hair & Beauty",
-    "description": "Hair and beauty salon in Brussels — online booking and shop."
+    "description": "Hair and beauty salon in Brussels — online booking and shop.",
+    "debs": {
+      "title": "Hair Salon & Beauty Institute in Brussels",
+      "description": "Afro and European hairstyling, weaves, wigs, facials, nails, massages... Book online and pay by card, 150A Rue de Laeken, Brussels."
+    },
+    "prestations": {
+      "title": "All Our Services",
+      "description": "The full Debs Hair Beauty service catalogue with prices: hair, brows & lashes, makeup, massage, manicure, pedicure... Book and pay online."
+    }
   },
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "First name, last name, phone, service, date and time are required.",

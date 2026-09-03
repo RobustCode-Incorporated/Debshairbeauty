@@ -1,7 +1,15 @@
 {
   "Metadata": {
     "title": "Debs Hair & Beauty",
-    "description": "Salón de peluquería y belleza en Bruselas — reserva en línea y tienda."
+    "description": "Salón de peluquería y belleza en Bruselas — reserva en línea y tienda.",
+    "debs": {
+      "title": "Salón de Peluquería y Belleza en Bruselas",
+      "description": "Peinados afro y europeos, extensiones, pelucas, faciales, uñas, masajes... Reserva en línea y paga con tarjeta, 150A Rue de Laeken, Bruselas."
+    },
+    "prestations": {
+      "title": "Todos Nuestros Servicios",
+      "description": "El catálogo completo de servicios de Debs Hair Beauty con precios: peluquería, cejas y pestañas, maquillaje, masaje, manicura, pedicura... Reserva y paga en línea."
+    }
   },
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Nombre, apellido, teléfono, servicio, fecha y hora son obligatorios.",
