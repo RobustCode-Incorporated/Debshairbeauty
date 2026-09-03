@@ -9,6 +9,10 @@
     "prestations": {
       "title": "Al Onze Behandelingen",
       "description": "De volledige behandelingscatalogus van Debs Hair Beauty met prijzen: kapsel, wenkbrauwen & wimpers, make-up, massage, manicure, pedicure... Online boeken en betalen."
+    },
+    "privacyPolicy": {
+      "title": "Privacybeleid",
+      "description": "Hoe Debs Hair Beauty uw persoonsgegevens verzamelt, gebruikt en beschermt bij een boeking, een aankoop in de winkel, of uw bezoek aan deze site."
     }
   },
   "CheckoutApi": {
@@ -124,7 +128,8 @@
       "bookCta": "Maak een afspraak",
       "bookingHint": "Bevestiging afgerond via WhatsApp.",
       "followHeading": "Volg ons",
-      "devBy": "Site ontwikkeld door"
+      "devBy": "Site ontwikkeld door",
+      "privacyPolicy": "Privacybeleid"
     }
   },
   "Prestations": {
@@ -257,10 +262,55 @@
   "Products": {
     "perruque-lace-18-naturelle": { "name": "Lace front pruik", "variant": "18 inch — Natuurlijk" },
     "perruque-closure-16-bouclee": { "name": "Closure pruik", "variant": "16 inch — Krullend" },
-    "meche-lisse-20": { "name": "Steile extensions", "variant": "20 inch" },
-    "meche-lisse-24": { "name": "Steile extensions", "variant": "24 inch" },
+    "meche-lisse-22": { "name": "Steile extensions", "variant": "22 inch" },
+    "meche-ondulee-20": { "name": "Golvende extensions", "variant": "20 inch" },
+    "meche-ondulee-24": { "name": "Golvende extensions", "variant": "24 inch" },
     "meche-bouclee-18": { "name": "Krullende extensions", "variant": "18 inch" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
+  },
+  "PrivacyPolicy": {
+    "title": "Privacybeleid",
+    "lastUpdated": "Laatst bijgewerkt: 3 september 2026",
+    "intro": "Debs Hair Beauty (de \"salon\", \"wij\") respecteert uw privacy en zet zich in om de persoonsgegevens die u met ons deelt te beschermen wanneer u een behandeling boekt, een product in onze winkel koopt, of deze website bezoekt. Dit beleid legt uit welke gegevens we verzamelen, waarom, met wie we ze delen, hoe lang we ze bewaren, en welke rechten u heeft.",
+    "backToHome": "← Terug naar home",
+    "sections": {
+      "controller": {
+        "heading": "Verwerkingsverantwoordelijke",
+        "body": "De verwerkingsverantwoordelijke is Debs Hair Beauty, gevestigd 150A Rue de Laeken, 1000 Brussel, België. Voor vragen over uw persoonsgegevens kunt u ons bereiken via telefoon op +32 472 34 19 68 of rechtstreeks langskomen in de salon."
+      },
+      "dataCollected": {
+        "heading": "Gegevens die we verzamelen",
+        "body": "Wanneer u via deze site een behandeling boekt of een product in onze winkel koopt, verzamelen we: uw voor- en achternaam, uw telefoonnummer, de datum en het tijdstip van de afspraak of bestelling, en eventuele opmerkingen die u toevoegt aan het formulier (allergieën, voorkeuren, bijzondere verzoeken). Bij betaling wordt uw kaartnummer rechtstreeks ingevoerd op de beveiligde pagina van onze betaalprovider Stripe: wij ontvangen of bewaren uw kaartnummer nooit. We bewaren enkel de betalingsbevestiging (bedrag, munteenheid, transactie-ID)."
+      },
+      "purposes": {
+        "heading": "Waarom we deze gegevens gebruiken",
+        "body": "Deze gegevens worden uitsluitend gebruikt om: uw boeking of bestelling te bevestigen en uit te voeren, contact met u op te nemen indien nodig (verplaatsing, vraag over uw bestelling), de betaling te verwerken, en te voldoen aan onze wettelijke en boekhoudkundige verplichtingen. We gebruiken uw gegevens nooit voor marketing of reclame zonder uw uitdrukkelijke toestemming, en we voeren geen geautomatiseerde profilering uit."
+      },
+      "recipients": {
+        "heading": "Met wie uw gegevens worden gedeeld",
+        "body": "Uw gegevens worden nooit verkocht. Ze worden enkel doorgegeven aan de volgende dienstverleners, strikt noodzakelijk voor de werking van de website en de salon:\n\n— Stripe (online betaling): verwerkt betalingsgegevens binnen een PCI-DSS gecertificeerde infrastructuur.\n— Neon (database): host op beveiligde wijze de boekings- en bestelgegevens.\n— Vercel (webhosting): host deze website technisch.\n\nOver WhatsApp: na een betaalde boeking biedt de site u een vooraf ingevulde link aan die WhatsApp opent op uw eigen telefoon als u ervoor kiest erop te klikken — er wordt nooit automatisch een bericht door ons verzonden, en Meta/WhatsApp ontvangt uw gegevens enkel als u zelf beslist dat bericht te versturen."
+      },
+      "retention": {
+        "heading": "Bewaartermijn",
+        "body": "Gegevens die verband houden met een betaalde boeking of aankoop worden bewaard gedurende de wettelijke bewaartermijn voor boekhoudkundige documenten in België (7 jaar), in overeenstemming met onze fiscale verplichtingen. Na die termijn worden ze verwijderd of geanonimiseerd."
+      },
+      "cookies": {
+        "heading": "Cookies",
+        "body": "Deze site gebruikt één enkele technische cookie (\"NEXT_LOCALE\") die de taal onthoudt die u tijdens uw bezoek koos, zodat u die niet op elke pagina opnieuw moet kiezen. Ze wordt niet gebruikt voor reclametracking of gedragsanalyse, en wordt met geen enkele derde partij gedeeld. Deze site gebruikt momenteel geen enkele tool voor publieksanalyse (zoals Google Analytics) en geen gerichte reclame."
+      },
+      "rights": {
+        "heading": "Uw rechten",
+        "body": "Volgens de Algemene Verordening Gegevensbescherming (AVG/GDPR) heeft u op elk moment de volgende rechten met betrekking tot uw persoonsgegevens: inzage, rectificatie, verwijdering, beperking van de verwerking, overdraagbaarheid en bezwaar. Om een van deze rechten uit te oefenen, contacteer ons op +32 472 34 19 68 of rechtstreeks in de salon, 150A Rue de Laeken, 1000 Brussel."
+      },
+      "authority": {
+        "heading": "Toezichthoudende autoriteit",
+        "body": "Als u meent dat uw rechten niet worden gerespecteerd, kunt u een klacht indienen bij de Belgische Gegevensbeschermingsautoriteit (GBA): www.gegevensbeschermingsautoriteit.be."
+      },
+      "changes": {
+        "heading": "Wijzigingen",
+        "body": "Dit beleid kan af en toe worden bijgewerkt, bijvoorbeeld als onze dienstverleners of praktijken veranderen. De datum van de laatste update staat bovenaan deze pagina."
+      }
+    }
   }
 }

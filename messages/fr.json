@@ -9,6 +9,10 @@
     "prestations": {
       "title": "Toutes nos prestations",
       "description": "Le catalogue complet des prestations Debs Hair Beauty avec les prix : coiffure, beauté du regard, maquillage, massage, manucure, pédicure... Réservation et paiement en ligne."
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "description": "Comment Debs Hair Beauty collecte, utilise et protège vos données personnelles lors d'une réservation, d'un achat en boutique ou de votre navigation sur ce site."
     }
   },
   "CheckoutApi": {
@@ -124,7 +128,8 @@
       "bookCta": "Prendre rendez-vous",
       "bookingHint": "Confirmation finalisée par WhatsApp.",
       "followHeading": "Suivez-nous",
-      "devBy": "Site développé par"
+      "devBy": "Site développé par",
+      "privacyPolicy": "Politique de confidentialité"
     }
   },
   "Prestations": {
@@ -257,10 +262,55 @@
   "Products": {
     "perruque-lace-18-naturelle": { "name": "Perruque lace front", "variant": "18 pouces — Naturel" },
     "perruque-closure-16-bouclee": { "name": "Perruque closure", "variant": "16 pouces — Bouclée" },
-    "meche-lisse-20": { "name": "Mèches lisses", "variant": "20 pouces" },
-    "meche-lisse-24": { "name": "Mèches lisses", "variant": "24 pouces" },
+    "meche-lisse-22": { "name": "Mèches lisses", "variant": "22 pouces" },
+    "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
+    "meche-ondulee-24": { "name": "Mèches ondulées", "variant": "24 pouces" },
     "meche-bouclee-18": { "name": "Mèches bouclées", "variant": "18 pouces" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
     "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" }
+  },
+  "PrivacyPolicy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : 3 septembre 2026",
+    "intro": "Debs Hair Beauty (l'« établissement », « nous ») respecte votre vie privée et s'engage à protéger les données personnelles que vous nous confiez lorsque vous réservez une prestation, achetez un produit en boutique, ou naviguez sur ce site. Cette politique explique quelles données nous collectons, pourquoi, avec qui elles sont partagées, combien de temps nous les conservons, et quels sont vos droits.",
+    "backToHome": "← Retour à l'accueil",
+    "sections": {
+      "controller": {
+        "heading": "Responsable du traitement",
+        "body": "Le responsable du traitement des données est Debs Hair Beauty, établi 150A Rue de Laeken, 1000 Bruxelles, Belgique. Pour toute question relative à vos données personnelles, vous pouvez nous contacter par téléphone au +32 472 34 19 68 ou vous présenter directement au salon."
+      },
+      "dataCollected": {
+        "heading": "Données que nous collectons",
+        "body": "Lorsque vous réservez une prestation ou achetez un produit en boutique via ce site, nous collectons : votre nom et prénom, votre numéro de téléphone, la date et l'heure du rendez-vous ou de la commande, et les éventuelles notes que vous ajoutez au formulaire (allergies, préférences, demandes particulières). Lors du paiement, votre numéro de carte bancaire est saisi directement sur la page sécurisée de notre prestataire de paiement Stripe : nous ne recevons ni ne stockons jamais votre numéro de carte. Nous conservons uniquement la confirmation du paiement (montant, devise, identifiant de transaction)."
+      },
+      "purposes": {
+        "heading": "Pourquoi nous utilisons ces données",
+        "body": "Ces données servent exclusivement à : confirmer et honorer votre réservation ou votre commande, vous recontacter en cas de besoin (report, question sur votre commande), traiter le paiement, et respecter nos obligations légales et comptables. Nous n'utilisons jamais vos données à des fins de prospection commerciale ou publicitaire sans votre consentement explicite, et nous ne faisons aucun profilage automatisé."
+      },
+      "recipients": {
+        "heading": "Avec qui vos données sont partagées",
+        "body": "Vos données ne sont jamais vendues. Elles sont uniquement transmises aux prestataires suivants, strictement nécessaires au fonctionnement du site et du salon :\n\n— Stripe (paiement en ligne) : traite les données de paiement dans le cadre d'une infrastructure certifiée PCI-DSS.\n— Neon (base de données) : héberge de façon sécurisée les informations de réservation et de commande.\n— Vercel (hébergement du site web) : héberge techniquement ce site.\n\nConcernant WhatsApp : après une réservation payée, le site vous propose un lien pré-rempli qui ouvre WhatsApp sur votre propre téléphone si vous choisissez de cliquer dessus — aucun message n'est envoyé automatiquement par nos soins, et Meta/WhatsApp ne reçoit vos données que si vous décidez vous-même d'envoyer ce message."
+      },
+      "retention": {
+        "heading": "Durée de conservation",
+        "body": "Les données liées à une réservation ou un achat payé sont conservées pendant la durée légale de conservation des documents comptables en vigueur en Belgique (7 ans), conformément à nos obligations fiscales. Passé ce délai, elles sont supprimées ou anonymisées."
+      },
+      "cookies": {
+        "heading": "Cookies",
+        "body": "Ce site utilise un seul cookie technique (« NEXT_LOCALE ») qui mémorise la langue choisie lors de votre visite, afin de ne pas vous la redemander à chaque page. Il ne sert à aucun suivi publicitaire ni à aucune analyse de votre comportement, et n'est partagé avec aucun tiers. Ce site n'utilise actuellement aucun outil d'analyse d'audience (type Google Analytics) ni aucune publicité ciblée."
+      },
+      "rights": {
+        "heading": "Vos droits",
+        "body": "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez à tout moment des droits suivants sur vos données personnelles : accès, rectification, effacement, limitation du traitement, portabilité, et opposition. Pour exercer l'un de ces droits, contactez-nous au +32 472 34 19 68 ou directement au salon, 150A Rue de Laeken, 1000 Bruxelles."
+      },
+      "authority": {
+        "heading": "Autorité de contrôle",
+        "body": "Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de l'Autorité de protection des données belge (APD) : www.autoriteprotectiondonnees.be."
+      },
+      "changes": {
+        "heading": "Modifications",
+        "body": "Cette politique peut être mise à jour occasionnellement, par exemple si nos prestataires ou nos pratiques évoluent. La date de dernière mise à jour figure en haut de cette page."
+      }
+    }
   }
 }

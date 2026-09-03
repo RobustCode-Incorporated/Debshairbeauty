@@ -7,6 +7,7 @@ import { absoluteUrl, buildLanguageAlternates } from "@/lib/locale-url";
 const ROUTES: Array<{ pathname: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }> = [
   { pathname: "/debs", changeFrequency: "weekly", priority: 1 },
   { pathname: "/debs/prestations", changeFrequency: "weekly", priority: 0.9 },
+  { pathname: "/debs/politique-confidentialite", changeFrequency: "yearly", priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

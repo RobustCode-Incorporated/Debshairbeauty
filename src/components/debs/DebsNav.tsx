@@ -61,7 +61,7 @@ function LanguageSwitcher({ variant = "desktop" }: { variant?: "desktop" | "mobi
     <div className="relative">
       <button
         type="button"
-        aria-label={t("language")}
+        aria-label={`${t("language")}: ${LOCALE_LABELS[activeLocale] ?? activeLocale.toUpperCase()}`}
         onClick={() => setIsOpen((open) => !open)}
         className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold uppercase tracking-wide text-stone-600 hover:text-amber-700 transition-colors"
       >

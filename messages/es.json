@@ -9,6 +9,10 @@
     "prestations": {
       "title": "Todos Nuestros Servicios",
       "description": "El catálogo completo de servicios de Debs Hair Beauty con precios: peluquería, cejas y pestañas, maquillaje, masaje, manicura, pedicura... Reserva y paga en línea."
+    },
+    "privacyPolicy": {
+      "title": "Política de Privacidad",
+      "description": "Cómo Debs Hair Beauty recopila, utiliza y protege sus datos personales al reservar, comprar en la tienda o navegar por este sitio."
     }
   },
   "CheckoutApi": {
@@ -124,7 +128,8 @@
       "bookCta": "Reservar una cita",
       "bookingHint": "Confirmación finalizada por WhatsApp.",
       "followHeading": "Síguenos",
-      "devBy": "Sitio desarrollado por"
+      "devBy": "Sitio desarrollado por",
+      "privacyPolicy": "Política de Privacidad"
     }
   },
   "Prestations": {
@@ -257,10 +262,55 @@
   "Products": {
     "perruque-lace-18-naturelle": { "name": "Peluca lace front", "variant": "18 pulgadas — Natural" },
     "perruque-closure-16-bouclee": { "name": "Peluca closure", "variant": "16 pulgadas — Rizada" },
-    "meche-lisse-20": { "name": "Extensiones lisas", "variant": "20 pulgadas" },
-    "meche-lisse-24": { "name": "Extensiones lisas", "variant": "24 pulgadas" },
+    "meche-lisse-22": { "name": "Extensiones lisas", "variant": "22 pulgadas" },
+    "meche-ondulee-20": { "name": "Extensiones onduladas", "variant": "20 pulgadas" },
+    "meche-ondulee-24": { "name": "Extensiones onduladas", "variant": "24 pulgadas" },
     "meche-bouclee-18": { "name": "Extensiones rizadas", "variant": "18 pulgadas" },
     "soin-huile-cheveux": { "name": "Aceite capilar nutritivo", "variant": "" },
     "creme-visage-hydratante": { "name": "Crema facial hidratante", "variant": "" }
+  },
+  "PrivacyPolicy": {
+    "title": "Política de privacidad",
+    "lastUpdated": "Última actualización: 3 de septiembre de 2026",
+    "intro": "Debs Hair Beauty (el \"salón\", \"nosotros\") respeta su privacidad y se compromete a proteger los datos personales que nos confía al reservar un servicio, comprar un producto en nuestra tienda, o navegar por este sitio web. Esta política explica qué datos recopilamos, por qué, con quién los compartimos, cuánto tiempo los conservamos y qué derechos tiene usted.",
+    "backToHome": "← Volver al inicio",
+    "sections": {
+      "controller": {
+        "heading": "Responsable del tratamiento",
+        "body": "El responsable del tratamiento es Debs Hair Beauty, ubicado en 150A Rue de Laeken, 1000 Bruselas, Bélgica. Para cualquier pregunta sobre sus datos personales, puede contactarnos por teléfono al +32 472 34 19 68 o visitarnos directamente en el salón."
+      },
+      "dataCollected": {
+        "heading": "Datos que recopilamos",
+        "body": "Cuando reserva un servicio o compra un producto en nuestra tienda a través de este sitio, recopilamos: su nombre y apellido, su número de teléfono, la fecha y hora de la cita o el pedido, y cualquier nota que añada al formulario (alergias, preferencias, solicitudes especiales). Al pagar, el número de su tarjeta se introduce directamente en la página segura de nuestro proveedor de pagos Stripe: nunca recibimos ni almacenamos el número de su tarjeta. Solo conservamos la confirmación del pago (importe, moneda, identificador de transacción)."
+      },
+      "purposes": {
+        "heading": "Por qué utilizamos estos datos",
+        "body": "Estos datos se utilizan exclusivamente para: confirmar y cumplir su reserva o pedido, contactarle si es necesario (cambio de cita, pregunta sobre su pedido), procesar el pago, y cumplir con nuestras obligaciones legales y contables. Nunca utilizamos sus datos con fines de marketing o publicidad sin su consentimiento explícito, y no realizamos ninguna elaboración de perfiles automatizada."
+      },
+      "recipients": {
+        "heading": "Con quién se comparten sus datos",
+        "body": "Sus datos nunca se venden. Solo se transmiten a los siguientes proveedores, estrictamente necesarios para el funcionamiento del sitio web y del salón:\n\n— Stripe (pago en línea): procesa los datos de pago dentro de una infraestructura certificada PCI-DSS.\n— Neon (base de datos): aloja de forma segura la información de reservas y pedidos.\n— Vercel (alojamiento web): aloja técnicamente este sitio.\n\nSobre WhatsApp: tras una reserva pagada, el sitio le ofrece un enlace prellenado que abre WhatsApp en su propio teléfono si decide hacer clic en él — nunca enviamos un mensaje automáticamente, y Meta/WhatsApp solo recibe sus datos si usted decide enviar ese mensaje."
+      },
+      "retention": {
+        "heading": "Plazo de conservación",
+        "body": "Los datos vinculados a una reserva o compra pagada se conservan durante el plazo legal de conservación de los documentos contables en Bélgica (7 años), conforme a nuestras obligaciones fiscales. Transcurrido ese plazo, se eliminan o anonimizan."
+      },
+      "cookies": {
+        "heading": "Cookies",
+        "body": "Este sitio utiliza una única cookie técnica (\"NEXT_LOCALE\") que recuerda el idioma elegido durante su visita, para no tener que seleccionarlo de nuevo en cada página. No se utiliza para seguimiento publicitario ni análisis de comportamiento, y no se comparte con ningún tercero. Este sitio actualmente no utiliza ninguna herramienta de análisis de audiencia (como Google Analytics) ni publicidad dirigida."
+      },
+      "rights": {
+        "heading": "Sus derechos",
+        "body": "De acuerdo con el Reglamento General de Protección de Datos (RGPD), usted dispone en todo momento de los siguientes derechos sobre sus datos personales: acceso, rectificación, supresión, limitación del tratamiento, portabilidad y oposición. Para ejercer cualquiera de estos derechos, contáctenos al +32 472 34 19 68 o directamente en el salón, 150A Rue de Laeken, 1000 Bruselas."
+      },
+      "authority": {
+        "heading": "Autoridad de control",
+        "body": "Si considera que sus derechos no se respetan, puede presentar una reclamación ante la Autoridad de Protección de Datos belga (APD): www.autoriteprotectiondonnees.be."
+      },
+      "changes": {
+        "heading": "Modificaciones",
+        "body": "Esta política puede actualizarse ocasionalmente, por ejemplo si cambian nuestros proveedores o prácticas. La fecha de la última actualización aparece en la parte superior de esta página."
+      }
+    }
   }
 }

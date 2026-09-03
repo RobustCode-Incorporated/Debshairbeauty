@@ -9,6 +9,10 @@
     "prestations": {
       "title": "All Our Services",
       "description": "The full Debs Hair Beauty service catalogue with prices: hair, brows & lashes, makeup, massage, manicure, pedicure... Book and pay online."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "How Debs Hair Beauty collects, uses and protects your personal data when you book, buy in the shop, or browse this site."
     }
   },
   "CheckoutApi": {
@@ -124,7 +128,8 @@
       "bookCta": "Book an appointment",
       "bookingHint": "Confirmation finalised via WhatsApp.",
       "followHeading": "Follow us",
-      "devBy": "Site developed by"
+      "devBy": "Site developed by",
+      "privacyPolicy": "Privacy Policy"
     }
   },
   "Prestations": {
@@ -257,10 +262,55 @@
   "Products": {
     "perruque-lace-18-naturelle": { "name": "Lace front wig", "variant": "18 inches — Natural" },
     "perruque-closure-16-bouclee": { "name": "Closure wig", "variant": "16 inches — Curly" },
-    "meche-lisse-20": { "name": "Straight extensions", "variant": "20 inches" },
-    "meche-lisse-24": { "name": "Straight extensions", "variant": "24 inches" },
+    "meche-lisse-22": { "name": "Straight extensions", "variant": "22 inches" },
+    "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
+    "meche-ondulee-24": { "name": "Wavy extensions", "variant": "24 inches" },
     "meche-bouclee-18": { "name": "Curly extensions", "variant": "18 inches" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: September 3, 2026",
+    "intro": "Debs Hair Beauty (the \"salon\", \"we\") respects your privacy and is committed to protecting the personal data you share with us when you book a service, buy a product in our shop, or browse this website. This policy explains what data we collect, why, who we share it with, how long we keep it, and what rights you have.",
+    "backToHome": "← Back to home",
+    "sections": {
+      "controller": {
+        "heading": "Data controller",
+        "body": "The data controller is Debs Hair Beauty, located at 150A Rue de Laeken, 1000 Brussels, Belgium. For any question about your personal data, you can reach us by phone at +32 472 34 19 68 or visit us directly at the salon."
+      },
+      "dataCollected": {
+        "heading": "Data we collect",
+        "body": "When you book a service or buy a product in our shop through this site, we collect: your first and last name, your phone number, the date and time of the appointment or order, and any notes you add to the form (allergies, preferences, special requests). When you pay, your card number is entered directly on our payment provider Stripe's secure page: we never receive or store your card number. We only keep the payment confirmation (amount, currency, transaction ID)."
+      },
+      "purposes": {
+        "heading": "Why we use this data",
+        "body": "This data is used exclusively to: confirm and fulfil your booking or order, contact you if needed (rescheduling, a question about your order), process payment, and meet our legal and accounting obligations. We never use your data for marketing or advertising without your explicit consent, and we do not carry out any automated profiling."
+      },
+      "recipients": {
+        "heading": "Who your data is shared with",
+        "body": "Your data is never sold. It is only passed on to the following providers, strictly necessary to run the website and the salon:\n\n— Stripe (online payment): processes payment data within a PCI-DSS certified infrastructure.\n— Neon (database): securely hosts booking and order information.\n— Vercel (website hosting): technically hosts this site.\n\nAbout WhatsApp: after a paid booking, the site offers you a pre-filled link that opens WhatsApp on your own phone if you choose to click it — no message is ever sent automatically by us, and Meta/WhatsApp only receives your data if you decide to send that message yourself."
+      },
+      "retention": {
+        "heading": "How long we keep your data",
+        "body": "Data linked to a paid booking or purchase is kept for the legal retention period for accounting records in Belgium (7 years), in line with our tax obligations. After that period, it is deleted or anonymised."
+      },
+      "cookies": {
+        "heading": "Cookies",
+        "body": "This site uses a single technical cookie (\"NEXT_LOCALE\") that remembers the language you chose during your visit, so you don't have to select it again on every page. It is not used for advertising tracking or behavioural analysis, and is never shared with any third party. This site currently uses no audience-analytics tool (such as Google Analytics) and no targeted advertising."
+      },
+      "rights": {
+        "heading": "Your rights",
+        "body": "Under the General Data Protection Regulation (GDPR), you have the following rights over your personal data at any time: access, rectification, erasure, restriction of processing, portability, and objection. To exercise any of these rights, contact us at +32 472 34 19 68 or directly at the salon, 150A Rue de Laeken, 1000 Brussels."
+      },
+      "authority": {
+        "heading": "Supervisory authority",
+        "body": "If you believe your rights are not being respected, you can lodge a complaint with the Belgian Data Protection Authority (APD/GBA): www.autoriteprotectiondonnees.be."
+      },
+      "changes": {
+        "heading": "Changes",
+        "body": "This policy may be updated from time to time, for example if our providers or practices change. The date of the last update appears at the top of this page."
+      }
+    }
   }
 }

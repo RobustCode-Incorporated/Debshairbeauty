@@ -167,6 +167,33 @@ https://www.debshairbeauty.com` une fois en ligne.
   cache HTTP) — volontairement hors périmètre du chantier SEO initial.
 - `llms.txt` (équivalent `robots.txt` pour les agents IA) — mineur.
 
+## 6bis. Passe 3 — Politique de confidentialité + corrections finales
+
+Nouvelle page **`/debs/politique-confidentialite`** (4 langues), basée sur le
+modèle fourni (`robust-code.com/legal/privacy-policy.html`) mais réécrite
+avec les vraies données du site : ce qui est collecté (nom, téléphone,
+date/heure, notes), les vrais sous-traitants (Stripe, Neon, Vercel), le
+fonctionnement réel du lien WhatsApp (cliqué par la cliente, jamais envoyé
+automatiquement), une durée de conservation de 7 ans (obligation comptable
+belge), les droits RGPD, et l'autorité de contrôle belge (APD). Ajoutée au
+sitemap, liée depuis le footer de `/debs`.
+
+Au passage, corrigé un bug réel trouvé pendant ce travail : les IDs des
+mèches avaient été renommés dans `debs-products.ts` (ticket précédent) sans
+mettre à jour les traductions `Products` correspondantes dans les 4 langues
+— les nouveaux produits auraient affiché une clé brute au lieu d'un nom.
+
+**Régression apparente détectée et investiguée** : après ajout de la page,
+le score squirrelscan "Accessibilité" est passé de 92 à 53. Vérification :
+les 3 règles en cause (bouton de langue avec `aria-label` générique,
+contraste, lien "Shop" jugé générique) touchaient **déjà 100 % des pages
+avant et après** (3/3 puis 4/4) — donc pas une régression causée par la
+nouvelle page, plutôt une instabilité du calcul de ce score sur un petit
+nombre de pages. Corrigé quand même la plus légitime des trois (le bouton de
+langue affiche "EN" mais son `aria-label` disait juste "language" sans le
+préciser) → **Accessibilité 53 → 97**, et bonus : **Legal Compliance → 100**
+grâce à la nouvelle page.
+
 ## 7. Comment retester après coup
 
 ```bash

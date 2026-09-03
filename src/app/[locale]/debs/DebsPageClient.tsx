@@ -374,6 +374,9 @@ export default function DebsSalonPage() {
             <p className="text-sm leading-relaxed text-stone-600 pt-2">
               {t("footer.devBy")} <a href="https://www.robust-code.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-stone-900 transition hover:text-amber-700">ROBUST CODE S.A.R.L</a>
             </p>
+            <Link href="/debs/politique-confidentialite" className="block text-sm text-stone-500 hover:text-amber-700 transition-colors pt-1">
+              {t("footer.privacyPolicy")}
+            </Link>
           </div>
         </div>
       </footer>
