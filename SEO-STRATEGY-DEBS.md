@@ -194,6 +194,41 @@ langue affiche "EN" mais son `aria-label` disait juste "language" sans le
 préciser) → **Accessibilité 53 → 97**, et bonus : **Legal Compliance → 100**
 grâce à la nouvelle page.
 
+## 6ter. Passe 4 — audit squirrelscan sur la vraie production
+
+Une fois le site déployé sur `https://www.debshairbeauty.com` (DNS/SSL
+opérationnels), audit direct (12 pages, via le sitemap) :
+
+**Score 70/100 (C)** — contre 47-49 en local. Ça confirme : la quasi-totalité
+des faux positifs identifiés dans les passes précédentes (HTTPS, domaine du
+sitemap/canonical, hreflang self-reference) disparaissent bien en
+production, comme prévu. Seulement 2 échecs réels (caching, déjà noté hors
+périmètre), le reste en avertissements mineurs.
+
+**Vérifié et corrigé** :
+- Cookie `NEXT_LOCALE` sans le flag `Secure` → ajouté
+  (`src/i18n/routing.ts`). `HttpOnly` volontairement **non ajouté** : le
+  composant `<Link>` de next-intl a besoin de lire/écrire ce cookie
+  côté client (contournement d'un bug de cache du routeur Next.js), et la
+  librairie n'expose même pas cette option pour cette raison.
+- Descriptions meta ES/NL de `/debs/prestations` trop longues (163/165
+  caractères) → raccourcies sous 160 sans perte de sens.
+
+**Vérifié, mais pas un bug** : le rapport indiquait des titres/descriptions
+"dupliqués" entre `/debs` et `/en/debs`. Testé directement au `curl` avec
+différents en-têtes `Accept-Language` : `/debs` sert bien le français par
+défaut, et ne redirige (307, proprement) vers `/en/debs` que si le
+navigateur demande l'anglais — comportement normal. Le crawler de
+squirrelscan suit la redirection mais attribue le contenu final à l'URL
+d'avant redirection dans son rapport : artefact de l'outil, pas un défaut du
+site.
+
+**Trouvé, pas encore corrigé (config Vercel, pas du code)** : le domaine
+apex `debshairbeauty.com` redirige actuellement vers l'URL brute
+`debshairbeauty.vercel.app` au lieu de `https://www.debshairbeauty.com`.
+À corriger dans Vercel → Domains → renvoyer `debshairbeauty.com` vers
+`www.debshairbeauty.com`, pas vers le déploiement brut.
+
 ## 7. Comment retester après coup
 
 ```bash
