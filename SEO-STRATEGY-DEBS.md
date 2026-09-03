@@ -124,7 +124,50 @@ par page arrive proprement à l'étape 2) — retour confirmé à 100 %.
 - Score Lighthouse SEO : **100 % maintenu de bout en bout** (objectif 90 % dépassé dès la référence).
 - Fichiers touchés : voir `git status` — rien n'a été committé, à valider et committer quand tu es prête.
 
-## 5. Comment retester après coup
+## 6. Passe 2 — audit `squirrelscan` (QA site élargi : SEO, a11y, sécurité, perf)
+
+Outil complémentaire à Lighthouse — installé via `curl -fsSL
+https://install.squirrelscan.com | bash` (script vérifié : checksum SHA256,
+open source, aucune escalade root). Contrairement à Lighthouse (une page à la
+fois, catégorie SEO seule), `squirrel audit <url>` crawle plusieurs pages et
+note aussi accessibilité, sécurité, performance et légal/E-E-A-T.
+
+**Score global 47-48/100 (F) — chiffre trompeur en local**, pour la même
+raison que le "92 %" Lighthouse : plusieurs règles pénalisent le fait de
+tester en HTTP sur `localhost` un site dont le sitemap/hreflang pointent (à
+raison) vers `https://www.debshairbeauty.com` (HTTPS manquant, "sitemap
+domain mismatch", hreflang self-reference). **Ces lignes ne comptent pas une
+fois déployé en vrai** — à revalider avec `squirrel audit
+https://www.debshairbeauty.com` une fois en ligne.
+
+**Deux vrais bugs trouvés et corrigés dans cette passe** :
+- **Deux landmarks `<main>` imbriqués** sur *toutes* les pages (`layout.tsx`
+  en a un, chaque page en remettait un second) — cassait la navigation au
+  clavier/lecteur d'écran. Corrigé (le `<main>` du layout reste le seul,
+  celui des pages devient un `<div>`) → **Accessibilité 49 → 92 (+43)**.
+- **Aucun en-tête de sécurité** (`Content-Security-Policy`,
+  `X-Frame-Options`) → ajoutés dans `next.config.ts` → **Sécurité 62 → 73
+  (+11)**.
+
+**Reste à faire, qui nécessite ton avis (contenu/juridique, pas du code)** :
+- Une **Politique de confidentialité** — pas juste du SEO : le site collecte
+  des données personnelles (nom, téléphone) et encaisse des paiements via
+  Stripe (un sous-traitant au sens RGPD). C'est une obligation légale réelle
+  pour un site belge, pas une simple case à cocher. Je n'ai pas rédigé de
+  texte à ta place — il faut ton contenu (ou celui d'un juriste).
+- Pages **À propos** et **Contact** dédiées (les infos existent déjà sur
+  `/debs`, mais des pages séparées aident le référencement et la confiance).
+
+**Reste à faire, optionnel (à prioriser ensemble)** :
+- Resserrer la CSP : elle autorise encore `'unsafe-inline'` pour les
+  scripts — un vrai renforcement demanderait un système de nonce par requête
+  dans `proxy.ts`, un changement plus délicat sur le routage i18n, à traiter
+  à part.
+- Performance (poids de page 2,3 Mo, images sans `width`/`height`, pas de
+  cache HTTP) — volontairement hors périmètre du chantier SEO initial.
+- `llms.txt` (équivalent `robots.txt` pour les agents IA) — mineur.
+
+## 7. Comment retester après coup
 
 ```bash
 npm run build

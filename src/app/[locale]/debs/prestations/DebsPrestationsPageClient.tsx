@@ -23,7 +23,7 @@ export default function DebsPrestationsPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans selection:bg-amber-100 selection:text-stone-900">
+    <div className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans selection:bg-amber-100 selection:text-stone-900">
       <DebsNav onBookClick={() => setIsBookingOpen(true)} />
 
       <section className="py-16 sm:py-20 px-4 border-b border-stone-200 bg-white">
@@ -86,6 +86,6 @@ export default function DebsPrestationsPage() {
         target={bookingTarget}
         onTargetCategoryChange={(categoryId) => setBookingTarget({ kind: "category", categoryId })}
       />
-    </main>
+    </div>
   );
 }

@@ -65,7 +65,7 @@ export default function DebsSalonPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans selection:bg-amber-100 selection:text-stone-900">
+    <div className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans selection:bg-amber-100 selection:text-stone-900">
       <DebsNav onBookClick={() => openBookingFor("Cheveux")} />
 
       {showCancelledNotice && (
@@ -378,6 +378,6 @@ export default function DebsSalonPage() {
         </div>
       </footer>
 
-    </main>
+    </div>
   );
 }

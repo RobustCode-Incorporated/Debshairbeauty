@@ -122,7 +122,7 @@ export default function DebsReservationConfirmeePage() {
   const router = useRouter();
 
   return (
-    <main className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans">
+    <div className="min-h-screen bg-[#fbf9f6] text-stone-800 font-sans">
       <DebsNav onBookClick={() => router.push("/debs")} />
       <div className="flex items-center justify-center px-4 py-20">
       <Suspense
@@ -136,6 +136,6 @@ export default function DebsReservationConfirmeePage() {
         <ConfirmationContent />
       </Suspense>
       </div>
-    </main>
+    </div>
   );
 }
