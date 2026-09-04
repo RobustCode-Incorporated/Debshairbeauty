@@ -100,6 +100,19 @@
       "bio": "Coiffeuse, esthéticienne et maquilleuse, Déborah reçoit chaque cliente pour un moment de soin personnalisé, dans un cadre pensé pour la détente.",
       "bookWithHerCta": "Réserver avec Déborah"
     },
+    "hiring": {
+      "eyebrow": "On recrute",
+      "title": "Coiffeuse — Spécialiste coupes européennes",
+      "description": "Debs Hair Beauty cherche une coiffeuse passionnée, spécialisée dans les coupes et techniques européennes, pour rejoindre l'équipe à Bruxelles.",
+      "requirements": [
+        "Expérience confirmée en coupe, brushing et coiffage européen",
+        "À l'aise avec la coloration et les techniques de lissage",
+        "Sens du contact client et esprit d'équipe",
+        "Disponible du mardi au samedi"
+      ],
+      "applyCta": "Postuler par WhatsApp",
+      "applyMessage": "Bonjour, je suis intéressé(e) par le poste de coiffeuse spécialiste coupes européennes chez Debs Hair Beauty."
+    },
     "hours": {
       "eyebrow": "Horaires",
       "title": "Quand nous trouver",

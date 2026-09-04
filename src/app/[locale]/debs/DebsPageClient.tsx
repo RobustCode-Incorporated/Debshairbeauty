@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import {
-  Calendar, Star, MapPin, Clock, Gem, Sparkles,
+  Calendar, Star, MapPin, Clock, Gem, Sparkles, Briefcase, MessageCircle,
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -297,6 +297,39 @@ export default function DebsSalonPage() {
               {t("team.bookWithHerCta")}
             </button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* --- HIRING --- */}
+      <section id="recrutement" className="py-24 px-4 bg-stone-900 text-white border-t border-stone-800">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-amber-500 mb-3">
+            <Briefcase className="w-4 h-4" />
+            {t("hiring.eyebrow")}
+          </span>
+          <h2 className={`${playfair.className} text-3xl md:text-4xl mb-4`}>
+            {t("hiring.title")}
+          </h2>
+          <p className="text-stone-300 leading-relaxed mb-8 max-w-xl mx-auto">
+            {t("hiring.description")}
+          </p>
+          <ul className="text-left max-w-md mx-auto space-y-3 mb-10">
+            {t.raw("hiring.requirements").map((requirement: string) => (
+              <li key={requirement} className="flex items-start gap-3 text-stone-300 text-sm">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                {requirement}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(t("hiring.applyMessage"))}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-500 transition-colors"
+          >
+            <MessageCircle className="w-4 h-4" />
+            {t("hiring.applyCta")}
+          </a>
         </div>
       </section>
 

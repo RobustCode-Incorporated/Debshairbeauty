@@ -100,6 +100,19 @@
       "bio": "Hairdresser, beautician and makeup artist, Déborah welcomes every client for a personalised care moment, in a setting designed for relaxation.",
       "bookWithHerCta": "Book with Déborah"
     },
+    "hiring": {
+      "eyebrow": "We're Hiring",
+      "title": "Hairstylist — European Cuts Specialist",
+      "description": "Debs Hair Beauty is looking for a passionate hairstylist specialised in European cutting techniques to join the team in Brussels.",
+      "requirements": [
+        "Proven experience in European cutting, blow-drying and styling",
+        "Comfortable with colouring and straightening techniques",
+        "Great client relationship skills and team spirit",
+        "Available Tuesday to Saturday"
+      ],
+      "applyCta": "Apply via WhatsApp",
+      "applyMessage": "Hello, I'm interested in the hairstylist (European cuts specialist) position at Debs Hair Beauty."
+    },
     "hours": {
       "eyebrow": "Hours",
       "title": "When to find us",

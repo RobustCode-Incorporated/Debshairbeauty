@@ -100,6 +100,19 @@
       "bio": "Kapster, schoonheidsspecialiste en visagiste, Déborah ontvangt elke klant voor een persoonlijk verzorgingsmoment, in een kader gemaakt voor ontspanning.",
       "bookWithHerCta": "Reserveer bij Déborah"
     },
+    "hiring": {
+      "eyebrow": "We Zoeken Versterking",
+      "title": "Kapster — Specialist Europese Knipstijlen",
+      "description": "Debs Hair Beauty zoekt een gepassioneerde kapster, gespecialiseerd in Europese knip- en stylingtechnieken, om het team in Brussel te versterken.",
+      "requirements": [
+        "Bewezen ervaring in Europees knippen, föhnen en styling",
+        "Vertrouwd met kleuring en ontkrultechnieken",
+        "Klantgerichtheid en teamgeest",
+        "Beschikbaar van dinsdag tot zaterdag"
+      ],
+      "applyCta": "Solliciteer via WhatsApp",
+      "applyMessage": "Hallo, ik ben geïnteresseerd in de functie van kapster (specialist Europese knipstijlen) bij Debs Hair Beauty."
+    },
     "hours": {
       "eyebrow": "Openingsuren",
       "title": "Wanneer je ons vindt",
