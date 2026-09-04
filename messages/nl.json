@@ -113,6 +113,12 @@
       "applyCta": "Solliciteer via WhatsApp",
       "applyMessage": "Hallo, ik ben geïnteresseerd in de functie van kapster (specialist Europese knipstijlen) bij Debs Hair Beauty."
     },
+    "googleReviews": {
+      "eyebrow": "Klantbeoordelingen",
+      "title": "Wat Onze Klanten Zeggen",
+      "reviewsLabel": "Google-recensies",
+      "seeAllCta": "Bekijk alle recensies op Google"
+    },
     "hours": {
       "eyebrow": "Openingsuren",
       "title": "Wanneer je ons vindt",

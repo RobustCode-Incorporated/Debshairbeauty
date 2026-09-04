@@ -113,6 +113,12 @@
       "applyCta": "Apply via WhatsApp",
       "applyMessage": "Hello, I'm interested in the hairstylist (European cuts specialist) position at Debs Hair Beauty."
     },
+    "googleReviews": {
+      "eyebrow": "Customer Reviews",
+      "title": "What Our Clients Say",
+      "reviewsLabel": "Google reviews",
+      "seeAllCta": "See all reviews on Google"
+    },
     "hours": {
       "eyebrow": "Hours",
       "title": "When to find us",

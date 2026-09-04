@@ -13,6 +13,7 @@ import DebsNav from "@/components/debs/DebsNav";
 import DebsBookingSlideOver, { DebsBookingTarget } from "@/components/debs/DebsBookingSlideOver";
 import DebsProductPurchaseSlideOver from "@/components/debs/DebsProductPurchaseSlideOver";
 import { DEBS_PRODUCTS, DEBS_PRODUCT_CATEGORIES, type DebsProduct } from "@/lib/debs-products";
+import type { DebsGoogleReviewsData } from "@/lib/debs-google-reviews";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -33,7 +34,7 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 const PHONE_DISPLAY = "+32 472 34 19 68";
 const PHONE_TEL = "+32472341968";
 
-export default function DebsSalonPage() {
+export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsData | null }) {
   const t = useTranslations("Home");
   const tProductCategories = useTranslations("ProductCategories");
   const tProducts = useTranslations("Products");
@@ -299,6 +300,86 @@ export default function DebsSalonPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* --- GOOGLE REVIEWS --- */}
+      {reviews && reviews.reviews.length > 0 && (
+        <section id="avis" className="py-24 px-4 bg-[#fbf9f6] border-t border-stone-200">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">
+                {t("googleReviews.eyebrow")}
+              </span>
+              <h2 className={`${playfair.className} text-3xl md:text-4xl text-stone-900 mb-4`}>
+                {t("googleReviews.title")}
+              </h2>
+              <div className="flex items-center justify-center gap-1.5">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Star
+                    key={i}
+                    className={`w-4 h-4 ${i < Math.round(reviews.rating) ? "text-amber-500 fill-amber-500" : "text-stone-300"}`}
+                  />
+                ))}
+                <span className="text-sm text-stone-500 ml-2">
+                  {reviews.rating.toFixed(1)} · {reviews.userRatingCount} {t("googleReviews.reviewsLabel")}
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {reviews.reviews.slice(0, 6).map((review, i) => (
+                <motion.div
+                  key={`${review.authorName}-${i}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white border border-stone-200 p-6 flex flex-col gap-4"
+                >
+                  <div className="flex items-center gap-3">
+                    {review.authorPhotoUrl ? (
+                      <Image
+                        src={review.authorPhotoUrl}
+                        alt={review.authorName}
+                        width={40}
+                        height={40}
+                        className="rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-500 font-semibold">
+                        {review.authorName.charAt(0)}
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold text-stone-900">{review.authorName}</p>
+                      <p className="text-xs text-stone-400">{review.relativeTime}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[0, 1, 2, 3, 4].map((i2) => (
+                      <Star
+                        key={i2}
+                        className={`w-3.5 h-3.5 ${i2 < review.rating ? "text-amber-500 fill-amber-500" : "text-stone-300"}`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm text-stone-600 leading-relaxed line-clamp-5">{review.text}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href={reviews.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-800 font-bold uppercase text-sm tracking-wider hover:border-amber-600 hover:text-amber-700 transition-colors"
+              >
+                {t("googleReviews.seeAllCta")}
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* --- HIRING --- */}
       <section id="recrutement" className="py-24 px-4 bg-stone-900 text-white border-t border-stone-800">

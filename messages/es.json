@@ -113,6 +113,12 @@
       "applyCta": "Postular por WhatsApp",
       "applyMessage": "Hola, estoy interesada en el puesto de peluquera (especialista en cortes europeos) en Debs Hair Beauty."
     },
+    "googleReviews": {
+      "eyebrow": "Opiniones de Clientas",
+      "title": "Lo Que Dicen Nuestras Clientas",
+      "reviewsLabel": "reseñas de Google",
+      "seeAllCta": "Ver todas las reseñas en Google"
+    },
     "hours": {
       "eyebrow": "Horario",
       "title": "Cuándo encontrarnos",
