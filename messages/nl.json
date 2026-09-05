@@ -285,6 +285,10 @@
     "meche-ondulee-20": { "name": "Golvende extensions", "variant": "20 inch" },
     "meche-ondulee-24": { "name": "Golvende extensions", "variant": "24 inch" },
     "meche-bouclee-18": { "name": "Krullende extensions", "variant": "18 inch" },
+    "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
+    "closure": { "name": "Closure", "variant": "4x4 — Golvend" },
+    "lace-360": { "name": "360 Lace", "variant": "Krullend" },
+    "bundles": { "name": "Bundles", "variant": "Set van 3 — Krullend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
   },

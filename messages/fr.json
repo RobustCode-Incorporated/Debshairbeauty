@@ -285,6 +285,10 @@
     "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
     "meche-ondulee-24": { "name": "Mèches ondulées", "variant": "24 pouces" },
     "meche-bouclee-18": { "name": "Mèches bouclées", "variant": "18 pouces" },
+    "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
+    "closure": { "name": "Closure", "variant": "4x4 — Ondulée" },
+    "lace-360": { "name": "Lace 360", "variant": "Bouclée" },
+    "bundles": { "name": "Bundles", "variant": "Lot de 3 — Bouclée" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
     "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" }
   },

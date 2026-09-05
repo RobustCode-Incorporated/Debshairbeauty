@@ -285,6 +285,10 @@
     "meche-ondulee-20": { "name": "Extensiones onduladas", "variant": "20 pulgadas" },
     "meche-ondulee-24": { "name": "Extensiones onduladas", "variant": "24 pulgadas" },
     "meche-bouclee-18": { "name": "Extensiones rizadas", "variant": "18 pulgadas" },
+    "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Lisa" },
+    "closure": { "name": "Closure", "variant": "4x4 — Ondulada" },
+    "lace-360": { "name": "Lace 360", "variant": "Rizada" },
+    "bundles": { "name": "Bundles", "variant": "Set de 3 — Rizada" },
     "soin-huile-cheveux": { "name": "Aceite capilar nutritivo", "variant": "" },
     "creme-visage-hydratante": { "name": "Crema facial hidratante", "variant": "" }
   },

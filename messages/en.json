@@ -285,6 +285,10 @@
     "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
     "meche-ondulee-24": { "name": "Wavy extensions", "variant": "24 inches" },
     "meche-bouclee-18": { "name": "Curly extensions", "variant": "18 inches" },
+    "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
+    "closure": { "name": "Closure", "variant": "4x4 — Wavy" },
+    "lace-360": { "name": "360 Lace", "variant": "Curly" },
+    "bundles": { "name": "Bundles", "variant": "Set of 3 — Curly" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
   },
