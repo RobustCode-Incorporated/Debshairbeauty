@@ -54,7 +54,14 @@ export async function GET(request: NextRequest) {
     clientPhone: row.phone,
   }));
 
-  return new NextResponse(buildIcsCalendar(appointments), {
+  // Prepend a UTF-8 BOM: the HTTP charset header is enough for a live
+  // subscription, but a tool that opens a once-downloaded .ics file straight
+  // off disk (no HTTP headers left to read) can otherwise guess the wrong
+  // encoding and mangle the em dashes and accents.
+  const BOM = String.fromCharCode(0xfeff);
+  const body = BOM + buildIcsCalendar(appointments);
+
+  return new NextResponse(body, {
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
       'Content-Disposition': 'inline; filename="debs-hair-beauty.ics"',
