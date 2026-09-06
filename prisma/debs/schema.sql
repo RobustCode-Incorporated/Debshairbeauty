@@ -45,6 +45,19 @@ CREATE TABLE IF NOT EXISTS debs_appointments (
 CREATE INDEX IF NOT EXISTS debs_appointments_date_time_idx ON debs_appointments (date_time);
 CREATE INDEX IF NOT EXISTS debs_appointments_client_id_idx ON debs_appointments (client_id);
 
+-- Last-resort guard against two payments racing for the same slot (the API
+-- already checks and rejects before creating the Stripe session — this is
+-- only for the sliver of time between that check and the webhook's insert).
+-- Assumes a single stylist handling every booking, true today; the day a
+-- second stylist is hired this needs to become UNIQUE (date_time, staff_id)
+-- alongside making staff assignment actually availability-aware (currently
+-- it always assigns the first staff row — see debs-checkout.ts).
+DO $$ BEGIN
+  ALTER TABLE debs_appointments ADD CONSTRAINT debs_appointments_date_time_key UNIQUE (date_time);
+EXCEPTION
+  WHEN duplicate_object THEN NULL;
+END $$;
+
 -- A booking only ever exists once its deposit is paid: an appointment row is
 -- inserted exclusively by the Stripe checkout fulfillment path (webhook, with
 -- a same-idempotency-key fallback on the confirmation page), never before

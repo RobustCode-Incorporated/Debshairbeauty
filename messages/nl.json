@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",
     "unknownService": "Onbekende dienst.",
+    "slotTaken": "Dit tijdslot is net door iemand anders geboekt. Kies een ander moment.",
     "missingRequiredFieldsPurchase": "Voornaam, naam, telefoon en product zijn verplicht.",
     "maxQuantity": "Maximale hoeveelheid: 10.",
     "unknownProduct": "Onbekend product.",
@@ -167,6 +168,9 @@
     "dateLabel": "Datum",
     "timeLabel": "Uur",
     "openingHint": "Open van dinsdag tot zaterdag, 10:00–20:30 afhankelijk van de dag.",
+    "slotsLoading": "Beschikbare tijden laden...",
+    "slotsPickDateFirst": "Kies eerst een datum.",
+    "slotsNoneAvailable": "Geen beschikbare tijdslots die dag — probeer een andere datum.",
     "notesPlaceholder": "Gewenste stijl, referentie, tijdsbeperkingen...",
     "submitCta": "Betaal {price}€ en reserveer",
     "errors": {

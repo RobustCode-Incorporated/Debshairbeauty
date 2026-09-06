@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "First name, last name, phone, service, date and time are required.",
     "unknownService": "Unknown service.",
+    "slotTaken": "That slot was just booked by someone else. Please choose another one.",
     "missingRequiredFieldsPurchase": "First name, last name, phone and product are required.",
     "maxQuantity": "Maximum quantity: 10.",
     "unknownProduct": "Unknown product.",
@@ -167,6 +168,9 @@
     "dateLabel": "Date",
     "timeLabel": "Time",
     "openingHint": "Open Tuesday to Saturday, 10:00–20:30 depending on the day.",
+    "slotsLoading": "Loading available times...",
+    "slotsPickDateFirst": "Pick a date first.",
+    "slotsNoneAvailable": "No slots available that day — try another date.",
     "notesPlaceholder": "Desired style, reference, time constraints...",
     "submitCta": "Pay {price}€ and book",
     "errors": {

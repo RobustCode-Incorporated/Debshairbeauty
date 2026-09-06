@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import debsPool from '@/lib/debs-db';
+import { brusselsDateTimeToUtc } from '@/lib/debs-timezone';
 
 export type DebsCheckoutMetadata = {
   firstName: string;
@@ -99,27 +100,48 @@ export async function fulfillDebsCheckout(session: Stripe.Checkout.Session): Pro
   );
   const clientId = clientResult.rows[0].id;
 
-  const dateTime = new Date(`${meta.date}T${meta.time}:00`);
+  const dateTime = brusselsDateTimeToUtc(meta.date, meta.time);
   const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id ?? null;
 
-  const appointmentResult = await debsPool.query<{ id: string }>(
-    `INSERT INTO debs_appointments
-       (date_time, category, notes, status, client_id, staff_id, payment_status, amount_cents, currency, stripe_session_id, stripe_payment_intent_id)
-     VALUES ($1, $2, $3, 'CONFIRMED', $4, $5, 'PAID', $6, $7, $8, $9)
-     ON CONFLICT (stripe_session_id) DO NOTHING
-     RETURNING id`,
-    [
-      dateTime.toISOString(),
-      meta.category,
-      meta.notes || null,
-      clientId,
-      assignedStaff.id,
-      session.amount_total ?? 0,
-      session.currency ?? 'eur',
-      session.id,
-      paymentIntentId,
-    ],
-  );
+  let appointmentResult;
+  try {
+    appointmentResult = await debsPool.query<{ id: string }>(
+      `INSERT INTO debs_appointments
+         (date_time, category, notes, status, client_id, staff_id, payment_status, amount_cents, currency, stripe_session_id, stripe_payment_intent_id)
+       VALUES ($1, $2, $3, 'CONFIRMED', $4, $5, 'PAID', $6, $7, $8, $9)
+       ON CONFLICT (stripe_session_id) DO NOTHING
+       RETURNING id`,
+      [
+        dateTime.toISOString(),
+        meta.category,
+        meta.notes || null,
+        clientId,
+        assignedStaff.id,
+        session.amount_total ?? 0,
+        session.currency ?? 'eur',
+        session.id,
+        paymentIntentId,
+      ],
+    );
+  } catch (error) {
+    // The API already rejects a taken slot before payment — this only fires
+    // for the sliver of time between that check and this insert, where two
+    // payments raced for the same slot. The client already paid: there is no
+    // safe automated fix here (refund vs. reassign both need a human call),
+    // so this must be loud rather than silently dropped or endlessly
+    // retried. `console.error` with this exact tag is meant to be grepped.
+    const isSlotConflict = (error as { code?: string; constraint?: string }).code === '23505'
+      && (error as { constraint?: string }).constraint === 'debs_appointments_date_time_key';
+    if (isSlotConflict) {
+      console.error(
+        `[DEBS_SLOT_RACE_CONDITION] Payment ${session.id} (${session.amount_total} ${session.currency}) for ` +
+          `${meta.firstName} ${meta.lastName} (${meta.phone}) succeeded but ${meta.date} ${meta.time} was taken by ` +
+          'a race with another booking. Needs a manual refund or reschedule call — this was NOT saved.',
+      );
+      return null;
+    }
+    throw error;
+  }
 
   const appointmentId = appointmentResult.rows[0]?.id
     ?? (await debsPool.query<{ id: string }>('SELECT id FROM debs_appointments WHERE stripe_session_id = $1', [session.id])).rows[0].id;

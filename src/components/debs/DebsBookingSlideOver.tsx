@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import SlideOver from "@/components/SlideOver";
 import { DEBS_SERVICE_CATEGORIES } from "@/lib/debs-services";
@@ -44,6 +44,20 @@ export default function DebsBookingSlideOver({ isOpen, onClose, target, onTarget
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Keyed by date, so a fetch that resolves after the user already moved on
+  // to another date is naturally ignored — no separate "cancelled" state.
+  const [slotsData, setSlotsData] = useState<{ date: string; slots: Array<{ time: string; available: boolean }> } | null>(null);
+  const slots = slotsData?.date === form.date ? slotsData.slots : null;
+  const isLoadingSlots = form.date !== "" && slots === null;
+
+  useEffect(() => {
+    if (!form.date) return;
+    const date = form.date;
+    fetch(`/api/debs/availability?date=${date}`)
+      .then((res) => res.json())
+      .then((data: { slots?: Array<{ time: string; available: boolean }> }) => setSlotsData({ date, slots: data.slots ?? [] }))
+      .catch(() => setSlotsData({ date, slots: [] }));
+  }, [form.date]);
 
   const priceEuros = target.kind === "service"
     ? target.item.priceEuros
@@ -59,7 +73,11 @@ export default function DebsBookingSlideOver({ isOpen, onClose, target, onTarget
       return;
     }
 
-    const requestedDate = new Date(`${form.date}T${form.time || "00:00"}:00`);
+    if (!form.time) {
+      setError(t("errors.invalidDateTime"));
+      return;
+    }
+    const requestedDate = new Date(`${form.date}T${form.time}:00`);
     if (Number.isNaN(requestedDate.getTime())) {
       setError(t("errors.invalidDateTime"));
       return;
@@ -160,27 +178,47 @@ export default function DebsBookingSlideOver({ isOpen, onClose, target, onTarget
           </label>
         )}
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <label className="block text-sm text-stone-700">
-            {t("dateLabel")}
-            <input
-              required
-              type="date"
-              value={form.date}
-              onChange={(event) => setForm({ ...form, date: event.target.value })}
-              className="mt-2 w-full border border-stone-300 bg-white px-3 py-3 text-stone-900 outline-none focus:border-amber-600"
-            />
-          </label>
-          <label className="block text-sm text-stone-700">
-            {t("timeLabel")}
-            <input
-              required
-              type="time"
-              value={form.time}
-              onChange={(event) => setForm({ ...form, time: event.target.value })}
-              className="mt-2 w-full border border-stone-300 bg-white px-3 py-3 text-stone-900 outline-none focus:border-amber-600"
-            />
-          </label>
+        <label className="block text-sm text-stone-700">
+          {t("dateLabel")}
+          <input
+            required
+            type="date"
+            min={new Date().toISOString().slice(0, 10)}
+            value={form.date}
+            onChange={(event) => setForm({ ...form, date: event.target.value, time: "" })}
+            className="mt-2 w-full border border-stone-300 bg-white px-3 py-3 text-stone-900 outline-none focus:border-amber-600"
+          />
+        </label>
+
+        <div>
+          <span className="block text-sm text-stone-700 mb-2">{t("timeLabel")}</span>
+          {!form.date ? (
+            <p className="text-sm text-stone-400">{t("slotsPickDateFirst")}</p>
+          ) : isLoadingSlots ? (
+            <p className="text-sm text-stone-400">{t("slotsLoading")}</p>
+          ) : !slots || slots.length === 0 ? (
+            <p className="text-sm text-stone-400">{t("slotsNoneAvailable")}</p>
+          ) : (
+            <div className="grid grid-cols-4 gap-2">
+              {slots.map(({ time, available }) => (
+                <button
+                  key={time}
+                  type="button"
+                  disabled={!available}
+                  onClick={() => setForm({ ...form, time })}
+                  className={
+                    form.time === time
+                      ? "border border-amber-600 bg-amber-600 px-2 py-2 text-sm font-semibold text-white"
+                      : available
+                        ? "border border-stone-300 px-2 py-2 text-sm text-stone-700 transition-colors hover:border-amber-600"
+                        : "cursor-not-allowed border border-stone-200 px-2 py-2 text-sm text-stone-300 line-through"
+                  }
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <p className="text-xs text-stone-400 -mt-3">{t("openingHint")}</p>
 
@@ -198,7 +236,7 @@ export default function DebsBookingSlideOver({ isOpen, onClose, target, onTarget
         {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
         {success && <p className="text-sm text-emerald-700">{success}</p>}
 
-        <button disabled={isSubmitting} type="submit" className="w-full bg-stone-900 px-4 py-4 font-bold uppercase tracking-wider text-white hover:bg-amber-700 transition-colors disabled:opacity-60">
+        <button disabled={isSubmitting || !form.time} type="submit" className="w-full bg-stone-900 px-4 py-4 font-bold uppercase tracking-wider text-white hover:bg-amber-700 transition-colors disabled:opacity-60">
           {isSubmitting ? tCommon('redirecting') : t('submitCta', { price: priceEuros })}
         </button>
       </form>

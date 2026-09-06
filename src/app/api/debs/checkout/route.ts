@@ -4,6 +4,8 @@ import { getDebsStripe } from '@/lib/debs-stripe';
 import { getDebsCategory } from '@/lib/debs-services';
 import { getDebsCatalogItem } from '@/lib/debs-catalog';
 import { localizedPath, resolveLocale } from '@/lib/locale-url';
+import debsPool from '@/lib/debs-db';
+import { brusselsDateTimeToUtc } from '@/lib/debs-timezone';
 
 type CheckoutBody = {
   firstName: unknown;
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const dateTime = new Date(`${date}T${time}:00`);
+    const dateTime = brusselsDateTimeToUtc(date, time);
     if (Number.isNaN(dateTime.getTime())) {
       return NextResponse.json({ error: tBooking('errors.invalidDateTime') }, { status: 400 });
     }
@@ -77,6 +79,13 @@ export async function POST(request: NextRequest) {
         { error: tBooking('errors.closedDay') },
         { status: 400 },
       );
+    }
+
+    const existingAtSlot = await debsPool.query('SELECT 1 FROM debs_appointments WHERE date_time = $1', [
+      dateTime.toISOString(),
+    ]);
+    if (existingAtSlot.rows.length > 0) {
+      return NextResponse.json({ error: t('slotTaken') }, { status: 409 });
     }
 
     const stripe = getDebsStripe();

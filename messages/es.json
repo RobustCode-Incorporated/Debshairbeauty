@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Nombre, apellido, teléfono, servicio, fecha y hora son obligatorios.",
     "unknownService": "Servicio desconocido.",
+    "slotTaken": "Ese horario acaba de ser reservado por otra persona. Elige otro, por favor.",
     "missingRequiredFieldsPurchase": "Nombre, apellido, teléfono y producto son obligatorios.",
     "maxQuantity": "Cantidad máxima: 10.",
     "unknownProduct": "Producto desconocido.",
@@ -167,6 +168,9 @@
     "dateLabel": "Fecha",
     "timeLabel": "Hora",
     "openingHint": "Abierto de martes a sábado, 10:00–20:30 según el día.",
+    "slotsLoading": "Cargando horarios disponibles...",
+    "slotsPickDateFirst": "Elige primero una fecha.",
+    "slotsNoneAvailable": "No hay horarios disponibles ese día — prueba otra fecha.",
     "notesPlaceholder": "Estilo deseado, referencia, restricciones de horario...",
     "submitCta": "Pagar {price}€ y reservar",
     "errors": {

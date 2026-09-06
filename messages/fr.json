@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Prénom, nom, téléphone, prestation, date et heure sont obligatoires.",
     "unknownService": "Prestation inconnue.",
+    "slotTaken": "Ce créneau vient d'être réservé par quelqu'un d'autre. Merci d'en choisir un autre.",
     "missingRequiredFieldsPurchase": "Prénom, nom, téléphone et produit sont obligatoires.",
     "maxQuantity": "Quantité maximale : 10.",
     "unknownProduct": "Produit inconnu.",
@@ -167,6 +168,9 @@
     "dateLabel": "Date",
     "timeLabel": "Heure",
     "openingHint": "Ouvert du mardi au samedi, 10:00–20:30 selon le jour.",
+    "slotsLoading": "Chargement des créneaux...",
+    "slotsPickDateFirst": "Choisis d'abord une date.",
+    "slotsNoneAvailable": "Aucun créneau disponible ce jour-là — essaie une autre date.",
     "notesPlaceholder": "Style souhaité, référence, contraintes horaires...",
     "submitCta": "Payer {price}€ et réserver",
     "errors": {
