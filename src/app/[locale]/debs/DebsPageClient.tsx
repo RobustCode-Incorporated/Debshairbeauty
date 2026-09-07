@@ -180,7 +180,17 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
       </section>
 
       {/* --- BOUTIQUE --- */}
-      <section id="boutique" className="py-24 px-4 bg-[#fbf9f6]">
+      <section id="boutique" className="relative isolate py-24 px-4 overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/portant-meches.jpeg"
+            alt={t("gallery.imageAlt")}
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[#fbf9f6]/70" />
+        </div>
+
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-600 mb-3 block">{t("boutique.eyebrow")}</span>
@@ -192,77 +202,64 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-10 items-start">
-            {/* --- PANEL A --- */}
-            <div className="relative w-full aspect-[1123/1401] lg:sticky lg:top-28 overflow-hidden">
-              <Image
-                src="/portant-meches.jpeg"
-                alt={t("gallery.imageAlt")}
-                fill
-                className="object-contain object-center"
-              />
-            </div>
+          <div>
+            {DEBS_PRODUCT_CATEGORIES.map((category) => {
+              const items = DEBS_PRODUCTS.filter((product) => product.category === category);
+              if (items.length === 0) return null;
+              return (
+                <div key={category} className="mb-16 last:mb-0">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400 mb-6">{tProductCategories(category)}</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {items.map((product, index) => (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.08 }}
+                        className="group relative bg-white border border-stone-200 overflow-hidden flex flex-col hover:border-amber-400 hover:shadow-lg transition-all duration-300"
+                      >
+                        <div className="relative h-44 w-full overflow-hidden">
+                          <Image
+                            src={product.image}
+                            alt={tProducts(`${product.id}.name`)}
+                            fill
+                            className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {product.placeholder && (
+                            <span className="absolute top-3 left-3 bg-stone-900/80 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1">
+                              {t("boutique.exampleBadge")}
+                            </span>
+                          )}
+                        </div>
 
-            {/* --- PANEL B --- */}
-            <div>
-              {DEBS_PRODUCT_CATEGORIES.map((category) => {
-                const items = DEBS_PRODUCTS.filter((product) => product.category === category);
-                if (items.length === 0) return null;
-                return (
-                  <div key={category} className="mb-16 last:mb-0">
-                    <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-stone-400 mb-6">{tProductCategories(category)}</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {items.map((product, index) => (
-                        <motion.div
-                          key={product.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.08 }}
-                          className="group relative bg-white border border-stone-200 overflow-hidden flex flex-col hover:border-amber-400 hover:shadow-lg transition-all duration-300"
-                        >
-                          <div className="relative h-44 w-full overflow-hidden">
-                            <Image
-                              src={product.image}
-                              alt={tProducts(`${product.id}.name`)}
-                              fill
-                              className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                            />
-                            {product.placeholder && (
-                              <span className="absolute top-3 left-3 bg-stone-900/80 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1">
-                                {t("boutique.exampleBadge")}
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="p-6 flex flex-col flex-1">
-                            <p className="text-stone-900 font-bold mb-1">{tProducts(`${product.id}.name`)}</p>
-                            {product.variant && <p className="text-sm text-stone-500 mb-2">{tProducts(`${product.id}.variant`)}</p>}
-                            <p className="text-2xl font-black text-stone-900 mb-4 mt-auto">
-                              {product.sizes && t("boutique.startingFromPrefix")}{product.priceEuros}€
-                            </p>
-                            <button
-                              type="button"
-                              disabled={product.placeholder}
-                              onClick={() => openPurchaseFor(product)}
-                              title={product.placeholder ? t("boutique.comingSoon") : undefined}
-                              className="w-full py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors disabled:bg-stone-200 disabled:text-stone-400 disabled:cursor-not-allowed disabled:hover:bg-stone-200"
-                            >
-                              {product.placeholder ? t("boutique.comingSoon") : t("boutique.buy")}
-                            </button>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
+                        <div className="p-6 flex flex-col flex-1">
+                          <p className="text-stone-900 font-bold mb-1">{tProducts(`${product.id}.name`)}</p>
+                          {product.variant && <p className="text-sm text-stone-500 mb-2">{tProducts(`${product.id}.variant`)}</p>}
+                          <p className="text-2xl font-black text-stone-900 mb-4 mt-auto">
+                            {product.sizes && t("boutique.startingFromPrefix")}{product.priceEuros}€
+                          </p>
+                          <button
+                            type="button"
+                            disabled={product.placeholder}
+                            onClick={() => openPurchaseFor(product)}
+                            title={product.placeholder ? t("boutique.comingSoon") : undefined}
+                            className="w-full py-3 bg-stone-900 text-white font-bold uppercase text-sm tracking-wider hover:bg-amber-700 transition-colors disabled:bg-stone-200 disabled:text-stone-400 disabled:cursor-not-allowed disabled:hover:bg-stone-200"
+                          >
+                            {product.placeholder ? t("boutique.comingSoon") : t("boutique.buy")}
+                          </button>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
 
-              <div className="text-center mt-4">
-                <Link href="/debs/prestations" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-800 font-bold uppercase text-sm tracking-wider hover:border-amber-600 hover:text-amber-700 transition-colors">
-                  {t("boutique.seeCatalogCta")}
-                </Link>
-              </div>
+            <div className="text-center mt-4">
+              <Link href="/debs/prestations" className="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-800 font-bold uppercase text-sm tracking-wider hover:border-amber-600 hover:text-amber-700 transition-colors">
+                {t("boutique.seeCatalogCta")}
+              </Link>
             </div>
           </div>
         </div>
