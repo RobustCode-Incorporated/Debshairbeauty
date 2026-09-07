@@ -133,40 +133,6 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
     image: "/meche-bouclee.jpeg",
     placeholder: false,
   },
-  {
-    id: "soin-huile-cheveux",
-    category: "Produits de beauté",
-    name: "Huile capillaire nourrissante",
-    priceEuros: 18,
-    image: "/download (2).webp",
-    placeholder: true,
-  },
-  {
-    id: "creme-visage-hydratante",
-    category: "Produits de beauté",
-    name: "Crème visage hydratante",
-    priceEuros: 22,
-    image: "/download.webp",
-    placeholder: true,
-  },
-  {
-    id: "soraali-huile-demaquillante",
-    category: "Produits de beauté",
-    name: "Soraali — Huile démaquillante & nettoyante",
-    variant: "Bio — 120 ml",
-    priceEuros: 35,
-    image: "/soraali-huile-demaquillante.jpeg",
-    placeholder: false,
-  },
-  {
-    id: "soraali-huile-figue-de-barbarie",
-    category: "Produits de beauté",
-    name: "Soraali — Huile de pépins de figue de Barbarie",
-    variant: "Bio — 30 ml",
-    priceEuros: 55,
-    image: "/soraali-huile-figue-de-barbarie.jpeg",
-    placeholder: false,
-  },
 ];
 
 export const DEBS_PRODUCT_CATEGORIES: DebsProduct["category"][] = ["Perruques", "Mèches", "Produits de beauté"];

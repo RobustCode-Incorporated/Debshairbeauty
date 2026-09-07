@@ -295,11 +295,7 @@
     "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
     "meche-bouclee-18": { "name": "Mèches lisses", "variant": "18 pouces" },
     "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
-    "closure": { "name": "Closure", "variant": "5x5 — Ondulée" },
-    "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
-    "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Huile démaquillante & nettoyante", "variant": "Bio — 120 ml" },
-    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Huile de pépins de figue de Barbarie", "variant": "Bio — 30 ml" }
+    "closure": { "name": "Closure", "variant": "5x5 — Ondulée" }
   },
   "PrivacyPolicy": {
     "title": "Politique de confidentialité",

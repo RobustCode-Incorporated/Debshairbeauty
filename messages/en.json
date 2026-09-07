@@ -295,11 +295,7 @@
     "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
     "meche-bouclee-18": { "name": "Straight extensions", "variant": "18 inches" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
-    "closure": { "name": "Closure", "variant": "5x5 — Wavy" },
-    "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
-    "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Cleansing Makeup Removing Oil", "variant": "Organic — 120 ml" },
-    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Organic Prickly Pear Seed Oil", "variant": "Organic — 30 ml" }
+    "closure": { "name": "Closure", "variant": "5x5 — Wavy" }
   },
   "PrivacyPolicy": {
     "title": "Privacy Policy",
