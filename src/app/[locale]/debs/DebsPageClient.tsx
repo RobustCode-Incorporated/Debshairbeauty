@@ -194,12 +194,12 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
 
           <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-10 items-start">
             {/* --- PANEL A --- */}
-            <div className="relative w-full aspect-[3/4] lg:sticky lg:top-28 overflow-hidden">
+            <div className="relative w-full aspect-[1123/1401] lg:sticky lg:top-28 overflow-hidden">
               <Image
                 src="/portant-meches.jpeg"
                 alt={t("gallery.imageAlt")}
                 fill
-                className="object-cover object-center"
+                className="object-contain object-center"
               />
             </div>
 
