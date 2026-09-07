@@ -52,18 +52,28 @@ export default function DebsPrestationsPage() {
                   <li key={item.id}>
                     <button
                       type="button"
+                      disabled={item.unavailable}
                       onClick={() => {
                         setBookingTarget({ kind: "service", item });
                         setIsBookingOpen(true);
                       }}
-                      className="w-full flex items-center justify-between gap-4 py-4 text-left group hover:bg-amber-50/60 transition-colors px-2 -mx-2"
+                      title={item.unavailable ? t("unavailable") : undefined}
+                      className="w-full flex items-center justify-between gap-4 py-4 text-left group hover:bg-amber-50/60 transition-colors px-2 -mx-2 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                     >
-                      <span className="text-stone-700 group-hover:text-stone-900 transition-colors">{tCatalogItems(item.id)}</span>
+                      <span className={item.unavailable ? "text-stone-400" : "text-stone-700 group-hover:text-stone-900 transition-colors"}>
+                        {tCatalogItems(item.id)}
+                      </span>
                       <span className="flex items-center gap-3 shrink-0">
-                        <span className="font-bold text-stone-900">
-                          {item.startingFrom ? t("startingFromPrefix") : ""}{item.priceEuros}€
-                        </span>
-                        <Calendar className="w-4 h-4 text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {item.unavailable ? (
+                          <span className="text-xs font-bold uppercase tracking-widest text-stone-400">{t("unavailable")}</span>
+                        ) : (
+                          <>
+                            <span className="font-bold text-stone-900">
+                              {item.startingFrom ? t("startingFromPrefix") : ""}{item.priceEuros}€
+                            </span>
+                            <Calendar className="w-4 h-4 text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </>
+                        )}
                       </span>
                     </button>
                   </li>

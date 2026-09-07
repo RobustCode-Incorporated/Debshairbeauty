@@ -53,6 +53,9 @@ export async function POST(request: NextRequest) {
     if (serviceId && !catalogItem) {
       return NextResponse.json({ error: t('unknownService') }, { status: 400 });
     }
+    if (catalogItem?.unavailable) {
+      return NextResponse.json({ error: t('serviceUnavailable') }, { status: 400 });
+    }
     if (!firstName || !lastName || !phone || !date || !time || (!catalogItem && !category)) {
       return NextResponse.json(
         { error: t('missingRequiredFieldsBooking') },

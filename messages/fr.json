@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Prénom, nom, téléphone, prestation, date et heure sont obligatoires.",
     "unknownService": "Prestation inconnue.",
+    "serviceUnavailable": "Cette prestation n'est pas disponible à la réservation pour le moment.",
     "unknownSize": "Merci de choisir une taille.",
     "deliveryFeeLabel": "Debs Hair Beauty — Frais de livraison",
     "slotTaken": "Ce créneau vient d'être réservé par quelqu'un d'autre. Merci d'en choisir un autre.",
@@ -160,6 +161,7 @@
     "title": "Toutes nos prestations",
     "subtitle": "Choisis une prestation pour réserver directement le créneau et régler en ligne par carte.",
     "startingFromPrefix": "à.p.d ",
+    "unavailable": "Indisponible",
     "backToHome": "← Retour à l'accueil"
   },
   "Booking": {
@@ -227,15 +229,21 @@
     "Épilation": "Épilation"
   },
   "CatalogItems": {
-    "coiffure-afro--pose-perruque-lace": "Pose perruque lace",
+    "coiffure-afro--pose-perruque-lace-simple": "Pose perruque lace simple",
+    "coiffure-afro--pose-perruque-lace-pro": "Pose perruque lace pro",
     "coiffure-afro--pose-perruque-closure": "Pose perruque closure",
     "coiffure-afro--tissage-avec-closure": "Tissage avec closure",
+    "coiffure-afro--tissage": "Tissage",
     "coiffure-afro--ponytail": "Ponytail",
+    "coiffure-afro--ponytail-avec-lace": "Ponytail avec lace",
+    "coiffure-afro--flip-over": "Flip over",
     "coiffure-afro--rasta": "Rasta",
     "coiffure-afro--locks": "Locks",
     "coiffure-afro--twists": "Twists",
     "coiffure-afro--tresses-enfant": "Tresses enfant",
     "coiffure-afro--nattes-collees": "Nattes collées",
+    "coiffure-afro--natte-tourniquet": "Natte tourniquet",
+    "coiffure-afro--defrisage-cheveux": "Défrisage cheveux",
     "pack-mariage--essai-maquillage": "Essai maquillage",
     "pack-mariage--pose-perruque-jour-j": "Pose perruque jour J",
     "pack-mariage--maquillage-jour-j": "Maquillage jour J",
@@ -253,7 +261,6 @@
     "beaute-du-regard--extensions-des-cils": "Extensions des cils",
     "beaute-du-regard--volume-russe": "Volume Russe",
     "beaute-du-regard--pose-cils-simple": "Pose cils simple",
-    "beaute-du-regard--epilation-a-la-cire-des-sourcils": "Épilation à la cire des sourcils",
     "maquillage--maquillage-de-jour": "Maquillage de jour",
     "maquillage--maquillage-de-soiree": "Maquillage de soirée",
     "maquillage--maquillage-simple": "Maquillage simple",
@@ -265,6 +272,7 @@
     "coiffure-europeen--soin-botox": "Soin Botox",
     "coiffure-europeen--lissage-bresilien": "Lissage brésilien",
     "coiffure-europeen--lissage-keratine": "Lissage kératine",
+    "coiffure-europeen--lissage-indien": "Lissage indien",
     "coiffure-europeen--coloration-racine": "Coloration racine",
     "coiffure-europeen--coloration-tete-complete": "Coloration tête complète",
     "coiffure-europeen--transformation-balayage-ombre": "Transformation balayage, ombré",
@@ -280,9 +288,13 @@
     "beaute-des-pieds--pedicure-spa": "Pédicure spa",
     "beaute-des-pieds--pedicure-esthetique": "Pédicure esthétique",
     "blanchiment-dentaire--blanchiment-dentaire": "Blanchiment dentaire",
+    "blanchiment-dentaire--strass-dentaire": "Strass dentaire",
     "epilation--epilation-du-maillot": "Épilation du maillot",
     "epilation--epilation-du-dos-entier": "Épilation du dos entier",
-    "epilation--epilation-du-visage": "Épilation du visage"
+    "epilation--epilation-du-visage": "Épilation du visage",
+    "epilation--epilation-jambe-complete": "Épilation jambe complète",
+    "epilation--epilation-demi-jambe": "Épilation demi-jambe",
+    "epilation--epilation-a-la-cire-des-sourcils": "Épilation à la cire des sourcils"
   },
   "ProductCategories": {
     "Perruques": "Closure et Lace 100% cheveux humain densité 250",

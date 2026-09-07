@@ -15,6 +15,8 @@ export type DebsCatalogItem = {
   priceEuros: number;
   /** True when the printed price is a starting price ("à.p.d" — à partir de). */
   startingFrom?: boolean;
+  /** True when the service is temporarily closed to booking. */
+  unavailable?: boolean;
   /**
    * Minutes to block for this service. Cross-referenced from
    * https://www.treatwell.be/en/place/debs-hair-beauty-1/ (2026-09-07) by
@@ -31,22 +33,28 @@ export type DebsCatalogItem = {
 
 type CatalogSection = {
   categoryLabel: string;
-  items: Array<[name: string, priceEuros: number, startingFrom?: boolean, durationMinutes?: number]>;
+  items: Array<[name: string, priceEuros: number, startingFrom?: boolean, durationMinutes?: number, unavailable?: boolean]>;
 };
 
 const CATALOG_SECTIONS: CatalogSection[] = [
   {
     categoryLabel: "Coiffure Afro",
     items: [
-      ["Pose perruque lace", 75, undefined, 60],
+      ["Pose perruque lace simple", 75, undefined, 60],
+      ["Pose perruque lace pro", 90, undefined, 60],
       ["Pose perruque closure", 60, undefined, 60],
       ["Tissage avec closure", 75, undefined, 60],
-      ["Ponytail", 55],
+      ["Tissage", 75, undefined, 60],
+      ["Ponytail", 65],
+      ["Ponytail avec lace", 90],
+      ["Flip over", 75],
       ["Rasta", 75, true],
       ["Locks", 55, true],
       ["Twists", 55, true],
       ["Tresses enfant", 50],
-      ["Nattes collées", 25],
+      ["Nattes collées", 50],
+      ["Natte tourniquet", 25],
+      ["Défrisage cheveux", 30],
     ],
   },
   {
@@ -63,18 +71,17 @@ const CATALOG_SECTIONS: CatalogSection[] = [
   {
     categoryLabel: "Beauté du regard",
     items: [
-      ["Microblading", 180],
-      ["Microshading", 150],
+      ["Microblading", 200],
+      ["Microshading", 200],
       ["Retouche", 80],
       ["Combo brow", 200],
       ["Henna brow sourcils", 50],
       ["Browlift", 55],
       ["Rehaussement des sourcils", 45, undefined, 60],
       ["Rehaussement des cils", 40, undefined, 60],
-      ["Extensions des cils", 65],
-      ["Volume Russe", 70],
-      ["Pose cils simple", 40],
-      ["Épilation à la cire des sourcils", 10, undefined, 15],
+      ["Extensions des cils", 65, undefined, undefined, true],
+      ["Volume Russe", 70, undefined, undefined, true],
+      ["Pose cils simple", 40, undefined, undefined, true],
     ],
   },
   {
@@ -96,8 +103,9 @@ const CATALOG_SECTIONS: CatalogSection[] = [
       ["Soin Botox", 65, true],
       ["Lissage brésilien", 100, true, 180],
       ["Lissage kératine", 100, true, 180],
-      ["Coloration racine", 40, true, 150],
-      ["Coloration tête complète", 65],
+      ["Lissage indien", 100, true],
+      ["Coloration racine", 40, undefined, 150],
+      ["Coloration tête complète", 65, true],
       ["Transformation balayage, ombré", 150, true],
       ["Extensions de cheveux", 300, true],
     ],
@@ -116,7 +124,7 @@ const CATALOG_SECTIONS: CatalogSection[] = [
     categoryLabel: "Beauté des mains",
     items: [
       ["Manucure simple", 25, undefined, 30],
-      ["Pose de vernis semi-permanent", 35, undefined, 30],
+      ["Pose de vernis semi-permanent", 30, undefined, 30],
       ["Pose d'ongles en gel", 40, undefined, 80],
     ],
   },
@@ -129,7 +137,10 @@ const CATALOG_SECTIONS: CatalogSection[] = [
   },
   {
     categoryLabel: "Blanchiment dentaire",
-    items: [["Blanchiment dentaire", 100, undefined, 40]],
+    items: [
+      ["Blanchiment dentaire", 50, undefined, 40],
+      ["Strass dentaire", 15],
+    ],
   },
   {
     categoryLabel: "Épilation",
@@ -137,6 +148,9 @@ const CATALOG_SECTIONS: CatalogSection[] = [
       ["Épilation du maillot", 30],
       ["Épilation du dos entier", 45, undefined, 30],
       ["Épilation du visage", 10, undefined, 30],
+      ["Épilation jambe complète", 45],
+      ["Épilation demi-jambe", 35],
+      ["Épilation à la cire des sourcils", 10, undefined, 15],
     ],
   },
 ];
@@ -151,13 +165,14 @@ function slugify(input: string): string {
 }
 
 export const DEBS_CATALOG: DebsCatalogItem[] = CATALOG_SECTIONS.flatMap((section) =>
-  section.items.map(([name, priceEuros, startingFrom, durationMinutes]) => ({
+  section.items.map(([name, priceEuros, startingFrom, durationMinutes, unavailable]) => ({
     id: `${slugify(section.categoryLabel)}--${slugify(name)}`,
     categoryLabel: section.categoryLabel,
     name,
     priceEuros,
     startingFrom,
     durationMinutes,
+    unavailable,
   })),
 );
 

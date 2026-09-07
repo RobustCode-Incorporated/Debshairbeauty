@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",
     "unknownService": "Onbekende dienst.",
+    "serviceUnavailable": "Deze dienst is momenteel niet beschikbaar om te boeken.",
     "unknownSize": "Kies een maat.",
     "deliveryFeeLabel": "Debs Hair Beauty — Leveringskosten",
     "slotTaken": "Dit tijdslot is net door iemand anders geboekt. Kies een ander moment.",
@@ -160,6 +161,7 @@
     "title": "Al onze diensten",
     "subtitle": "Kies een dienst om het tijdslot direct te boeken en online met kaart te betalen.",
     "startingFromPrefix": "vanaf ",
+    "unavailable": "Niet beschikbaar",
     "backToHome": "← Terug naar home"
   },
   "Booking": {
@@ -227,15 +229,21 @@
     "Épilation": "Ontharing"
   },
   "CatalogItems": {
-    "coiffure-afro--pose-perruque-lace": "Lace pruik plaatsen",
+    "coiffure-afro--pose-perruque-lace-simple": "Eenvoudige lace pruik plaatsen",
+    "coiffure-afro--pose-perruque-lace-pro": "Professionele lace pruik plaatsen",
     "coiffure-afro--pose-perruque-closure": "Closure pruik plaatsen",
     "coiffure-afro--tissage-avec-closure": "Weave met closure",
+    "coiffure-afro--tissage": "Weave",
     "coiffure-afro--ponytail": "Paardenstaart",
+    "coiffure-afro--ponytail-avec-lace": "Paardenstaart met lace",
+    "coiffure-afro--flip-over": "Flip over",
     "coiffure-afro--rasta": "Rasta",
     "coiffure-afro--locks": "Locks",
     "coiffure-afro--twists": "Twists",
     "coiffure-afro--tresses-enfant": "Vlechten kinderen",
     "coiffure-afro--nattes-collees": "Cornrows",
+    "coiffure-afro--natte-tourniquet": "Tourniquet vlecht",
+    "coiffure-afro--defrisage-cheveux": "Haar ontkrullen",
     "pack-mariage--essai-maquillage": "Make-uptest",
     "pack-mariage--pose-perruque-jour-j": "Pruik plaatsen (trouwdag)",
     "pack-mariage--maquillage-jour-j": "Trouwdag make-up",
@@ -253,7 +261,6 @@
     "beaute-du-regard--extensions-des-cils": "Wimperextensions",
     "beaute-du-regard--volume-russe": "Russisch volume wimpers",
     "beaute-du-regard--pose-cils-simple": "Klassieke wimperextensions",
-    "beaute-du-regard--epilation-a-la-cire-des-sourcils": "Wenkbrauwen harsen",
     "maquillage--maquillage-de-jour": "Dagmake-up",
     "maquillage--maquillage-de-soiree": "Avondmake-up",
     "maquillage--maquillage-simple": "Eenvoudige make-up",
@@ -265,6 +272,7 @@
     "coiffure-europeen--soin-botox": "Botox-behandeling",
     "coiffure-europeen--lissage-bresilien": "Braziliaanse straightening",
     "coiffure-europeen--lissage-keratine": "Keratine straightening",
+    "coiffure-europeen--lissage-indien": "Indiase straightening",
     "coiffure-europeen--coloration-racine": "Uitgroei kleuren",
     "coiffure-europeen--coloration-tete-complete": "Volledige kleuring",
     "coiffure-europeen--transformation-balayage-ombre": "Balayage / ombré transformatie",
@@ -280,9 +288,13 @@
     "beaute-des-pieds--pedicure-spa": "Spa-pedicure",
     "beaute-des-pieds--pedicure-esthetique": "Esthetische pedicure",
     "blanchiment-dentaire--blanchiment-dentaire": "Tandenbleken",
+    "blanchiment-dentaire--strass-dentaire": "Tandsteentje",
     "epilation--epilation-du-maillot": "Bikinilijn ontharen",
     "epilation--epilation-du-dos-entier": "Volledige rug ontharen",
-    "epilation--epilation-du-visage": "Gezicht ontharen"
+    "epilation--epilation-du-visage": "Gezicht ontharen",
+    "epilation--epilation-jambe-complete": "Volledige beenontharing",
+    "epilation--epilation-demi-jambe": "Halve beenontharing",
+    "epilation--epilation-a-la-cire-des-sourcils": "Wenkbrauwen harsen"
   },
   "ProductCategories": {
     "Perruques": "Closure en Lace — 100% Mensenhaar, Dichtheid 250",

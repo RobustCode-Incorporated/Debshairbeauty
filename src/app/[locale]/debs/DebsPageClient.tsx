@@ -298,7 +298,7 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
             viewport={{ once: true }}
             className="relative aspect-[4/3] w-full"
           >
-            <Image src="/download (7).webp" alt={t("team.imageAlt")} fill className="object-cover object-center" />
+            <Image src="/deborah-portrait.jpeg" alt={t("team.imageAlt")} fill className="object-cover object-top" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
