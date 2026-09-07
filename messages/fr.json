@@ -19,6 +19,7 @@
     "missingRequiredFieldsBooking": "Prénom, nom, téléphone, prestation, date et heure sont obligatoires.",
     "unknownService": "Prestation inconnue.",
     "unknownSize": "Merci de choisir une taille.",
+    "deliveryFeeLabel": "Debs Hair Beauty — Frais de livraison",
     "slotTaken": "Ce créneau vient d'être réservé par quelqu'un d'autre. Merci d'en choisir un autre.",
     "missingRequiredFieldsPurchase": "Prénom, nom, téléphone et produit sont obligatoires.",
     "maxQuantity": "Quantité maximale : 10.",
@@ -187,6 +188,7 @@
     "sizeLabel": "Taille",
     "changeSizeCta": "Changer",
     "priceNote": "— payé en ligne, à récupérer au salon.",
+    "deliveryFeeNote": "+ {fee}€ de frais de livraison par commande.",
     "quantityLabel": "Quantité",
     "submitCta": "Payer {total}€ et acheter"
   },
@@ -291,13 +293,13 @@
     "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Naturel" },
     "meche-lisse-22": { "name": "Mèches bouclées", "variant": "22 pouces" },
     "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
-    "meche-ondulee-24": { "name": "Mèches ondulées", "variant": "24 pouces" },
     "meche-bouclee-18": { "name": "Mèches lisses", "variant": "18 pouces" },
     "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
-    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Ondulée" },
+    "closure": { "name": "Closure", "variant": "5x5 — Ondulée" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
     "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Huile démaquillante & nettoyante", "variant": "Bio — 120 ml" }
+    "soraali-huile-demaquillante": { "name": "Soraali — Huile démaquillante & nettoyante", "variant": "Bio — 120 ml" },
+    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Huile de pépins de figue de Barbarie", "variant": "Bio — 30 ml" }
   },
   "PrivacyPolicy": {
     "title": "Politique de confidentialité",

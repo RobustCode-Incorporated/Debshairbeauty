@@ -25,24 +25,55 @@ export type DebsProduct = {
   placeholder: boolean;
 };
 
-// Shared by every hair-extension product (wigs, closures, bundles) — same
-// size range and pricing across the board, confirmed by Déborah.
-export const HAIR_SIZE_GRID: DebsProductSize[] = [
-  { label: '8"', priceEuros: 30 },
-  { label: '10"', priceEuros: 37 },
-  { label: '12"', priceEuros: 40 },
-  { label: '14"', priceEuros: 45 },
-  { label: '15"', priceEuros: 50 },
-  { label: '16"', priceEuros: 60 },
-  { label: '18"', priceEuros: 65 },
-  { label: '20"', priceEuros: 75 },
-  { label: '22"', priceEuros: 80 },
-  { label: '24"', priceEuros: 90 },
-  { label: '26"', priceEuros: 100 },
-  { label: '30"', priceEuros: 110 },
+// Per-texture grids for the plain mèches (individuel bundle pricing from
+// Déborah's official price list — "lots 3 pcs" pricing exists too but isn't
+// used here since these cards sell single bundles).
+export const MECHE_LISSE_SIZE_GRID: DebsProductSize[] = [
+  { label: '14"', priceEuros: 35 },
+  { label: '16"', priceEuros: 40 },
+  { label: '18"', priceEuros: 45 },
+  { label: '20"', priceEuros: 45 },
+  { label: '22"', priceEuros: 45 },
+  { label: '24"', priceEuros: 55 },
+  { label: '26"', priceEuros: 55 },
+  { label: '28"', priceEuros: 60 },
 ];
 
-const HAIR_STARTING_PRICE = HAIR_SIZE_GRID[0].priceEuros;
+export const MECHE_ONDULEE_SIZE_GRID: DebsProductSize[] = [
+  { label: '18"', priceEuros: 45 },
+  { label: '20"', priceEuros: 50 },
+  { label: '22"', priceEuros: 50 },
+  { label: '24"', priceEuros: 55 },
+  { label: '26"', priceEuros: 55 },
+  { label: '28"', priceEuros: 60 },
+];
+
+// Only one size point on the official price list (Kinky Curly, individuel).
+export const MECHE_BOUCLEE_SIZE_GRID: DebsProductSize[] = [{ label: '18"', priceEuros: 50 }];
+
+// Per-product grids for the "Closure et Lace 100% cheveux humain" trio —
+// each has its own sizes/pricing, confirmed by Déborah, distinct from the
+// per-texture mèches grids above.
+export const LACE_360_SIZE_GRID: DebsProductSize[] = [
+  { label: '14"', priceEuros: 65 },
+  { label: '16"', priceEuros: 70 },
+  { label: '18"', priceEuros: 75 },
+  { label: '20"', priceEuros: 85 },
+];
+
+export const CLOSURE_SIZE_GRID: DebsProductSize[] = [
+  { label: '14"', priceEuros: 35 },
+  { label: '16"', priceEuros: 40 },
+  { label: '18"', priceEuros: 45 },
+  { label: '20"', priceEuros: 50 },
+];
+
+export const LACE_FRONTALE_SIZE_GRID: DebsProductSize[] = [
+  { label: '14"', priceEuros: 50 },
+  { label: '16"', priceEuros: 60 },
+  { label: '18"', priceEuros: 70 },
+  { label: '20"', priceEuros: 75 },
+];
 
 export const DEBS_PRODUCTS: DebsProduct[] = [
   {
@@ -50,66 +81,57 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
     category: "Perruques",
     name: "Perruque lace front",
     variant: "Naturel",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    priceEuros: LACE_360_SIZE_GRID[0].priceEuros,
+    sizes: LACE_360_SIZE_GRID,
     image: "/lace-360.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "closure",
     category: "Perruques",
     name: "Closure",
-    variant: "4x4 — Ondulée",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    variant: "5x5 — Ondulée",
+    priceEuros: CLOSURE_SIZE_GRID[0].priceEuros,
+    sizes: CLOSURE_SIZE_GRID,
     image: "/closure.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "lace-frontale",
     category: "Perruques",
     name: "Lace frontale",
     variant: "13x4 — Lisse",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    priceEuros: LACE_FRONTALE_SIZE_GRID[0].priceEuros,
+    sizes: LACE_FRONTALE_SIZE_GRID,
     image: "/lace-frontale.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "meche-lisse-22",
     category: "Mèches",
     name: "Mèches bouclées",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    priceEuros: MECHE_BOUCLEE_SIZE_GRID[0].priceEuros,
+    sizes: MECHE_BOUCLEE_SIZE_GRID,
     image: "/meche-lisse.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "meche-ondulee-20",
     category: "Mèches",
     name: "Mèches ondulées",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    priceEuros: MECHE_ONDULEE_SIZE_GRID[0].priceEuros,
+    sizes: MECHE_ONDULEE_SIZE_GRID,
     image: "/meche-ondulee-1.jpeg",
-    placeholder: true,
-  },
-  {
-    id: "meche-ondulee-24",
-    category: "Mèches",
-    name: "Mèches ondulées",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
-    image: "/meche-ondulee-2.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "meche-bouclee-18",
     category: "Mèches",
     name: "Mèches lisses",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
+    priceEuros: MECHE_LISSE_SIZE_GRID[0].priceEuros,
+    sizes: MECHE_LISSE_SIZE_GRID,
     image: "/meche-bouclee.jpeg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "soin-huile-cheveux",
@@ -134,7 +156,16 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
     variant: "Bio — 120 ml",
     priceEuros: 35,
     image: "/soraali-huile-demaquillante.jpeg",
-    placeholder: true,
+    placeholder: false,
+  },
+  {
+    id: "soraali-huile-figue-de-barbarie",
+    category: "Produits de beauté",
+    name: "Soraali — Huile de pépins de figue de Barbarie",
+    variant: "Bio — 30 ml",
+    priceEuros: 55,
+    image: "/soraali-huile-figue-de-barbarie.jpeg",
+    placeholder: false,
   },
 ];
 

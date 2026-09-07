@@ -7,6 +7,10 @@ import type { DebsProduct } from "@/lib/debs-products";
 
 const INTL_PHONE_RE = /^\+\d{7,15}$/;
 
+// Kept in sync with DELIVERY_FEE_EUROS in the checkout API route — display
+// only, the server always prices authoritatively.
+const DELIVERY_FEE_EUROS = 5;
+
 type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -30,7 +34,8 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
 
   const needsSizeChoice = Boolean(product.sizes) && !selectedSize;
   const unitPrice = product.sizes?.find((size) => size.label === selectedSize)?.priceEuros ?? product.priceEuros;
-  const total = unitPrice * form.quantity;
+  const subtotal = unitPrice * form.quantity;
+  const total = subtotal + DELIVERY_FEE_EUROS;
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -114,6 +119,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
           <p className="text-sm text-stone-600 mt-1">
             <strong className="text-stone-900">{unitPrice}€</strong> {t("priceNote")}
           </p>
+          <p className="text-xs text-stone-400">{t("deliveryFeeNote", { fee: DELIVERY_FEE_EUROS })}</p>
         </div>
 
         {([['firstName', tCommon('firstNameLabel')], ['lastName', tCommon('lastNameLabel')]] as const).map(([field, label]) => (

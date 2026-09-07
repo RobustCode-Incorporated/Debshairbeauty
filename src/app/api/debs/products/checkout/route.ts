@@ -17,6 +17,9 @@ type CheckoutBody = {
 
 const INTL_PHONE_RE = /^\+\d{7,15}$/;
 
+// Flat per-order fee (not multiplied by quantity), confirmed by Déborah.
+const DELIVERY_FEE_EUROS = 5;
+
 function asNonEmptyString(value: unknown): string | null {
   return typeof value === 'string' && value.trim().length > 0 ? value.trim() : null;
 }
@@ -105,6 +108,14 @@ export async function POST(request: NextRequest) {
           },
           quantity,
         },
+        {
+          price_data: {
+            currency: 'eur',
+            unit_amount: Math.round(DELIVERY_FEE_EUROS * 100),
+            product_data: { name: t('deliveryFeeLabel') },
+          },
+          quantity: 1,
+        },
       ],
       metadata: {
         kind: 'product_order',
@@ -115,6 +126,10 @@ export async function POST(request: NextRequest) {
         productName: product.name,
         variant: [product.variant ?? '', sizeLabel].filter(Boolean).join(', '),
         quantity: String(quantity),
+        // Fulfillment must not derive this from amount_total/quantity anymore
+        // — amount_total now also includes the flat delivery fee line above.
+        unitPriceCents: String(unitAmountCents),
+        deliveryFeeCents: String(Math.round(DELIVERY_FEE_EUROS * 100)),
         notes,
       },
       success_url: `${request.nextUrl.origin}${localizedPath('/debs/commande-confirmee', locale)}?session_id={CHECKOUT_SESSION_ID}`,

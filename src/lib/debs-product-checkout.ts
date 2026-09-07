@@ -10,6 +10,9 @@ export type DebsProductCheckoutMetadata = {
   productName: string;
   variant: string;
   quantity: string;
+  /** Per-unit price, in cents — set explicitly by the checkout route rather than derived from amount_total/quantity, since amount_total also includes the flat delivery fee line item. */
+  unitPriceCents: string;
+  deliveryFeeCents: string;
   notes: string;
 };
 
@@ -37,6 +40,7 @@ function buildWhatsappUrl(orderId: string, meta: DebsProductCheckoutMetadata): s
     `- Telephone: ${meta.phone}`,
     `- Produit: ${meta.productName}${meta.variant ? ` (${meta.variant})` : ''}`,
     `- Quantite: ${meta.quantity}`,
+    `- Frais de livraison inclus: ${(Number(meta.deliveryFeeCents) / 100).toFixed(2)}EUR`,
     `- ID commande: ${orderId}`,
     meta.notes ? `- Notes: ${meta.notes}` : null,
     '- Paiement deja regle par carte (Stripe). A recuperer au salon.',
@@ -87,7 +91,7 @@ export async function fulfillDebsProductOrder(session: Stripe.Checkout.Session):
 
   const quantity = Number(meta.quantity);
   const amountCents = session.amount_total ?? 0;
-  const unitPriceCents = quantity > 0 ? Math.round(amountCents / quantity) : amountCents;
+  const unitPriceCents = Number(meta.unitPriceCents) || 0;
   const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id ?? null;
 
   const orderResult = await debsPool.query<{ id: string }>(

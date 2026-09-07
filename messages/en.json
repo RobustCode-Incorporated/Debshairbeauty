@@ -19,6 +19,7 @@
     "missingRequiredFieldsBooking": "First name, last name, phone, service, date and time are required.",
     "unknownService": "Unknown service.",
     "unknownSize": "Please choose a size.",
+    "deliveryFeeLabel": "Debs Hair Beauty — Delivery fee",
     "slotTaken": "That slot was just booked by someone else. Please choose another one.",
     "missingRequiredFieldsPurchase": "First name, last name, phone and product are required.",
     "maxQuantity": "Maximum quantity: 10.",
@@ -187,6 +188,7 @@
     "sizeLabel": "Size",
     "changeSizeCta": "Change",
     "priceNote": "— paid online, to collect at the salon.",
+    "deliveryFeeNote": "+ €{fee} delivery fee per order.",
     "quantityLabel": "Quantity",
     "submitCta": "Pay {total}€ and buy"
   },
@@ -291,13 +293,13 @@
     "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Natural" },
     "meche-lisse-22": { "name": "Curly extensions", "variant": "22 inches" },
     "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
-    "meche-ondulee-24": { "name": "Wavy extensions", "variant": "24 inches" },
     "meche-bouclee-18": { "name": "Straight extensions", "variant": "18 inches" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
-    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Wavy" },
+    "closure": { "name": "Closure", "variant": "5x5 — Wavy" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Cleansing Makeup Removing Oil", "variant": "Organic — 120 ml" }
+    "soraali-huile-demaquillante": { "name": "Soraali — Cleansing Makeup Removing Oil", "variant": "Organic — 120 ml" },
+    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Organic Prickly Pear Seed Oil", "variant": "Organic — 30 ml" }
   },
   "PrivacyPolicy": {
     "title": "Privacy Policy",

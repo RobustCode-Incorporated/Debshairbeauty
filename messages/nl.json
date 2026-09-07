@@ -19,6 +19,7 @@
     "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",
     "unknownService": "Onbekende dienst.",
     "unknownSize": "Kies een maat.",
+    "deliveryFeeLabel": "Debs Hair Beauty — Leveringskosten",
     "slotTaken": "Dit tijdslot is net door iemand anders geboekt. Kies een ander moment.",
     "missingRequiredFieldsPurchase": "Voornaam, naam, telefoon en product zijn verplicht.",
     "maxQuantity": "Maximale hoeveelheid: 10.",
@@ -187,6 +188,7 @@
     "sizeLabel": "Maat",
     "changeSizeCta": "Wijzigen",
     "priceNote": "— online betaald, af te halen in de salon.",
+    "deliveryFeeNote": "+ {fee}€ leveringskosten per bestelling.",
     "quantityLabel": "Aantal",
     "submitCta": "Betaal {total}€ en koop"
   },
@@ -291,13 +293,13 @@
     "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Natuurlijk" },
     "meche-lisse-22": { "name": "Krullende extensions", "variant": "22 inch" },
     "meche-ondulee-20": { "name": "Golvende extensions", "variant": "20 inch" },
-    "meche-ondulee-24": { "name": "Golvende extensions", "variant": "24 inch" },
     "meche-bouclee-18": { "name": "Steile extensions", "variant": "18 inch" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
-    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Golvend" },
+    "closure": { "name": "Closure", "variant": "5x5 — Golvend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Reinigende make-up-verwijderende olie", "variant": "Bio — 120 ml" }
+    "soraali-huile-demaquillante": { "name": "Soraali — Reinigende make-up-verwijderende olie", "variant": "Bio — 120 ml" },
+    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Biologische Cactusvijgen Pitolie", "variant": "Bio — 30 ml" }
   },
   "PrivacyPolicy": {
     "title": "Privacybeleid",

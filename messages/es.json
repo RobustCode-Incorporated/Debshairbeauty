@@ -19,6 +19,7 @@
     "missingRequiredFieldsBooking": "Nombre, apellido, teléfono, servicio, fecha y hora son obligatorios.",
     "unknownService": "Servicio desconocido.",
     "unknownSize": "Elige una talla.",
+    "deliveryFeeLabel": "Debs Hair Beauty — Gastos de envío",
     "slotTaken": "Ese horario acaba de ser reservado por otra persona. Elige otro, por favor.",
     "missingRequiredFieldsPurchase": "Nombre, apellido, teléfono y producto son obligatorios.",
     "maxQuantity": "Cantidad máxima: 10.",
@@ -187,6 +188,7 @@
     "sizeLabel": "Talla",
     "changeSizeCta": "Cambiar",
     "priceNote": "— pagado en línea, para recoger en el salón.",
+    "deliveryFeeNote": "+ {fee}€ de gastos de envío por pedido.",
     "quantityLabel": "Cantidad",
     "submitCta": "Pagar {total}€ y comprar"
   },
@@ -291,13 +293,13 @@
     "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Natural" },
     "meche-lisse-22": { "name": "Extensiones rizadas", "variant": "22 pulgadas" },
     "meche-ondulee-20": { "name": "Extensiones onduladas", "variant": "20 pulgadas" },
-    "meche-ondulee-24": { "name": "Extensiones onduladas", "variant": "24 pulgadas" },
     "meche-bouclee-18": { "name": "Extensiones lisas", "variant": "18 pulgadas" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Lisa" },
-    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Ondulada" },
+    "closure": { "name": "Closure", "variant": "5x5 — Ondulada" },
     "soin-huile-cheveux": { "name": "Aceite capilar nutritivo", "variant": "" },
     "creme-visage-hydratante": { "name": "Crema facial hidratante", "variant": "" },
-    "soraali-huile-demaquillante": { "name": "Soraali — Aceite Desmaquillante y Limpiador", "variant": "Bio — 120 ml" }
+    "soraali-huile-demaquillante": { "name": "Soraali — Aceite Desmaquillante y Limpiador", "variant": "Bio — 120 ml" },
+    "soraali-huile-figue-de-barbarie": { "name": "Soraali — Aceite de Semilla de Higo Chumbo Ecológico", "variant": "Bio — 30 ml" }
   },
   "PrivacyPolicy": {
     "title": "Política de privacidad",
