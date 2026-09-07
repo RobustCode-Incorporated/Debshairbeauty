@@ -199,7 +199,8 @@
     "confirmFailed": "Impossible de confirmer la réservation.",
     "successTitle": "Réservation confirmée",
     "successMessage": "Merci {firstName} ! Votre acompte pour <strong>{category}</strong> le <strong>{date}</strong> à <strong>{time}</strong> a bien été réglé.",
-    "balanceNote": "Le solde éventuel se règle sur place, après la prestation."
+    "balanceNote": "Le solde éventuel se règle sur place, après la prestation.",
+    "reviewFollowUpNote": "Nous vous recontacterons par e-mail après votre rendez-vous pour recueillir votre avis."
   },
   "CommandeConfirmee": {
     "noSession": "Aucune session de paiement trouvée.",
@@ -352,5 +353,33 @@
         "body": "Cette politique peut être mise à jour occasionnellement, par exemple si nos prestataires ou nos pratiques évoluent. La date de dernière mise à jour figure en haut de cette page."
       }
     }
+  },
+  "ReviewEmail": {
+    "subject": "Comment s'est passée votre visite chez Debs Hair Beauty ?",
+    "greeting": "Bonjour {firstName},",
+    "body": "Merci d'avoir choisi Debs Hair Beauty. Nous aimerions savoir comment s'est passée votre expérience — ça prend moins d'une minute.",
+    "cta": "Donner mon avis"
+  },
+  "ReviewsApi": {
+    "invalidToken": "Ce lien d'avis n'est pas valide ou a expiré.",
+    "invalidRating": "Merci de choisir une note entre 1 et 5.",
+    "alreadySubmitted": "Un avis a déjà été envoyé pour ce rendez-vous."
+  },
+  "Avis": {
+    "eyebrow": "Votre avis compte",
+    "title": "Comment s'est passée votre visite ?",
+    "subtitle": "Une note en 5 secondes nous aide énormément.",
+    "commentPlaceholder": "Que pourrions-nous améliorer ? Votre retour reste privé.",
+    "submitCta": "Envoyer mon avis",
+    "submitting": "Envoi...",
+    "thanksHighTitle": "Merci beaucoup !",
+    "thanksHighBody": "Ça nous ferait très plaisir si vous pouviez partager votre expérience sur Google — ça prend 30 secondes et ça aide énormément le salon.",
+    "googleCta": "Laisser un avis Google",
+    "thanksLowTitle": "Merci pour votre retour",
+    "thanksLowBody": "Nous sommes désolés que votre expérience n'ait pas été parfaite. Déborah a été prévenue et va vous recontacter.",
+    "alreadySubmittedTitle": "Avis déjà envoyé",
+    "alreadySubmittedBody": "Vous nous avez déjà donné votre avis pour ce rendez-vous — merci encore !",
+    "invalidTitle": "Lien invalide",
+    "invalidBody": "Ce lien d'avis n'est pas valide ou a expiré."
   }
 }

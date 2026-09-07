@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      metadata: { firstName, lastName, phone, category: categoryMetadata, date, time, notes },
+      metadata: { firstName, lastName, phone, locale, category: categoryMetadata, date, time, notes },
       success_url: `${request.nextUrl.origin}${localizedPath('/debs/reservation-confirmee', locale)}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}${localizedPath('/debs', locale)}?booking=annulee`,
     });

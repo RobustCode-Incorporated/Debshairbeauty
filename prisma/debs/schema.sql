@@ -55,7 +55,10 @@ CREATE INDEX IF NOT EXISTS debs_appointments_client_id_idx ON debs_appointments 
 DO $$ BEGIN
   ALTER TABLE debs_appointments ADD CONSTRAINT debs_appointments_date_time_key UNIQUE (date_time);
 EXCEPTION
-  WHEN duplicate_object THEN NULL;
+  -- Postgres raises duplicate_table (42P07), not duplicate_object, when the
+  -- constraint (and its backing index) already exists — caught this the hard
+  -- way re-running the migration after it had already applied once.
+  WHEN duplicate_object OR duplicate_table THEN NULL;
 END $$;
 
 -- A booking only ever exists once its deposit is paid: an appointment row is
@@ -92,3 +95,21 @@ CREATE TABLE IF NOT EXISTS debs_orders (
 );
 
 CREATE INDEX IF NOT EXISTS debs_orders_client_id_idx ON debs_orders (client_id);
+
+-- Post-appointment review funnel: a private star rating first (see
+-- src/app/[locale]/debs/avis), then only 4-5★ clients are shown the real
+-- Google review link — 1-3★ stays private so Déborah can do service
+-- recovery instead of it becoming a public bad review. See
+-- src/app/api/debs/cron/review-requests and src/app/api/debs/reviews.
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS email TEXT;
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS locale TEXT NOT NULL DEFAULT 'fr';
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS review_token UUID UNIQUE DEFAULT gen_random_uuid();
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS review_email_sent_at TIMESTAMPTZ;
+
+CREATE TABLE IF NOT EXISTS debs_reviews (
+  id             UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  appointment_id UUID NOT NULL UNIQUE REFERENCES debs_appointments(id) ON DELETE CASCADE,
+  rating         SMALLINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment        TEXT,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);

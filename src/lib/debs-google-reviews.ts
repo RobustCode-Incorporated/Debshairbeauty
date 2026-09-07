@@ -13,6 +13,12 @@
 // relevance ranking — there is no way to pull the full review history via
 // API. The section links out to the real Google listing for the rest.
 
+/** Direct "write a review" link for the post-appointment review funnel (src/app/[locale]/debs/avis). `null` if GOOGLE_PLACE_ID isn't set. */
+export function getGoogleWriteReviewUrl(): string | null {
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  return placeId ? `https://search.google.com/local/writereview?placeid=${placeId}` : null;
+}
+
 export type DebsGoogleReview = {
   authorName: string;
   authorPhotoUrl: string | null;

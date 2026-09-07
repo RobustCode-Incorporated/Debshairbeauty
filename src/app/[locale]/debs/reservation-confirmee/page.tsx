@@ -98,7 +98,8 @@ function ConfirmationContent() {
           strong: (chunks) => <strong className="text-stone-700">{chunks}</strong>,
         })}
       </p>
-      <p className="text-stone-400 text-sm mb-8">{t("balanceNote")}</p>
+      <p className="text-stone-400 text-sm mb-1">{t("balanceNote")}</p>
+      <p className="text-stone-400 text-sm mb-8">{t("reviewFollowUpNote")}</p>
       {result?.whatsappUrl && (
         <a
           href={result.whatsappUrl}

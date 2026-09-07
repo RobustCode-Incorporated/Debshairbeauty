@@ -6,6 +6,7 @@ export type DebsCheckoutMetadata = {
   firstName: string;
   lastName: string;
   phone: string;
+  locale: string;
   category: string;
   date: string;
   time: string;
@@ -60,6 +61,10 @@ export async function fulfillDebsCheckout(session: Stripe.Checkout.Session): Pro
   if (!meta?.firstName || !meta.lastName || !meta.phone || !meta.category || !meta.date || !meta.time) {
     throw new Error(`Debs checkout session ${session.id} is paid but missing booking metadata.`);
   }
+  // Not required from our own form — Stripe's hosted Checkout page always
+  // asks for it itself in payment mode. Still optional here: a booking must
+  // never be blocked over it, it just means no review-request email later.
+  const email = session.customer_details?.email ?? null;
 
   const existing = await debsPool.query<{ id: string }>(
     'SELECT id FROM debs_appointments WHERE stripe_session_id = $1',
@@ -107,8 +112,8 @@ export async function fulfillDebsCheckout(session: Stripe.Checkout.Session): Pro
   try {
     appointmentResult = await debsPool.query<{ id: string }>(
       `INSERT INTO debs_appointments
-         (date_time, category, notes, status, client_id, staff_id, payment_status, amount_cents, currency, stripe_session_id, stripe_payment_intent_id)
-       VALUES ($1, $2, $3, 'CONFIRMED', $4, $5, 'PAID', $6, $7, $8, $9)
+         (date_time, category, notes, status, client_id, staff_id, payment_status, amount_cents, currency, stripe_session_id, stripe_payment_intent_id, email, locale)
+       VALUES ($1, $2, $3, 'CONFIRMED', $4, $5, 'PAID', $6, $7, $8, $9, $10, $11)
        ON CONFLICT (stripe_session_id) DO NOTHING
        RETURNING id`,
       [
@@ -121,6 +126,8 @@ export async function fulfillDebsCheckout(session: Stripe.Checkout.Session): Pro
         session.currency ?? 'eur',
         session.id,
         paymentIntentId,
+        email,
+        meta.locale || 'fr',
       ],
     );
   } catch (error) {

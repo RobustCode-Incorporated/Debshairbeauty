@@ -199,7 +199,8 @@
     "confirmFailed": "Kon de reservering niet bevestigen.",
     "successTitle": "Reservering bevestigd",
     "successMessage": "Bedankt {firstName}! Je voorschot voor <strong>{category}</strong> op <strong>{date}</strong> om <strong>{time}</strong> is betaald.",
-    "balanceNote": "Het eventuele saldo wordt ter plaatse betaald, na de dienst."
+    "balanceNote": "Het eventuele saldo wordt ter plaatse betaald, na de dienst.",
+    "reviewFollowUpNote": "We nemen na je afspraak per e-mail contact op om je ervaring te horen."
   },
   "CommandeConfirmee": {
     "noSession": "Geen betaalsessie gevonden.",
@@ -352,5 +353,33 @@
         "body": "Dit beleid kan af en toe worden bijgewerkt, bijvoorbeeld als onze dienstverleners of praktijken veranderen. De datum van de laatste update staat bovenaan deze pagina."
       }
     }
+  },
+  "ReviewEmail": {
+    "subject": "Hoe was je bezoek aan Debs Hair Beauty?",
+    "greeting": "Hallo {firstName},",
+    "body": "Bedankt dat je voor Debs Hair Beauty koos. We horen graag hoe je bezoek was — het kost minder dan een minuut.",
+    "cta": "Mijn beoordeling geven"
+  },
+  "ReviewsApi": {
+    "invalidToken": "Deze beoordelingslink is ongeldig of verlopen.",
+    "invalidRating": "Kies een score tussen 1 en 5.",
+    "alreadySubmitted": "Er is al een beoordeling verstuurd voor deze afspraak."
+  },
+  "Avis": {
+    "eyebrow": "Jouw mening telt",
+    "title": "Hoe was je bezoek?",
+    "subtitle": "Een beoordeling van 5 seconden helpt ons enorm.",
+    "commentPlaceholder": "Wat kunnen we verbeteren? Je feedback blijft privé.",
+    "submitCta": "Beoordeling versturen",
+    "submitting": "Versturen...",
+    "thanksHighTitle": "Heel erg bedankt!",
+    "thanksHighBody": "We zouden het geweldig vinden als je je ervaring op Google zou delen — het kost 30 seconden en helpt de salon enorm.",
+    "googleCta": "Google-beoordeling achterlaten",
+    "thanksLowTitle": "Bedankt voor je feedback",
+    "thanksLowBody": "Het spijt ons dat je ervaring niet perfect was. Déborah is op de hoogte gebracht en neemt contact met je op.",
+    "alreadySubmittedTitle": "Beoordeling al verstuurd",
+    "alreadySubmittedBody": "Je hebt al een beoordeling achtergelaten voor deze afspraak — nogmaals bedankt!",
+    "invalidTitle": "Ongeldige link",
+    "invalidBody": "Deze beoordelingslink is ongeldig of verlopen."
   }
 }

@@ -199,7 +199,8 @@
     "confirmFailed": "No se pudo confirmar la reserva.",
     "successTitle": "Reserva confirmada",
     "successMessage": "¡Gracias {firstName}! Tu depósito para <strong>{category}</strong> el <strong>{date}</strong> a las <strong>{time}</strong> ha sido pagado.",
-    "balanceNote": "El saldo restante, si lo hay, se paga en el salón después del servicio."
+    "balanceNote": "El saldo restante, si lo hay, se paga en el salón después del servicio.",
+    "reviewFollowUpNote": "Te contactaremos por correo tras tu cita para conocer tu experiencia."
   },
   "CommandeConfirmee": {
     "noSession": "No se encontró ninguna sesión de pago.",
@@ -352,5 +353,33 @@
         "body": "Esta política puede actualizarse ocasionalmente, por ejemplo si cambian nuestros proveedores o prácticas. La fecha de la última actualización aparece en la parte superior de esta página."
       }
     }
+  },
+  "ReviewEmail": {
+    "subject": "¿Cómo fue tu visita a Debs Hair Beauty?",
+    "greeting": "Hola {firstName},",
+    "body": "Gracias por elegir Debs Hair Beauty. Nos encantaría saber cómo fue tu experiencia — toma menos de un minuto.",
+    "cta": "Dejar mi valoración"
+  },
+  "ReviewsApi": {
+    "invalidToken": "Este enlace de valoración no es válido o ha caducado.",
+    "invalidRating": "Por favor elige una puntuación entre 1 y 5.",
+    "alreadySubmitted": "Ya se ha enviado una valoración para esta cita."
+  },
+  "Avis": {
+    "eyebrow": "Tu opinión importa",
+    "title": "¿Cómo fue tu visita?",
+    "subtitle": "Una valoración de 5 segundos nos ayuda muchísimo.",
+    "commentPlaceholder": "¿Qué podríamos mejorar? Tu comentario es privado.",
+    "submitCta": "Enviar mi valoración",
+    "submitting": "Enviando...",
+    "thanksHighTitle": "¡Muchas gracias!",
+    "thanksHighBody": "Nos encantaría que compartieras tu experiencia en Google — toma 30 segundos y ayuda muchísimo al salón.",
+    "googleCta": "Dejar una reseña en Google",
+    "thanksLowTitle": "Gracias por tu comentario",
+    "thanksLowBody": "Sentimos que tu experiencia no haya sido perfecta. Hemos avisado a Déborah y se pondrá en contacto contigo.",
+    "alreadySubmittedTitle": "Valoración ya enviada",
+    "alreadySubmittedBody": "Ya nos dejaste tu valoración para esta cita — ¡gracias de nuevo!",
+    "invalidTitle": "Enlace no válido",
+    "invalidBody": "Este enlace de valoración no es válido o ha caducado."
   }
 }

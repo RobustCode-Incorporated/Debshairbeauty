@@ -199,7 +199,8 @@
     "confirmFailed": "Could not confirm the booking.",
     "successTitle": "Booking confirmed",
     "successMessage": "Thank you {firstName}! Your deposit for <strong>{category}</strong> on <strong>{date}</strong> at <strong>{time}</strong> has been paid.",
-    "balanceNote": "Any remaining balance is paid on site, after the service."
+    "balanceNote": "Any remaining balance is paid on site, after the service.",
+    "reviewFollowUpNote": "We'll follow up by email after your appointment to hear how it went."
   },
   "CommandeConfirmee": {
     "noSession": "No payment session found.",
@@ -352,5 +353,33 @@
         "body": "This policy may be updated from time to time, for example if our providers or practices change. The date of the last update appears at the top of this page."
       }
     }
+  },
+  "ReviewEmail": {
+    "subject": "How was your visit to Debs Hair Beauty?",
+    "greeting": "Hi {firstName},",
+    "body": "Thanks for choosing Debs Hair Beauty. We'd love to know how your visit went — it takes less than a minute.",
+    "cta": "Leave my rating"
+  },
+  "ReviewsApi": {
+    "invalidToken": "This review link is invalid or has expired.",
+    "invalidRating": "Please choose a rating between 1 and 5.",
+    "alreadySubmitted": "A review has already been submitted for this appointment."
+  },
+  "Avis": {
+    "eyebrow": "Your feedback matters",
+    "title": "How was your visit?",
+    "subtitle": "A 5-second rating helps us enormously.",
+    "commentPlaceholder": "What could we improve? Your feedback stays private.",
+    "submitCta": "Send my rating",
+    "submitting": "Sending...",
+    "thanksHighTitle": "Thank you so much!",
+    "thanksHighBody": "We'd love it if you could share your experience on Google — it takes 30 seconds and helps the salon a lot.",
+    "googleCta": "Leave a Google review",
+    "thanksLowTitle": "Thanks for your feedback",
+    "thanksLowBody": "We're sorry your experience wasn't perfect. Déborah has been notified and will follow up with you.",
+    "alreadySubmittedTitle": "Rating already sent",
+    "alreadySubmittedBody": "You've already left a rating for this appointment — thanks again!",
+    "invalidTitle": "Invalid link",
+    "invalidBody": "This review link is invalid or has expired."
   }
 }
