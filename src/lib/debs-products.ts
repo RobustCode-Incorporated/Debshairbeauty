@@ -122,16 +122,6 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
     placeholder: true,
   },
   {
-    id: "bundles",
-    category: "Mèches",
-    name: "Bundles",
-    variant: "16 inches — Curly",
-    priceEuros: HAIR_STARTING_PRICE,
-    sizes: HAIR_SIZE_GRID,
-    image: "/lace-360.jpeg",
-    placeholder: true,
-  },
-  {
     id: "soin-huile-cheveux",
     category: "Produits de beauté",
     name: "Huile capillaire nourrissante",

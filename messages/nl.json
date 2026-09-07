@@ -296,7 +296,6 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
     "closure": { "name": "Closure", "variant": "4x4 — Golvend" },
     "lace-360": { "name": "360 Lace", "variant": "Krullend" },
-    "bundles": { "name": "Bundles", "variant": "16 inch — Krullend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
   },

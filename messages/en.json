@@ -296,7 +296,6 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
     "closure": { "name": "Closure", "variant": "4x4 — Wavy" },
     "lace-360": { "name": "360 Lace", "variant": "Curly" },
-    "bundles": { "name": "Bundles", "variant": "16 inches — Curly" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
   },
