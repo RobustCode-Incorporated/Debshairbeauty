@@ -283,19 +283,18 @@
     "epilation--epilation-du-visage": "Facial waxing"
   },
   "ProductCategories": {
-    "Perruques": "Wigs",
+    "Perruques": "Closure & Lace — 100% Human Hair, Density 250",
     "Mèches": "Hair Extensions",
     "Produits de beauté": "Beauty Products"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Lace front wig", "variant": "Natural" },
+    "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Natural" },
     "meche-lisse-22": { "name": "Curly extensions", "variant": "22 inches" },
     "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
     "meche-ondulee-24": { "name": "Wavy extensions", "variant": "24 inches" },
     "meche-bouclee-18": { "name": "Straight extensions", "variant": "18 inches" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
-    "closure": { "name": "Closure", "variant": "4x4 — Wavy" },
-    "lace-360": { "name": "360 Lace", "variant": "Curly" },
+    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Wavy" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
   },

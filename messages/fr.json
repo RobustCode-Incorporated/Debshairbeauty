@@ -283,19 +283,18 @@
     "epilation--epilation-du-visage": "Épilation du visage"
   },
   "ProductCategories": {
-    "Perruques": "Perruques",
+    "Perruques": "Closure et Lace 100% cheveux humain densité 250",
     "Mèches": "Mèches",
     "Produits de beauté": "Produits de beauté"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Perruque lace front", "variant": "Naturel" },
+    "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Naturel" },
     "meche-lisse-22": { "name": "Mèches bouclées", "variant": "22 pouces" },
     "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
     "meche-ondulee-24": { "name": "Mèches ondulées", "variant": "24 pouces" },
     "meche-bouclee-18": { "name": "Mèches lisses", "variant": "18 pouces" },
     "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
-    "closure": { "name": "Closure", "variant": "4x4 — Ondulée" },
-    "lace-360": { "name": "Lace 360", "variant": "Bouclée" },
+    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Ondulée" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
     "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" }
   },

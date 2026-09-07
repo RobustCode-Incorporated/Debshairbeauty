@@ -283,19 +283,18 @@
     "epilation--epilation-du-visage": "Gezicht ontharen"
   },
   "ProductCategories": {
-    "Perruques": "Pruiken",
+    "Perruques": "Closure en Lace — 100% Mensenhaar, Dichtheid 250",
     "Mèches": "Haarextensions",
     "Produits de beauté": "Schoonheidsproducten"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Lace front pruik", "variant": "Natuurlijk" },
+    "perruque-lace-18-naturelle": { "name": "Lace 360", "variant": "Natuurlijk" },
     "meche-lisse-22": { "name": "Krullende extensions", "variant": "22 inch" },
     "meche-ondulee-20": { "name": "Golvende extensions", "variant": "20 inch" },
     "meche-ondulee-24": { "name": "Golvende extensions", "variant": "24 inch" },
     "meche-bouclee-18": { "name": "Steile extensions", "variant": "18 inch" },
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
-    "closure": { "name": "Closure", "variant": "4x4 — Golvend" },
-    "lace-360": { "name": "360 Lace", "variant": "Krullend" },
+    "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Golvend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
   },
