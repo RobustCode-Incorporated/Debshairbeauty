@@ -296,7 +296,8 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
     "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Wavy" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
-    "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
+    "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" },
+    "soraali-huile-demaquillante": { "name": "Soraali — Cleansing Makeup Removing Oil", "variant": "Organic — 120 ml" }
   },
   "PrivacyPolicy": {
     "title": "Privacy Policy",

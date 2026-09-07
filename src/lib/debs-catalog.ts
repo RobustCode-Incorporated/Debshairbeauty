@@ -15,20 +15,32 @@ export type DebsCatalogItem = {
   priceEuros: number;
   /** True when the printed price is a starting price ("à.p.d" — à partir de). */
   startingFrom?: boolean;
+  /**
+   * Minutes to block for this service. Cross-referenced from
+   * https://www.treatwell.be/en/place/debs-hair-beauty-1/ (2026-09-07) by
+   * matching service name — Treatwell's own prices sometimes differ from
+   * ours (that's a separate, real discrepancy worth asking Déborah about;
+   * duration itself shouldn't move with price). Ranges shown on Treatwell
+   * (e.g. "30 mins - 1 hr") use the upper bound, so a booking never blocks
+   * less time than the service could actually take. `undefined` = no
+   * reliable match found — still needs a real answer from Déborah before
+   * duration-aware slot conflicts can use it.
+   */
+  durationMinutes?: number;
 };
 
 type CatalogSection = {
   categoryLabel: string;
-  items: Array<[name: string, priceEuros: number, startingFrom?: boolean]>;
+  items: Array<[name: string, priceEuros: number, startingFrom?: boolean, durationMinutes?: number]>;
 };
 
 const CATALOG_SECTIONS: CatalogSection[] = [
   {
     categoryLabel: "Coiffure Afro",
     items: [
-      ["Pose perruque lace", 75],
-      ["Pose perruque closure", 60],
-      ["Tissage avec closure", 75],
+      ["Pose perruque lace", 75, undefined, 60],
+      ["Pose perruque closure", 60, undefined, 60],
+      ["Tissage avec closure", 75, undefined, 60],
       ["Ponytail", 55],
       ["Rasta", 75, true],
       ["Locks", 55, true],
@@ -44,7 +56,7 @@ const CATALOG_SECTIONS: CatalogSection[] = [
       ["Pose perruque jour J", 120],
       ["Maquillage jour J", 60],
       ["Retouche soirée", 180],
-      ["Pose perruque et chignon", 200],
+      ["Pose perruque et chignon", 200, undefined, 60],
       ["Tissage chignon", 120],
     ],
   },
@@ -57,12 +69,12 @@ const CATALOG_SECTIONS: CatalogSection[] = [
       ["Combo brow", 200],
       ["Henna brow sourcils", 50],
       ["Browlift", 55],
-      ["Rehaussement des sourcils", 45],
-      ["Rehaussement des cils", 40],
+      ["Rehaussement des sourcils", 45, undefined, 60],
+      ["Rehaussement des cils", 40, undefined, 60],
       ["Extensions des cils", 65],
       ["Volume Russe", 70],
       ["Pose cils simple", 40],
-      ["Épilation à la cire des sourcils", 10],
+      ["Épilation à la cire des sourcils", 10, undefined, 15],
     ],
   },
   {
@@ -76,15 +88,15 @@ const CATALOG_SECTIONS: CatalogSection[] = [
   {
     categoryLabel: "Coiffure Européen",
     items: [
-      ["Brushing", 25, true],
+      ["Brushing", 25, true, 60],
       ["Coupe à sec", 15],
       ["Coupe transformation", 30],
       ["Shampoing", 20],
-      ["Shampoing, coupe, brushing", 45],
+      ["Shampoing, coupe, brushing", 45, undefined, 90],
       ["Soin Botox", 65, true],
-      ["Lissage brésilien", 100, true],
-      ["Lissage kératine", 100, true],
-      ["Coloration racine", 40, true],
+      ["Lissage brésilien", 100, true, 180],
+      ["Lissage kératine", 100, true, 180],
+      ["Coloration racine", 40, true, 150],
       ["Coloration tête complète", 65],
       ["Transformation balayage, ombré", 150, true],
       ["Extensions de cheveux", 300, true],
@@ -93,38 +105,38 @@ const CATALOG_SECTIONS: CatalogSection[] = [
   {
     categoryLabel: "Massage",
     items: [
-      ["Massage relaxant 30 min", 45],
-      ["Massage aux huiles chaudes 1h", 90],
-      ["Massage aux pierres chaudes 1h", 90],
-      ["Massage pour enfants 30 min", 40],
-      ["Massage en duo 1h", 150],
+      ["Massage relaxant 30 min", 45, undefined, 30],
+      ["Massage aux huiles chaudes 1h", 90, undefined, 60],
+      ["Massage aux pierres chaudes 1h", 90, undefined, 60],
+      ["Massage pour enfants 30 min", 40, undefined, 30],
+      ["Massage en duo 1h", 150, undefined, 60],
     ],
   },
   {
     categoryLabel: "Beauté des mains",
     items: [
-      ["Manucure simple", 25],
-      ["Pose de vernis semi-permanent", 35],
-      ["Pose d'ongles en gel", 40],
+      ["Manucure simple", 25, undefined, 30],
+      ["Pose de vernis semi-permanent", 35, undefined, 30],
+      ["Pose d'ongles en gel", 40, undefined, 80],
     ],
   },
   {
     categoryLabel: "Beauté des pieds",
     items: [
-      ["Pédicure spa", 50],
-      ["Pédicure esthétique", 45],
+      ["Pédicure spa", 50, undefined, 30],
+      ["Pédicure esthétique", 45, undefined, 30],
     ],
   },
   {
     categoryLabel: "Blanchiment dentaire",
-    items: [["Blanchiment dentaire", 100]],
+    items: [["Blanchiment dentaire", 100, undefined, 40]],
   },
   {
     categoryLabel: "Épilation",
     items: [
       ["Épilation du maillot", 30],
-      ["Épilation du dos entier", 45],
-      ["Épilation du visage", 10],
+      ["Épilation du dos entier", 45, undefined, 30],
+      ["Épilation du visage", 10, undefined, 30],
     ],
   },
 ];
@@ -139,12 +151,13 @@ function slugify(input: string): string {
 }
 
 export const DEBS_CATALOG: DebsCatalogItem[] = CATALOG_SECTIONS.flatMap((section) =>
-  section.items.map(([name, priceEuros, startingFrom]) => ({
+  section.items.map(([name, priceEuros, startingFrom, durationMinutes]) => ({
     id: `${slugify(section.categoryLabel)}--${slugify(name)}`,
     categoryLabel: section.categoryLabel,
     name,
     priceEuros,
     startingFrom,
+    durationMinutes,
   })),
 );
 

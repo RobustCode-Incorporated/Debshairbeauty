@@ -296,7 +296,8 @@
     "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
     "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Ondulée" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
-    "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" }
+    "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" },
+    "soraali-huile-demaquillante": { "name": "Soraali — Huile démaquillante & nettoyante", "variant": "Bio — 120 ml" }
   },
   "PrivacyPolicy": {
     "title": "Politique de confidentialité",

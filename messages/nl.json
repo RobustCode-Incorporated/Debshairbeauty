@@ -296,7 +296,8 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
     "closure": { "name": "Closure", "variant": "4x4 Closure, 5x5 — Golvend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
-    "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
+    "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" },
+    "soraali-huile-demaquillante": { "name": "Soraali — Reinigende make-up-verwijderende olie", "variant": "Bio — 120 ml" }
   },
   "PrivacyPolicy": {
     "title": "Privacybeleid",

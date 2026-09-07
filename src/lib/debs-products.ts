@@ -127,6 +127,15 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
     image: "/download.webp",
     placeholder: true,
   },
+  {
+    id: "soraali-huile-demaquillante",
+    category: "Produits de beauté",
+    name: "Soraali — Huile démaquillante & nettoyante",
+    variant: "Bio — 120 ml",
+    priceEuros: 35,
+    image: "/soraali-huile-demaquillante.jpeg",
+    placeholder: true,
+  },
 ];
 
 export const DEBS_PRODUCT_CATEGORIES: DebsProduct["category"][] = ["Perruques", "Mèches", "Produits de beauté"];
