@@ -21,13 +21,16 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
   const locale = useLocale();
 
   const [form, setForm] = useState({ firstName: "", lastName: "", phone: "", quantity: 1, notes: "" });
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!product) return null;
 
-  const total = product.priceEuros * form.quantity;
+  const needsSizeChoice = Boolean(product.sizes) && !selectedSize;
+  const unitPrice = product.sizes?.find((size) => size.label === selectedSize)?.priceEuros ?? product.priceEuros;
+  const total = unitPrice * form.quantity;
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,7 +48,7 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
       const response = await fetch("/api/debs/products/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, productId: product.id, locale }),
+        body: JSON.stringify({ ...form, productId: product.id, sizeLabel: selectedSize, locale }),
       });
       const data: { url?: string; error?: string } = await response.json();
       if (!response.ok) throw new Error(data.error ?? tCommon("checkoutFailed"));
@@ -62,6 +65,37 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
     }
   };
 
+  if (needsSizeChoice) {
+    return (
+      <SlideOver isOpen={isOpen} onClose={onClose} title={t("title")} theme="light">
+        <div className="space-y-5">
+          <div className="border border-amber-200 bg-amber-50 px-4 py-3">
+            <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold mb-1">{tProductCategories(product.category)}</p>
+            <p className="text-stone-900 font-bold">{tProducts(`${product.id}.name`)}</p>
+            {product.variant && <p className="text-sm text-stone-600">{tProducts(`${product.id}.variant`)}</p>}
+          </div>
+
+          <div>
+            <span className="block text-sm text-stone-700 mb-2">{t("chooseSizeLabel")}</span>
+            <div className="grid grid-cols-3 gap-2">
+              {product.sizes!.map((size) => (
+                <button
+                  key={size.label}
+                  type="button"
+                  onClick={() => setSelectedSize(size.label)}
+                  className="border border-stone-300 px-2 py-3 text-center transition-colors hover:border-amber-600"
+                >
+                  <span className="block text-sm font-bold text-stone-900">{size.label}</span>
+                  <span className="block text-xs text-stone-500">{size.priceEuros}€</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SlideOver>
+    );
+  }
+
   return (
     <SlideOver isOpen={isOpen} onClose={onClose} title={t("title")} theme="light">
       <form onSubmit={submit} className="space-y-5">
@@ -69,8 +103,16 @@ export default function DebsProductPurchaseSlideOver({ isOpen, onClose, product 
           <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold mb-1">{tProductCategories(product.category)}</p>
           <p className="text-stone-900 font-bold">{tProducts(`${product.id}.name`)}</p>
           {product.variant && <p className="text-sm text-stone-600">{tProducts(`${product.id}.variant`)}</p>}
+          {product.sizes && selectedSize && (
+            <p className="text-sm text-stone-600">
+              {t("sizeLabel")}: <strong className="text-stone-900">{selectedSize}</strong>{" "}
+              <button type="button" onClick={() => setSelectedSize(null)} className="ml-1 text-xs text-amber-700 underline">
+                {t("changeSizeCta")}
+              </button>
+            </p>
+          )}
           <p className="text-sm text-stone-600 mt-1">
-            <strong className="text-stone-900">{product.priceEuros}€</strong> {t("priceNote")}
+            <strong className="text-stone-900">{unitPrice}€</strong> {t("priceNote")}
           </p>
         </div>
 

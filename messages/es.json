@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Nombre, apellido, teléfono, servicio, fecha y hora son obligatorios.",
     "unknownService": "Servicio desconocido.",
+    "unknownSize": "Elige una talla.",
     "slotTaken": "Ese horario acaba de ser reservado por otra persona. Elige otro, por favor.",
     "missingRequiredFieldsPurchase": "Nombre, apellido, teléfono y producto son obligatorios.",
     "maxQuantity": "Cantidad máxima: 10.",
@@ -85,6 +86,7 @@
       "subtitle": "Pelucas, extensiones y productos de belleza — pagados en línea, para recoger directamente en el salón.",
       "exampleBadge": "Ejemplo",
       "comingSoon": "Próximamente",
+      "startingFromPrefix": "desde ",
       "buy": "Comprar",
       "seeCatalogCta": "¿Buscas un servicio? Ver el catálogo completo"
     },
@@ -181,6 +183,9 @@
   },
   "Purchase": {
     "title": "Comprar un producto",
+    "chooseSizeLabel": "Elige una talla",
+    "sizeLabel": "Talla",
+    "changeSizeCta": "Cambiar",
     "priceNote": "— pagado en línea, para recoger en el salón.",
     "quantityLabel": "Cantidad",
     "submitCta": "Pagar {total}€ y comprar"
@@ -283,8 +288,8 @@
     "Produits de beauté": "Productos de belleza"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Peluca lace front", "variant": "18 pulgadas — Natural" },
-    "perruque-closure-16-bouclee": { "name": "Peluca closure", "variant": "16 pulgadas — Rizada" },
+    "perruque-lace-18-naturelle": { "name": "Peluca lace front", "variant": "Natural" },
+    "perruque-closure-16-bouclee": { "name": "Peluca closure", "variant": "Set de 3 — Rizada" },
     "meche-lisse-22": { "name": "Extensiones lisas", "variant": "22 pulgadas" },
     "meche-ondulee-20": { "name": "Extensiones onduladas", "variant": "20 pulgadas" },
     "meche-ondulee-24": { "name": "Extensiones onduladas", "variant": "24 pulgadas" },
@@ -292,7 +297,7 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Lisa" },
     "closure": { "name": "Closure", "variant": "4x4 — Ondulada" },
     "lace-360": { "name": "Lace 360", "variant": "Rizada" },
-    "bundles": { "name": "Bundles", "variant": "Set de 3 — Rizada" },
+    "bundles": { "name": "Bundles", "variant": "16 pulgadas — Rizada" },
     "soin-huile-cheveux": { "name": "Aceite capilar nutritivo", "variant": "" },
     "creme-visage-hydratante": { "name": "Crema facial hidratante", "variant": "" }
   },

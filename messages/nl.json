@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Voornaam, naam, telefoon, dienst, datum en uur zijn verplicht.",
     "unknownService": "Onbekende dienst.",
+    "unknownSize": "Kies een maat.",
     "slotTaken": "Dit tijdslot is net door iemand anders geboekt. Kies een ander moment.",
     "missingRequiredFieldsPurchase": "Voornaam, naam, telefoon en product zijn verplicht.",
     "maxQuantity": "Maximale hoeveelheid: 10.",
@@ -85,6 +86,7 @@
       "subtitle": "Pruiken, haarextensions en schoonheidsproducten — online betaald, af te halen in de salon.",
       "exampleBadge": "Voorbeeld",
       "comingSoon": "Binnenkort beschikbaar",
+      "startingFromPrefix": "vanaf ",
       "buy": "Kopen",
       "seeCatalogCta": "Op zoek naar een dienst? Bekijk de volledige catalogus"
     },
@@ -181,6 +183,9 @@
   },
   "Purchase": {
     "title": "Koop een product",
+    "chooseSizeLabel": "Kies een maat",
+    "sizeLabel": "Maat",
+    "changeSizeCta": "Wijzigen",
     "priceNote": "— online betaald, af te halen in de salon.",
     "quantityLabel": "Aantal",
     "submitCta": "Betaal {total}€ en koop"
@@ -283,8 +288,8 @@
     "Produits de beauté": "Schoonheidsproducten"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Lace front pruik", "variant": "18 inch — Natuurlijk" },
-    "perruque-closure-16-bouclee": { "name": "Closure pruik", "variant": "16 inch — Krullend" },
+    "perruque-lace-18-naturelle": { "name": "Lace front pruik", "variant": "Natuurlijk" },
+    "perruque-closure-16-bouclee": { "name": "Closure pruik", "variant": "Set van 3 — Krullend" },
     "meche-lisse-22": { "name": "Steile extensions", "variant": "22 inch" },
     "meche-ondulee-20": { "name": "Golvende extensions", "variant": "20 inch" },
     "meche-ondulee-24": { "name": "Golvende extensions", "variant": "24 inch" },
@@ -292,7 +297,7 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Steil" },
     "closure": { "name": "Closure", "variant": "4x4 — Golvend" },
     "lace-360": { "name": "360 Lace", "variant": "Krullend" },
-    "bundles": { "name": "Bundles", "variant": "Set van 3 — Krullend" },
+    "bundles": { "name": "Bundles", "variant": "16 inch — Krullend" },
     "soin-huile-cheveux": { "name": "Voedende haarolie", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydraterende gezichtscrème", "variant": "" }
   },

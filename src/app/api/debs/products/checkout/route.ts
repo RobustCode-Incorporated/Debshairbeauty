@@ -9,6 +9,7 @@ type CheckoutBody = {
   lastName: unknown;
   phone: unknown;
   productId: unknown;
+  sizeLabel?: unknown;
   quantity?: unknown;
   notes?: unknown;
   locale?: unknown;
@@ -65,6 +66,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    let priceEuros = product.priceEuros;
+    let sizeLabel = '';
+    if (product.sizes) {
+      sizeLabel = asNonEmptyString(body.sizeLabel) ?? '';
+      const matchedSize = product.sizes.find((size) => size.label === sizeLabel);
+      if (!matchedSize) {
+        return NextResponse.json({ error: t('unknownSize') }, { status: 400 });
+      }
+      priceEuros = matchedSize.priceEuros;
+    }
+
     const stripe = getDebsStripe();
     if (!stripe) {
       return NextResponse.json(
@@ -73,9 +85,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const unitAmountCents = Math.round(product.priceEuros * 100);
+    const unitAmountCents = Math.round(priceEuros * 100);
     const productName = tProducts(`${product.id}.name`);
-    const productVariant = product.variant ? tProducts(`${product.id}.variant`) : '';
+    const productVariant = [product.variant ? tProducts(`${product.id}.variant`) : '', sizeLabel].filter(Boolean).join(', ');
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -101,7 +113,7 @@ export async function POST(request: NextRequest) {
         phone,
         productId: product.id,
         productName: product.name,
-        variant: product.variant ?? '',
+        variant: [product.variant ?? '', sizeLabel].filter(Boolean).join(', '),
         quantity: String(quantity),
         notes,
       },

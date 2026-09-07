@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "First name, last name, phone, service, date and time are required.",
     "unknownService": "Unknown service.",
+    "unknownSize": "Please choose a size.",
     "slotTaken": "That slot was just booked by someone else. Please choose another one.",
     "missingRequiredFieldsPurchase": "First name, last name, phone and product are required.",
     "maxQuantity": "Maximum quantity: 10.",
@@ -85,6 +86,7 @@
       "subtitle": "Wigs, hair extensions and beauty products — paid online, ready to collect at the salon.",
       "exampleBadge": "Example",
       "comingSoon": "Coming soon",
+      "startingFromPrefix": "from ",
       "buy": "Buy",
       "seeCatalogCta": "Looking for a service? See the full catalogue"
     },
@@ -181,6 +183,9 @@
   },
   "Purchase": {
     "title": "Buy a product",
+    "chooseSizeLabel": "Choose a size",
+    "sizeLabel": "Size",
+    "changeSizeCta": "Change",
     "priceNote": "— paid online, to collect at the salon.",
     "quantityLabel": "Quantity",
     "submitCta": "Pay {total}€ and buy"
@@ -283,8 +288,8 @@
     "Produits de beauté": "Beauty Products"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Lace front wig", "variant": "18 inches — Natural" },
-    "perruque-closure-16-bouclee": { "name": "Closure wig", "variant": "16 inches — Curly" },
+    "perruque-lace-18-naturelle": { "name": "Lace front wig", "variant": "Natural" },
+    "perruque-closure-16-bouclee": { "name": "Closure wig", "variant": "Set of 3 — Curly" },
     "meche-lisse-22": { "name": "Straight extensions", "variant": "22 inches" },
     "meche-ondulee-20": { "name": "Wavy extensions", "variant": "20 inches" },
     "meche-ondulee-24": { "name": "Wavy extensions", "variant": "24 inches" },
@@ -292,7 +297,7 @@
     "lace-frontale": { "name": "Lace Frontal", "variant": "13x4 — Straight" },
     "closure": { "name": "Closure", "variant": "4x4 — Wavy" },
     "lace-360": { "name": "360 Lace", "variant": "Curly" },
-    "bundles": { "name": "Bundles", "variant": "Set of 3 — Curly" },
+    "bundles": { "name": "Bundles", "variant": "16 inches — Curly" },
     "soin-huile-cheveux": { "name": "Nourishing hair oil", "variant": "" },
     "creme-visage-hydratante": { "name": "Hydrating face cream", "variant": "" }
   },

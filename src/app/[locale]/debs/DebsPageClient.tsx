@@ -214,7 +214,9 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
                       <div className="p-6 flex flex-col flex-1">
                         <p className="text-stone-900 font-bold mb-1">{tProducts(`${product.id}.name`)}</p>
                         {product.variant && <p className="text-sm text-stone-500 mb-2">{tProducts(`${product.id}.variant`)}</p>}
-                        <p className="text-2xl font-black text-stone-900 mb-4 mt-auto">{product.priceEuros}€</p>
+                        <p className="text-2xl font-black text-stone-900 mb-4 mt-auto">
+                          {product.sizes && t("boutique.startingFromPrefix")}{product.priceEuros}€
+                        </p>
                         <button
                           type="button"
                           disabled={product.placeholder}
@@ -452,6 +454,7 @@ export default function DebsSalonPage({ reviews }: { reviews: DebsGoogleReviewsD
 
       {/* --- MODAL ACHAT BOUTIQUE --- */}
       <DebsProductPurchaseSlideOver
+        key={purchaseProduct?.id ?? "none"}
         isOpen={isPurchaseOpen}
         onClose={() => setIsPurchaseOpen(false)}
         product={purchaseProduct}

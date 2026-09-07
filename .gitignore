@@ -43,3 +43,6 @@ next-env.d.ts
 
 /src/generated/prisma
 /generated/prisma
+
+# never commit secrets dropped at the repo root (2FA backup codes, etc.)
+stripe_backup_code.txt

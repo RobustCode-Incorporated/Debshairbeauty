@@ -18,6 +18,7 @@
   "CheckoutApi": {
     "missingRequiredFieldsBooking": "Prénom, nom, téléphone, prestation, date et heure sont obligatoires.",
     "unknownService": "Prestation inconnue.",
+    "unknownSize": "Merci de choisir une taille.",
     "slotTaken": "Ce créneau vient d'être réservé par quelqu'un d'autre. Merci d'en choisir un autre.",
     "missingRequiredFieldsPurchase": "Prénom, nom, téléphone et produit sont obligatoires.",
     "maxQuantity": "Quantité maximale : 10.",
@@ -85,6 +86,7 @@
       "subtitle": "Perruques, mèches et produits de beauté — payés en ligne, à récupérer directement au salon.",
       "exampleBadge": "Exemple",
       "comingSoon": "Bientôt disponible",
+      "startingFromPrefix": "à p.d. ",
       "buy": "Acheter",
       "seeCatalogCta": "Vous cherchez une prestation ? Voir le catalogue complet"
     },
@@ -181,6 +183,9 @@
   },
   "Purchase": {
     "title": "Acheter un produit",
+    "chooseSizeLabel": "Choisis une taille",
+    "sizeLabel": "Taille",
+    "changeSizeCta": "Changer",
     "priceNote": "— payé en ligne, à récupérer au salon.",
     "quantityLabel": "Quantité",
     "submitCta": "Payer {total}€ et acheter"
@@ -283,8 +288,8 @@
     "Produits de beauté": "Produits de beauté"
   },
   "Products": {
-    "perruque-lace-18-naturelle": { "name": "Perruque lace front", "variant": "18 pouces — Naturel" },
-    "perruque-closure-16-bouclee": { "name": "Perruque closure", "variant": "16 pouces — Bouclée" },
+    "perruque-lace-18-naturelle": { "name": "Perruque lace front", "variant": "Naturel" },
+    "perruque-closure-16-bouclee": { "name": "Perruque closure", "variant": "Lot de 3 — Bouclée" },
     "meche-lisse-22": { "name": "Mèches lisses", "variant": "22 pouces" },
     "meche-ondulee-20": { "name": "Mèches ondulées", "variant": "20 pouces" },
     "meche-ondulee-24": { "name": "Mèches ondulées", "variant": "24 pouces" },
@@ -292,7 +297,7 @@
     "lace-frontale": { "name": "Lace frontale", "variant": "13x4 — Lisse" },
     "closure": { "name": "Closure", "variant": "4x4 — Ondulée" },
     "lace-360": { "name": "Lace 360", "variant": "Bouclée" },
-    "bundles": { "name": "Bundles", "variant": "Lot de 3 — Bouclée" },
+    "bundles": { "name": "Bundles", "variant": "16 pouces — Bouclée" },
     "soin-huile-cheveux": { "name": "Huile capillaire nourrissante", "variant": "" },
     "creme-visage-hydratante": { "name": "Crème visage hydratante", "variant": "" }
   },
