@@ -17,7 +17,18 @@ import type { DebsGoogleReviewsData } from "@/lib/debs-google-reviews";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
-const gallery = ["/download (1).webp", "/download (4).webp", "/download (5).webp", "/download (10).webp", "/portant-meches.jpeg"];
+const gallery = [
+  "/download (1).webp",
+  "/download (4).webp",
+  "/download (5).webp",
+  "/download (10).webp",
+  "/portant-meches.jpeg",
+  "/download (3).webp",
+  "/download (6).webp",
+  "/download (7).webp",
+  "/download (8).webp",
+  "/download (9).webp",
+];
 
 const HOURS: Array<{ dayKey: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday"; value: string | null }> = [
   { dayKey: "monday", value: null },
