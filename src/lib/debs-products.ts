@@ -68,7 +68,7 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
   {
     id: "meche-lisse-22",
     category: "Mèches",
-    name: "Mèches lisses",
+    name: "Mèches bouclées",
     priceEuros: HAIR_STARTING_PRICE,
     sizes: HAIR_SIZE_GRID,
     image: "/meche-lisse.jpeg",
@@ -95,7 +95,7 @@ export const DEBS_PRODUCTS: DebsProduct[] = [
   {
     id: "meche-bouclee-18",
     category: "Mèches",
-    name: "Mèches bouclées",
+    name: "Mèches lisses",
     priceEuros: HAIR_STARTING_PRICE,
     sizes: HAIR_SIZE_GRID,
     image: "/meche-bouclee.jpeg",
