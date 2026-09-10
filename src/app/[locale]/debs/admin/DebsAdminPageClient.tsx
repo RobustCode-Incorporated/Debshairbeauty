@@ -109,7 +109,7 @@ export default function DebsAdminPageClient() {
         } catch {
           // ignore
         }
-        setAuthError("Clé invalide.");
+        setAuthError("Mot de passe invalide.");
         return;
       }
       if (!response.ok) {
@@ -141,7 +141,7 @@ export default function DebsAdminPageClient() {
           } catch {
             // ignore
           }
-          setAuthError("Clé invalide.");
+          setAuthError("Mot de passe invalide.");
           return;
         }
         if (!response.ok) {
@@ -225,7 +225,7 @@ export default function DebsAdminPageClient() {
           <h1 className="text-xl font-bold text-stone-900 mb-1">Admin — Debs Hair Beauty</h1>
           <p className="text-sm text-stone-500 mb-6">Gestion des rendez-vous</p>
           <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="admin-token">
-            Clé d&apos;accès admin
+            Mot de passe
           </label>
           <input
             id="admin-token"
