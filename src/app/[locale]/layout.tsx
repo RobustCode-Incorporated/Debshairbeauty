@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -53,6 +54,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale}>
           <main className="flex-grow">{children}</main>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
