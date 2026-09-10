@@ -113,3 +113,23 @@ CREATE TABLE IF NOT EXISTS debs_reviews (
   comment        TEXT,
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Admin cancellation (src/app/[locale]/debs/admin, src/app/api/debs/admin) —
+-- the >=24h-before-appointment full-refund policy decides whether
+-- refunded_at gets set. cancelled_at is separate from status so "when"
+-- survives even though status is a single enum value.
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMPTZ;
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS refunded_at TIMESTAMPTZ;
+ALTER TABLE debs_appointments ADD COLUMN IF NOT EXISTS stripe_refund_id TEXT;
+
+-- A cancelled appointment must free its slot for rebooking (rows are never
+-- deleted, so the old blanket UNIQUE(date_time) would otherwise block it
+-- forever). Replace with a partial unique index scoped to active rows.
+-- IMPORTANT: keep the name identical to the dropped constraint —
+-- src/lib/debs-checkout.ts's slot-race guard matches on this exact
+-- constraint name in the pg error object
+-- (error.constraint === 'debs_appointments_date_time_key'); renaming it
+-- here would silently break that guard.
+ALTER TABLE debs_appointments DROP CONSTRAINT IF EXISTS debs_appointments_date_time_key;
+CREATE UNIQUE INDEX IF NOT EXISTS debs_appointments_date_time_key
+  ON debs_appointments (date_time) WHERE status != 'CANCELLED';

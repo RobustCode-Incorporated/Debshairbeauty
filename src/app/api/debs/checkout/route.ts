@@ -84,9 +84,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const existingAtSlot = await debsPool.query('SELECT 1 FROM debs_appointments WHERE date_time = $1', [
-      dateTime.toISOString(),
-    ]);
+    const existingAtSlot = await debsPool.query(
+      "SELECT 1 FROM debs_appointments WHERE date_time = $1 AND status != 'CANCELLED'",
+      [dateTime.toISOString()],
+    );
     if (existingAtSlot.rows.length > 0) {
       return NextResponse.json({ error: t('slotTaken') }, { status: 409 });
     }

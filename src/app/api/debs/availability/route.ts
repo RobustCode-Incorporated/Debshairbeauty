@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
   dayEnd.setDate(dayEnd.getDate() + 1);
 
   const result = await debsPool.query<{ date_time: Date }>(
-    'SELECT date_time FROM debs_appointments WHERE date_time >= $1 AND date_time < $2',
+    "SELECT date_time FROM debs_appointments WHERE date_time >= $1 AND date_time < $2 AND status != 'CANCELLED'",
     [dayStart.toISOString(), dayEnd.toISOString()],
   );
   const taken = new Set(result.rows.map((row) => utcToBrusselsTime(new Date(row.date_time))));

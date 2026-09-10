@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
             c.first_name, c.last_name, c.phone
        FROM debs_appointments a
        JOIN debs_clients c ON c.id = a.client_id
-      WHERE a.payment_status = 'PAID'
+      WHERE a.payment_status = 'PAID' AND a.status != 'CANCELLED'
       ORDER BY a.date_time ASC`,
   );
 
