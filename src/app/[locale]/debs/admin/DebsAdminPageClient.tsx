@@ -1,10 +1,14 @@
 "use client";
 
 import { Check, Copy, Loader2 } from "lucide-react";
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 const STORAGE_KEY = "debsAdminToken";
 const FULL_REFUND_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+// Mirrors DEBS_SERVICE_CATEGORIES (src/lib/debs-services.ts) — a fixed,
+// hand-maintained list of 6 categories, id and display label identical.
+const CATEGORY_OPTIONS = ["Cheveux", "Ongles", "Épilation", "Visage", "Massage", "Maquillage"];
 
 type Appointment = {
   id: string;
@@ -26,6 +30,8 @@ type RefundOutcome =
   | { outcome: "failed"; stripePaymentIntentId: string | null };
 
 type CancelResult = { id: string; clientName: string; message: string; stripeReference: string | null };
+
+type ClientMatch = { id: string; firstName: string; lastName: string; phone: string };
 
 function formatDateTime(iso: string): string {
   return new Intl.DateTimeFormat("fr-BE", {
@@ -66,6 +72,20 @@ export default function DebsAdminPageClient() {
   const [cancellingId, setCancellingId] = useState<string | null>(null);
   const [results, setResults] = useState<CancelResult[]>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [addFirstName, setAddFirstName] = useState("");
+  const [addLastName, setAddLastName] = useState("");
+  const [addPhone, setAddPhone] = useState("");
+  const [addCategoryId, setAddCategoryId] = useState(CATEGORY_OPTIONS[0]);
+  const [addDate, setAddDate] = useState("");
+  const [addTime, setAddTime] = useState("");
+  const [addNotes, setAddNotes] = useState("");
+  const [addSubmitting, setAddSubmitting] = useState(false);
+  const [addError, setAddError] = useState<string | null>(null);
+  const [clientQuery, setClientQuery] = useState("");
+  const [clientMatches, setClientMatches] = useState<ClientMatch[]>([]);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 0 until the mount effect below sets the real clock reading — used only
   // for the refund-eligibility badge, which is informational (the cancel
@@ -218,6 +238,79 @@ export default function DebsAdminPageClient() {
     }
   };
 
+  const onClientQueryChange = (value: string) => {
+    setClientQuery(value);
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    const trimmed = value.trim();
+    if (!token || trimmed.length < 2) {
+      setClientMatches([]);
+      return;
+    }
+    searchTimeoutRef.current = setTimeout(() => {
+      fetch(`/api/debs/admin/clients?q=${encodeURIComponent(trimmed)}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((response) => (response.ok ? response.json() : { clients: [] }))
+        .then((data: { clients: ClientMatch[] }) => setClientMatches(data.clients))
+        .catch(() => setClientMatches([]));
+    }, 300);
+  };
+
+  const selectClientMatch = (match: ClientMatch) => {
+    setAddFirstName(match.firstName);
+    setAddLastName(match.lastName);
+    setAddPhone(match.phone);
+    setClientQuery(`${match.firstName} ${match.lastName}`);
+    setClientMatches([]);
+  };
+
+  const resetAddForm = () => {
+    setAddFirstName("");
+    setAddLastName("");
+    setAddPhone("");
+    setAddCategoryId(CATEGORY_OPTIONS[0]);
+    setAddDate("");
+    setAddTime("");
+    setAddNotes("");
+    setClientQuery("");
+    setClientMatches([]);
+    setAddError(null);
+  };
+
+  const submitAddAppointment = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!token) return;
+    setAddSubmitting(true);
+    setAddError(null);
+    try {
+      const response = await fetch("/api/debs/admin/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          firstName: addFirstName,
+          lastName: addLastName,
+          phone: addPhone,
+          categoryId: addCategoryId,
+          date: addDate,
+          time: addTime,
+          notes: addNotes,
+        }),
+      });
+      const data: { ok?: boolean; appointmentId?: string; error?: string } = await response.json();
+      if (!response.ok || !data.appointmentId) {
+        setAddError(data.error ?? "Impossible de créer le rendez-vous.");
+        return;
+      }
+      await fetchAppointments(token);
+      resetAddForm();
+      setShowAddForm(false);
+    } catch {
+      setAddError("Impossible de créer le rendez-vous.");
+    } finally {
+      setAddSubmitting(false);
+    }
+  };
+
   if (!token) {
     return (
       <div className="min-h-screen bg-[#fbf9f6] flex items-center justify-center px-4">
@@ -255,9 +348,143 @@ export default function DebsAdminPageClient() {
     <div className="min-h-screen bg-[#fbf9f6] px-4 py-10">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-2xl font-bold text-stone-900 mb-1">Rendez-vous à venir</h1>
-        <p className="text-sm text-stone-500 mb-8">
+        <p className="text-sm text-stone-500 mb-6">
           Annulation avec remboursement automatique si ≥ 24h avant le rendez-vous.
         </p>
+
+        <button
+          type="button"
+          onClick={() => {
+            setShowAddForm((value) => !value);
+            if (showAddForm) resetAddForm();
+          }}
+          className="mb-6 text-sm font-bold uppercase tracking-wider text-stone-900 hover:text-amber-700"
+        >
+          {showAddForm ? "Annuler l'ajout" : "+ Ajouter un rendez-vous"}
+        </button>
+
+        {showAddForm && (
+          <form onSubmit={submitAddAppointment} className="mb-8 border border-stone-200 bg-white p-4 space-y-3">
+            <div className="relative">
+              <label className="block text-sm font-medium text-stone-700 mb-1">Rechercher une cliente existante</label>
+              <input
+                type="text"
+                value={clientQuery}
+                onChange={(event) => onClientQueryChange(event.target.value)}
+                placeholder="Nom, prénom ou téléphone"
+                className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+              />
+              {clientMatches.length > 0 && (
+                <div className="absolute z-10 w-full bg-white border border-stone-200 mt-1 max-h-48 overflow-y-auto shadow-sm">
+                  {clientMatches.map((match) => (
+                    <button
+                      key={match.id}
+                      type="button"
+                      onClick={() => selectClientMatch(match)}
+                      className="block w-full text-left px-3 py-2 text-sm hover:bg-stone-50"
+                    >
+                      {match.firstName} {match.lastName} — {match.phone}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Prénom</label>
+                <input
+                  required
+                  value={addFirstName}
+                  onChange={(event) => setAddFirstName(event.target.value)}
+                  className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Nom</label>
+                <input
+                  required
+                  value={addLastName}
+                  onChange={(event) => setAddLastName(event.target.value)}
+                  className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Téléphone</label>
+              <input
+                required
+                value={addPhone}
+                onChange={(event) => setAddPhone(event.target.value)}
+                placeholder="+32471234567"
+                className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+              />
+              <p className="text-xs text-stone-400 mt-1">Commencez par l&apos;indicatif pays, ex : +32471234567</p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Catégorie</label>
+                <select
+                  value={addCategoryId}
+                  onChange={(event) => setAddCategoryId(event.target.value)}
+                  className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+                >
+                  {CATEGORY_OPTIONS.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Date</label>
+                <input
+                  required
+                  type="date"
+                  value={addDate}
+                  onChange={(event) => setAddDate(event.target.value)}
+                  className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Heure</label>
+                <input
+                  required
+                  type="time"
+                  value={addTime}
+                  onChange={(event) => setAddTime(event.target.value)}
+                  className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-stone-700 mb-1">Notes (optionnel)</label>
+              <textarea
+                rows={2}
+                value={addNotes}
+                onChange={(event) => setAddNotes(event.target.value)}
+                className="w-full border border-stone-300 px-3 py-2 outline-none focus:border-amber-600"
+              />
+            </div>
+
+            {addError && (
+              <p role="alert" className="text-sm text-red-600">
+                {addError}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={addSubmitting}
+              className="text-sm font-bold uppercase tracking-wider px-4 py-2 bg-stone-900 text-white hover:bg-amber-700 disabled:opacity-40"
+            >
+              {addSubmitting ? "Création…" : "Créer le rendez-vous"}
+            </button>
+          </form>
+        )}
 
         {results.length > 0 && (
           <div className="mb-8 space-y-2">
